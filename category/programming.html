@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Justin's Code Haus</title>
+  <title>Justin's Code Haus - Category: Programming</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="http://blog.jholewinski.org/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
@@ -58,7 +58,7 @@ https://github.com/wamonite/relapse
 <div class="row"><div class="span12">
 <nav class="navbar"><div class="navbar-inner">
 <ul class="nav">
-  <li class="active"><a href="http://blog.jholewinski.org/index.html">Home</a></li>
+  <li><a href="http://blog.jholewinski.org/index.html">Home</a></li>
   
                                 
       <li ><a href="http://blog.jholewinski.org/about-me/index.html">About Me</a></li>
@@ -76,63 +76,10 @@ https://github.com/wamonite/relapse
 
 <!-- Content --> 
 <div class="span9">
+<h3 class="well well-small">Category: Programming</h3>
+
 
             <article>
-      <h1><a href="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html" rel="bookmark">2012 and still no multi-monitor lovin'...</a></h1>
-      
-      <p>For the past week, I've been giving Windows 8 a serious try. &nbsp;I've
-dabbled with the various preview versions, but now it's time to try the
-released version. &nbsp;I've read the reviews, saw the mixed reactions to the
-new &quot;Modern UI&quot;, and decided to see for myself how I feel about
-it.&nbsp;Generally speaking, I don't mind the new interface. &nbsp;My usual method
-of launching a program was pressing the Win key, typing the first few
-letters of the application name, and then hitting Enter. &nbsp;Still works in
-the Start Screen. &nbsp;Start Menu vs. Start Screen, it doesn't bother me.
-&nbsp;Except for one little detail...</p>
-<p><em>... the complete lack of multi-monitor support in the Modern UI!</em></p>
-<p>Simply put, there can only be one full-screen Modern UI app displayed at
-a time. &nbsp;So if I open, say, Mail on one screen and attempt to open Maps
-on another screen, the screen showing Mail will go back to the desktop.
-&nbsp;To make matters worse, the Start Screen counts as a Modern UI app in
-this regard. &nbsp;If I have Mail open on one screen and try to open the
-Start Screen on another screen to launch an application, the screen
-showing Mail goes back to the desktop and I have to alt+tab back to it.
-&nbsp;Talk about a disruption in my workflow!</p>
-<p>Did I mention my main desktop is triple-head? &nbsp;It comes in handy for
-coding. &nbsp;All of the Windows 8 reviews I read talk about the pros and
-cons of the new Modern UI, but I rarely see any reference to the
-complete lack of multi-monitor support in it. &nbsp;I'm not sure if this is
-just a feature oversight, or a more fundamental limitation in the model
-used for WinRT apps. &nbsp; Is there a fundamental technical limitation in
-the operating system that prevents multiple Modern UI apps to be visible
-at the same time? If the Modern UI is the future, I sure hope they get
-this fixed ASAP! &nbsp;For now, it's easy enough to just avoid Modern UI apps
-altogether, but what happens in the future when I find an app I want to
-keep open on one of my screens?</p>
-<p>Perhaps more disturbing, this is becoming a trend in mainstream
-operating systems. &nbsp;While Windows 8 has this limitation for Modern UI
-apps, full-screen apps in Mac OS X are not really any better. &nbsp;If I
-full-screen an application in a multi-monitor configuration, I get that
-app on one monitor and a pretty background on all others. &nbsp;I would much
-rather have the ability to put multiple apps in full-screen mode
-side-by-side, or perhaps have the option to have a full-screen app next
-to a desktop workspace on another monitor. &nbsp;At least I can have multiple
-workspaces, though.</p>
-<p>Perhaps I'm just too adjusted to my Linux multi-monitor
-configurations...</p>
-
-      
-      <detail><p>
-      Posted Tue 06 November 2012
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/general.html">General</a>
-(<a href="http://blog.jholewinski.org/tag/windows.html">Windows</a>, <a href="http://blog.jholewinski.org/tag/desktop.html">Desktop</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html">Comments</a>        </p></aside>
-            </article>
-      
-            
-                <article>
       <h1><a href="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html" rel="bookmark">UnrealScript: Brace Placement Matters!</a></h1>
       
       <p>I was playing around with the Unreal Development Kit this evening, and
@@ -170,7 +117,6 @@ out!</p>
 <p>I hope this can help prevent someone else from repeating my mistake.</p>
 
       
-            
       <detail><p>
       Posted Sat 17 March 2012
  by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
@@ -431,17 +377,169 @@ disassembly, respectively.</p>
         <a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html">Comments</a>        </p></aside>
             </article>
       
+            
+                <article>
+      <h1><a href="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html" rel="bookmark">LLVM 3.0: PTX Backend</a></h1>
+      
+      <p><strong>NOTE</strong>: The information is this article only applies to LLVM 3.0 and
+3.1. As of LLVM 3.2, the PTX back-end has been replaced with the NVPTX
+back-end.</p>
+<p>With the release of LLVM 3.0, the PTX back-end is now in a fairly usable
+state. &nbsp;It even integrates with the Clang OpenCL front-end to produce
+correct PTX code usable by the nVidia OpenCL run-time. &nbsp;However, please
+note that the back-end is still experimental and there are unimplemented
+features. &nbsp;As always, please post any questions to the llvm-dev mailing
+list.</p>
+<p>In this post, I aim to give a quick overview of how to use the back-end
+to compile OpenCL kernels.</p>
+<p>As an example, consider the following matrix multiplication routine
+written in OpenCL:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#define BLOCK_SIZE 16</span>
+
+<span class="n">__kernel</span>
+<span class="kt">void</span> <span class="n">matmul</span><span class="p">(</span><span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">B</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="n">__local</span> <span class="kt">float</span> <span class="n">scratchA</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">][</span><span class="n">BLOCK_SIZE</span><span class="p">];</span>
+  <span class="n">__local</span> <span class="kt">float</span> <span class="n">scratchB</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">][</span><span class="n">BLOCK_SIZE</span><span class="p">];</span>
+
+  <span class="kt">int</span> <span class="n">globalX</span> <span class="o">=</span> <span class="n">get_global_id</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">globalY</span> <span class="o">=</span> <span class="n">get_global_id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">get_global_size</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0f</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">numBlocks</span> <span class="o">=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">tidX</span> <span class="o">=</span> <span class="n">get_local_id</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">tidY</span> <span class="o">=</span> <span class="n">get_local_id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">numBlocks</span><span class="p">;</span> <span class="o">++</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Populate a cache for A/B</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">BLOCK_SIZE</span> <span class="o">+</span> <span class="n">tidX</span><span class="p">;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">globalY</span><span class="p">;</span>
+
+    <span class="n">scratchA</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">tidX</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">x</span><span class="p">];</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">globalX</span><span class="p">;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">BLOCK_SIZE</span> <span class="o">+</span> <span class="n">tidY</span><span class="p">;</span>
+
+    <span class="n">scratchB</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">tidX</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">x</span><span class="p">];</span>
+
+    <span class="n">barrier</span><span class="p">(</span><span class="n">CLK_LOCAL_MEM_FENCE</span><span class="p">);</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">float</span> <span class="n">myA</span><span class="p">;</span>
+      <span class="kt">float</span> <span class="n">myB</span><span class="p">;</span>
+
+      <span class="n">myA</span> <span class="o">=</span> <span class="n">scratchA</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+      <span class="n">myB</span> <span class="o">=</span> <span class="n">scratchB</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">tidX</span><span class="p">];</span>
+
+      <span class="n">sum</span> <span class="o">+=</span> <span class="n">myA</span> <span class="o">*</span> <span class="n">myB</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">barrier</span><span class="p">(</span><span class="n">CLK_LOCAL_MEM_FENCE</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">C</span><span class="p">[</span><span class="n">globalY</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">globalX</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table><p>We can use the <a class="reference external" href="http://www.pcc.me.uk/~peter/libclc">libclc</a>&nbsp;library, written by Peter Collingbourne, to
+provide the OpenCL built-in functions for Clang. &nbsp;This library will map
+OpenCL built-in functions to target-specific functions in the LLVM IR
+that the PTX back-end knows how to handle. &nbsp;If <tt class="docutils literal">$LIBCLC</tt> points to the
+download of libclc, then you can invoke Clang with:</p>
+<pre class="literal-block">
+clang -ccc-host-triple ptx32
+  -Xclang -target-feature -Xclang +ptx23
+  -Xclang -target-feature -Xclang +sm20
+  -I$LIBCLC/include/generic -I$LIBCLC/include/ptx
+  -include clc/clc.h -Dcl_clang_storage_class_specifiers
+  -O3 matmul_kernel.cl -S -o matmul_kernel.ptx
+</pre>
+<p>The options can be a bit verbose at the moment, but practically all of
+them can be placed in a wrapper script. &nbsp;Clang will compile the kernel
+and emit the generated PTX code to <tt class="docutils literal">matmul_kernel.ptx</tt>. &nbsp;This code can
+then be loaded as an OpenCL binary kernel using the nVidia OpenCL SDK,
+using the <tt class="docutils literal">clCreateProgramWithBinary</tt> function. &nbsp;As an added bonus,
+the performance is about the same as if the kernel was compiled using
+the nVidia OpenCL compiler!</p>
+
+      
+            
+      <detail><p>
+      Posted Fri 02 December 2011
+ by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
+(<a href="http://blog.jholewinski.org/tag/gpu.html">GPU</a>, <a href="http://blog.jholewinski.org/tag/llvm.html">LLVM</a>, <a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL</a>)      </p></detail>
+      
+              <aside id="comment-count"><p>
+        <a href="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html">Comments</a>        </p></aside>
+            </article>
+      
               <nav class="pagination">
           <ul>
       <li class="disabled"><span>&laquo;</span></li>
     
             <li class="active"><span>1</span></li>
-                        <li><a href="http://blog.jholewinski.org/index2.html">2</a></li>
+                        <li><a href="http://blog.jholewinski.org/category/programming2.html">2</a></li>
               
-      <li><a href="http://blog.jholewinski.org/index2.html">&raquo;</a></li>
+      <li><a href="http://blog.jholewinski.org/category/programming2.html">&raquo;</a></li>
   </ul>        </nav>
             
       
+
 </div>
 <!-- /Content -->
 
@@ -456,9 +554,9 @@ disassembly, respectively.</p>
 
 <h2>Archives</h2>
 <ul class="nav nav-pulls nav-stacked">
-  <li>2012-11-06<br/><a href='http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
   <li>2012-03-17<br/><a href='http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
   <li>2012-02-17<br/><a href='http://blog.jholewinski.org/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
+  <li>2012-02-16<br/><a href='http://blog.jholewinski.org/direct3d-11-with-qt-4/index.html'>Direct3D 11 with Qt 4</a></li>
 <br/>
 <li><a href='http://blog.jholewinski.org/archives.html'>&lt;All&gt;</a></li>
 </ul>
@@ -466,7 +564,7 @@ disassembly, respectively.</p>
 <h2>Categories</h2>
 <ul class="nav nav-pills nav-stacked">
   <li ><a href="http://blog.jholewinski.org/category/general.html">General</a></li>
-  <li ><a href="http://blog.jholewinski.org/category/programming.html">Programming</a></li>
+  <li class="active"><a href="http://blog.jholewinski.org/category/programming.html">Programming</a></li>
 </ul>
 
 <h2>Tags</h2>

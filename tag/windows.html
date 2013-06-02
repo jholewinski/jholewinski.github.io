@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Justin's Code Haus</title>
+  <title>Justin's Code Haus - Tag: Windows</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="http://blog.jholewinski.org/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
@@ -58,7 +58,7 @@ https://github.com/wamonite/relapse
 <div class="row"><div class="span12">
 <nav class="navbar"><div class="navbar-inner">
 <ul class="nav">
-  <li class="active"><a href="http://blog.jholewinski.org/index.html">Home</a></li>
+  <li><a href="http://blog.jholewinski.org/index.html">Home</a></li>
   
                                 
       <li ><a href="http://blog.jholewinski.org/about-me/index.html">About Me</a></li>
@@ -76,6 +76,8 @@ https://github.com/wamonite/relapse
 
 <!-- Content --> 
 <div class="span9">
+<h3 class="well well-small">Tag: Windows</h3>
+
 
             <article>
       <h1><a href="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html" rel="bookmark">2012 and still no multi-monitor lovin'...</a></h1>
@@ -129,55 +131,6 @@ configurations...</p>
       
               <aside id="comment-count"><p>
         <a href="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html">Comments</a>        </p></aside>
-            </article>
-      
-            
-                <article>
-      <h1><a href="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html" rel="bookmark">UnrealScript: Brace Placement Matters!</a></h1>
-      
-      <p>I was playing around with the Unreal Development Kit this evening, and
-discovered a rather interesting quirk in the handling of braces within
-UnrealScript. &nbsp;All of the sample code I read use a syntax style that
-places opening braces on the following line:</p>
-<div class="highlight"><pre><span class="n">event</span> <span class="n">PostBeginPlay</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="c1">// Do something</span>
-<span class="p">}</span>
-</pre></div>
-<p>However, my typical style places the opening brace on the current line:</p>
-<div class="highlight"><pre><span class="n">event</span> <span class="n">PostBeginPlay</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Do something</span>
-<span class="p">}</span>
-</pre></div>
-<p>Unfortunately, this does not seem to work for <tt class="docutils literal">defaultproperties</tt>
-blocks. If you place the brace on the same line, the compiler will not
-give you any warnings or errors, but the entire <tt class="docutils literal">defaultproperties</tt>
-block is just ignored!</p>
-<p>So this code works:</p>
-<div class="highlight"><pre>defaultproperties
-{
-  PlayerControllerClass=class&#39;MyPlayerController&#39;
-}
-</pre></div>
-<p>while the following code compiles but silently just ignores all of the
-contained settings:</p>
-<div class="highlight"><pre>defaultproperties {
-  PlayerControllerClass=class&#39;MyPlayerController&#39;
-}
-</pre></div>
-<p>I was banging my head on the wall for at least an hour figuring this one
-out!</p>
-<p>I hope this can help prevent someone else from repeating my mistake.</p>
-
-      
-            
-      <detail><p>
-      Posted Sat 17 March 2012
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
-(<a href="http://blog.jholewinski.org/tag/unreal.html">Unreal</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html">Comments</a>        </p></aside>
             </article>
       
             
@@ -381,67 +334,8 @@ release, the DirectX SDK, and the Qt Visual Studio Add-in.</p>
             </article>
       
             
-                <article>
-      <h1><a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html" rel="bookmark">AMD APP: Getting Device Assembly</a></h1>
       
-      <p>Sometimes it is useful to look at the intermediate and assembly code for
-GPU programs. &nbsp;This can lead to some interesting performance insights,
-especially for compiler writers. &nbsp;Unfortunately, the AMD APP SDK is a
-bit limited on Linux, and the AMD APP KernelAnalyzer, which conveniently
-dumps the AMDIL and Device ISA for an OpenCL kernel, is not available on
-Linux. &nbsp;However, digging through the AMD APP OpenCL Programming Guide,
-one finds an environment variable that can be used for the same purpose:
-<tt class="docutils literal">GPU_DUMP_DEVICE_KERNEL</tt>.</p>
-<p>According to the programming guide, this environment variable can take
-one of three values:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<tbody valign="top">
-<tr><td>1</td>
-<td>Save intermediate IL files in local directory.</td>
-</tr>
-<tr><td>2</td>
-<td>Disassemble ISA file and save in local directory.</td>
-</tr>
-<tr><td>3</td>
-<td>Save both the IL and ISA files in local directory.</td>
-</tr>
-</tbody>
-</table>
-<p>Therefore, if you run your OpenCL program with:</p>
-<pre class="literal-block">
-$ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
-</pre>
-<p>You will get two files in your local directory:
-<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].il</span></tt> and
-<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].isa</span></tt>, which contain AMDIL and Device ISA
-disassembly, respectively.</p>
 
-      
-            
-      <detail><p>
-      Posted Thu 09 February 2012
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
-(<a href="http://blog.jholewinski.org/tag/gpu.html">GPU</a>, <a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL</a>, <a href="http://blog.jholewinski.org/tag/amd.html">AMD</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html">Comments</a>        </p></aside>
-            </article>
-      
-              <nav class="pagination">
-          <ul>
-      <li class="disabled"><span>&laquo;</span></li>
-    
-            <li class="active"><span>1</span></li>
-                        <li><a href="http://blog.jholewinski.org/index2.html">2</a></li>
-              
-      <li><a href="http://blog.jholewinski.org/index2.html">&raquo;</a></li>
-  </ul>        </nav>
-            
-      
 </div>
 <!-- /Content -->
 
@@ -457,8 +351,8 @@ disassembly, respectively.</p>
 <h2>Archives</h2>
 <ul class="nav nav-pulls nav-stacked">
   <li>2012-11-06<br/><a href='http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
-  <li>2012-03-17<br/><a href='http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
   <li>2012-02-17<br/><a href='http://blog.jholewinski.org/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
+  <li>2012-02-16<br/><a href='http://blog.jholewinski.org/direct3d-11-with-qt-4/index.html'>Direct3D 11 with Qt 4</a></li>
 <br/>
 <li><a href='http://blog.jholewinski.org/archives.html'>&lt;All&gt;</a></li>
 </ul>
