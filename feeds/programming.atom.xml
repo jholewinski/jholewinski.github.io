@@ -38,7 +38,7 @@ a pain, but I think I have everything working now.&lt;/p&gt;
 &lt;p&gt;This game was developed by myself, Jason Kim, Joseph Ahn, Vjekoslav
 Kovacevic, and Daniel Guinn for a computer animation class during Winter
 Quarter 2007.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://jholewinski.org/static/uploads/2012/02/spacehogs-screen1.png"&gt;&lt;img alt="image0" src="http://jholewinski.org/static/uploads/2012/02/spacehogs-screen1.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external image-reference" href="http://blog.jholewinski.org/static/images/spacehogs-screen1.png"&gt;&lt;img alt="Spacehogs Screenshot" src="http://blog.jholewinski.org/static/images/spacehogs-screen1.png" style="width: 600px;" /&gt;&lt;/a&gt;
 &lt;p&gt;You can find a zip file &lt;a class="reference external" href="/static/SpaceHogs.zip"&gt;here&lt;/a&gt;. This requires XNA 4.0 and the February
 2010 DX packages to be installed on your machine. For convenience, I've
 included both of the redistributable packages in the zip file.&lt;/p&gt;
@@ -58,7 +58,7 @@ about setting up Direct3D to play nice with Qt. &amp;nbsp;Most of the informatio
 is either out-dated, or only applies to Direct3D 9. &amp;nbsp;Lately, I've been
 playing around with this and I want to share my method for combining
 Direct3D 11 and Qt.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://jholewinski.org/static/uploads/2012/02/qtd3d11-screen1.png"&gt;&lt;img alt="image0" src="http://jholewinski.org/static/uploads/2012/02/qtd3d11-screen1.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a class="reference external image-reference" href="http://blog.jholewinski.org/static/images/qtd3d11-screen1.png"&gt;&lt;img alt="Screenshot" src="http://blog.jholewinski.org/static/images/qtd3d11-screen1.png" /&gt;&lt;/a&gt;
 &lt;div class="section" id="creating-a-widget"&gt;
 &lt;h2&gt;Creating a Widget&lt;/h2&gt;
 &lt;p&gt;To start, we define a new widget sub-class specifically for Direct3D 11
