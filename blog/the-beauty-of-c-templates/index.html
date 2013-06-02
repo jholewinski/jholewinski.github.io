@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Justin's Code Haus - The Beauty of C++ Templates</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="http://jholewinski.github.io/blog/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://jholewinski.github.io/blog/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
+  <link href="http://jholewinski.github.io/blog/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://jholewinski.github.io/blog/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+    
+  <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" media="all" href="http://jholewinski.github.io/blog/css/ie.css"/>
+    <script src="http://jholewinski.github.io/blog/js/IE8.js" type="text/javascript"></script><![endif]-->
+  
+  <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" media="all" href="http://jholewinski.github.io/blog/css/ie6.css"/><![endif]-->
+
+    <script type="text/javascript">
+  var disqus_shortname = 'justinscodehaus';
+
+  (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+  </script>
+  </head>
+
+
+<body>
+<!--
+relapse - a Pelican theme using Bootstrap 
+Copyright (c) 2012 Warren Moore
+https://github.com/wamonite/relapse
+-->
+
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="http://jholewinski.github.io/blog/index.html">Justin's Code Haus</a>
+<br/><small>Ramblings of a compiler engineer</small></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container">
+
+<!-- Nav bar -->
+<div class="row"><div class="span12">
+<nav class="navbar"><div class="navbar-inner">
+<ul class="nav">
+  <li><a href="http://jholewinski.github.io/blog/index.html">Home</a></li>
+  
+                                
+      <li ><a href="http://jholewinski.github.io/blog/about-me/index.html">About Me</a></li>
+      <li ><a href="http://jholewinski.github.io/blog/publications/index.html">Publications</a></li>
+      <li ><a href="http://jholewinski.github.io/blog/resume/index.html">Resume</a></li>
+      <li ><a href="http://jholewinski.github.io/blog/source/index.html">Source</a></li>
+  
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content --> 
+<div class="span9">
+<article>
+<h1>The Beauty of C++ Templates</h1>
+
+<p>Every so often, I'll get a random C++ question from a friend or
+colleague. &nbsp;Most of the time the answers are trivial, at least for
+someone who has a history with the language. &nbsp;Other questions make me
+stop and ponder, searching for the best &quot;C++&quot; way to do something.
+&nbsp;Yesterday, the question was simple and the solution turned out to be
+equally simple, but getting to the solution made me stop and appreciate
+some of the cool things one can do with C++ templates.</p>
+<div class="section" id="the-problem">
+<h2>The Problem</h2>
+<p>The problem was simple. &nbsp;Suppose you have a C++ template class/struct
+that is parameterized by a single type, e.g.</p>
+<div class="highlight"><pre><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">my_data</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="n">T</span> <span class="n">element_</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<div class="section" id="the-solution">
+<h2>The Solution</h2>
+<p>Now, the question is, &quot;how do I write a method for this class/struct
+that maps the type of T to an enumeration value?&quot; &nbsp;For context, the real
+problem involved mapping T to an MPI data type, e.g. (float -&gt;
+MPI_FLOAT), (double -&gt; MPI_DOUBLE), etc..</p>
+<p>The first thought for anyone familiar with containers may be to
+explicitly generate a map, e.g. std::map in this case, to hold all
+possible mappings from the C++ type (via typeid()) to the MPI type
+(really just an integer). &nbsp;Such a solution is certainly valid and may be
+the best way to approach the problem in another language such as C# or
+Java. &nbsp;After pondering the &quot;C++&quot; solution to the problem for a few
+minutes, my colleague and I came up with a fairly elegant solution
+involving templates. &nbsp;Or, at least I found it quite elegant.</p>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * This struct wrappers the MPI data type value for the given C++ type.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Any valid MPI data type value must have a corresponding explicit template</span>
+<span class="cm"> * instantiation below.</span>
+<span class="cm"> */</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">mpi_type_wrapper</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">mpi_type</span><span class="p">;</span>
+  <span class="n">mpi_type_wrapper</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="c1">// Explicit instantiation for `float&#39;</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="n">mpi_type_wrapper</span><span class="o">::</span><span class="n">mpi_type_wrapper</span><span class="p">()</span>
+<span class="o">:</span> <span class="n">mpi_type</span><span class="p">(</span><span class="n">MPI_FLOAT</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="c1">// Explicit instantiation for `double&#39;</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="n">mpi_type_wrapper</span><span class="o">::</span><span class="n">mpi_type_wrapper</span><span class="p">()</span>
+<span class="o">:</span> <span class="n">mpi_type</span><span class="p">(</span><span class="n">MPI_DOUBLE</span><span class="p">)</span> <span class="p">{}</span>
+</pre></div>
+<p>The mpi_type_wrapper struct is a convenient way to convert an
+arbitrary C++ type to an equivalent MPI type. &nbsp;All one has to do is
+declare a local variable of type mpi_type_wrapper&lt;T&gt; (with appropriate
+T) and read the value of its mpi_type field. &nbsp;Of course, none of this
+is specific to MPI in any way. &nbsp;The only requirement is that an explicit
+instantiation of the constructor must be provided for any C++ types that
+are to be converted.</p>
+</div>
+<div class="section" id="why-this-solution">
+<h2>Why This Solution?</h2>
+<p>This solution strikes me as elegant for two reasons. &nbsp;First, it is a
+solution that would be difficult, if not impossible, to express in many
+other languages. &nbsp;Second, and most interesting to me, there is <em>no</em>
+run-time overhead associated with this solution. &nbsp;You can even compile
+this with RTTI turned off. &nbsp;Any reasonable compiler automatically
+inlines the appropriate constructor, then constant propagation replaces
+any uses of the mpi_type field with the appropriate MPI_* enumeration
+value. &nbsp;There is no memory overhead associated with explicitly keeping a
+map at run-time, nor any time overhead of performing a map look-up. &nbsp;The
+final code just uses the constant value! &nbsp;If you do not believe me,
+check out this example:</p>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Some template class that needs to know the MPI_DataType value for its</span>
+<span class="cm"> * template parameter type.</span>
+<span class="cm"> */</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">some_type</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="n">printType</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">mpi_type_wrapper</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">wrap</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;My Type: %d&quot;</span><span class="p">,</span> <span class="n">wrap</span><span class="p">.</span><span class="n">mpi_type</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">some_type</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">floatClass</span><span class="p">;</span>
+  <span class="n">some_type</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">doubleClass</span><span class="p">;</span>
+
+  <span class="n">floatClass</span><span class="p">.</span><span class="n">printType</span><span class="p">();</span>
+  <span class="n">doubleClass</span><span class="p">.</span><span class="n">printType</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>And the generated code?</p>
+<div class="highlight"><pre><span class="nl">_main:</span>
+  <span class="nf">pushq</span> <span class="o">%</span><span class="nv">rbx</span>
+  <span class="nf">leaq</span> <span class="nv">L_.str</span><span class="p">(</span><span class="o">%</span><span class="nv">rip</span><span class="p">),</span> <span class="o">%</span><span class="nv">rbx</span>
+  <span class="nf">movq</span> <span class="o">%</span><span class="nv">rbx</span><span class="p">,</span> <span class="o">%</span><span class="nv">rdi</span>
+  <span class="nf">xorl</span> <span class="o">%</span><span class="nb">esi</span><span class="p">,</span> <span class="o">%</span><span class="nb">esi</span>
+  <span class="nf">xorb</span> <span class="o">%</span><span class="nb">al</span><span class="p">,</span> <span class="o">%</span><span class="nb">al</span>
+  <span class="nf">callq</span> <span class="nv">_printf</span>
+  <span class="nf">movl</span> <span class="kc">$</span><span class="mi">1</span><span class="p">,</span> <span class="o">%</span><span class="nb">esi</span>
+  <span class="nf">movq</span> <span class="o">%</span><span class="nv">rbx</span><span class="p">,</span> <span class="o">%</span><span class="nv">rdi</span>
+  <span class="nf">xorb</span> <span class="o">%</span><span class="nb">al</span><span class="p">,</span> <span class="o">%</span><span class="nb">al</span>
+  <span class="nf">callq</span> <span class="nv">_printf</span>
+  <span class="nf">xorl</span> <span class="o">%</span><span class="nb">eax</span><span class="p">,</span> <span class="o">%</span><span class="nb">eax</span>
+  <span class="nf">popq</span> <span class="o">%</span><span class="nv">rbx</span>
+  <span class="nf">ret</span>
+</pre></div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>While this example is probably trivial for most experienced C++
+programmers out there, including myself, I always find myself stopping
+and appreciating such solutions. &nbsp;In this case, C++ templates provide
+such an elegant and efficient solution that I cannot help feeling giddy.</p>
+</div>
+
+
+<detail><p>
+Posted Fri 01 April 2011
+ by <a class="url fn" href="http://jholewinski.github.io/blog/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://jholewinski.github.io/blog/category/programming.html">Programming</a>
+(<a href="http://jholewinski.github.io/blog/tag/c.html">C++</a>)</p></detail>
+
+<aside id="comments">
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = "justinscodehaus";
+var disqus_identifier = "http://jholewinski.github.io/blog/the-beauty-of-c-templates/index.html";
+var disqus_title = "The Beauty of C++ Templates";
+
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments.</a></noscript></aside>
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="span3">
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://github.com/jholewinski" target="#blank">GitHub</a></li>
+</ul>
+
+
+<h2>Archives</h2>
+<ul class="nav nav-pulls nav-stacked">
+  <li>2012-11-06<br/><a href='http://jholewinski.github.io/blog/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
+  <li>2012-03-17<br/><a href='http://jholewinski.github.io/blog/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
+  <li>2012-02-17<br/><a href='http://jholewinski.github.io/blog/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
+<br/>
+<li><a href='http://jholewinski.github.io/blog/archives.html'>&lt;All&gt;</a></li>
+</ul>
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://jholewinski.github.io/blog/category/general.html">General</a></li>
+  <li class="active"><a href="http://jholewinski.github.io/blog/category/programming.html">Programming</a></li>
+</ul>
+
+<h2>Tags</h2>
+<ul class="nav nav-pills nav-stacked">
+<!--  (<Tag Homebrew>, 1)  <li class="tag-1"><a href="/tag/Homebrew.html">Homebrew</a></li>
+  (<Tag Mac OS X>, 1)  <li class="tag-1"><a href="/tag/Mac-OS-X.html">Mac OS X</a></li>
+  (<Tag Matplotlib>, 1)  <li class="tag-1"><a href="/tag/Matplotlib.html">Matplotlib</a></li>
+  (<Tag OpenCL>, 1)  <li class="tag-1"><a href="/tag/OpenCL.html">OpenCL</a></li>
+  (<Tag Unreal>, 1)  <li class="tag-1"><a href="/tag/Unreal.html">Unreal</a></li>
+  (<Tag C++>, 1)  <li class="tag-1"><a href="/tag/C++.html">C++</a></li>
+  (<Tag LLVM>, 1)  <li class="tag-1"><a href="/tag/LLVM.html">LLVM</a></li>
+  (<Tag Games>, 1)  <li class="tag-1"><a href="/tag/Games.html">Games</a></li>
+  (<Tag GPU>, 1)  <li class="tag-1"><a href="/tag/GPU.html">GPU</a></li>
+  (<Tag Windows>, 1)  <li class="tag-1"><a href="/tag/Windows.html">Windows</a></li>
+  (<Tag Direct3D>, 1)  <li class="tag-1"><a href="/tag/Direct3D.html">Direct3D</a></li>
+  (<Tag Desktop>, 1)  <li class="tag-1"><a href="/tag/Desktop.html">Desktop</a></li>
+  (<Tag AMD>, 1)  <li class="tag-1"><a href="/tag/AMD.html">AMD</a></li>
+  (<Tag Qt>, 1)  <li class="tag-1"><a href="/tag/Qt.html">Qt</a></li>
+-->
+  <li><a href="http://jholewinski.github.io/blog/tag/amd.html">AMD (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/c.html">C++ (2)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/desktop.html">Desktop (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/direct3d.html">Direct3D (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/gpu.html">GPU (2)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/games.html">Games (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/homebrew.html">Homebrew (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/llvm.html">LLVM (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/mac-os-x.html">Mac OS X (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/matplotlib.html">Matplotlib (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/opencl.html">OpenCL (2)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/qt.html">Qt (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/unreal.html">Unreal (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/windows.html">Windows (3)</a></li>
+
+</ul>
+
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="span12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a>, a custom theme based on 
+<a href="https://github.com/wamonite/relapse">relapse</a>, and 
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></div>
+<!-- /Body -->
+
+<script src="http://jholewinski.github.io/blog/theme/js/jquery.js"></script>
+<script src="http://jholewinski.github.io/blog/theme/js/bootstrap.js"></script>
+  
+
+</body>
+</html>

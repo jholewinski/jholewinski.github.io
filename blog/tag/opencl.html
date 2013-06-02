@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Justin's Code Haus - Tag: OpenCL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="http://jholewinski.github.io/blog/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://jholewinski.github.io/blog/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
+  <link href="http://jholewinski.github.io/blog/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://jholewinski.github.io/blog/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+    
+  <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" media="all" href="http://jholewinski.github.io/blog/css/ie.css"/>
+    <script src="http://jholewinski.github.io/blog/js/IE8.js" type="text/javascript"></script><![endif]-->
+  
+  <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" media="all" href="http://jholewinski.github.io/blog/css/ie6.css"/><![endif]-->
+
+    <script type="text/javascript">
+  var disqus_shortname = 'justinscodehaus';
+
+  (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+  </script>
+  </head>
+
+
+<body>
+<!--
+relapse - a Pelican theme using Bootstrap 
+Copyright (c) 2012 Warren Moore
+https://github.com/wamonite/relapse
+-->
+
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="http://jholewinski.github.io/blog/index.html">Justin's Code Haus</a>
+<br/><small>Ramblings of a compiler engineer</small></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container">
+
+<!-- Nav bar -->
+<div class="row"><div class="span12">
+<nav class="navbar"><div class="navbar-inner">
+<ul class="nav">
+  <li><a href="http://jholewinski.github.io/blog/index.html">Home</a></li>
+  
+                                
+      <li ><a href="http://jholewinski.github.io/blog/about-me/index.html">About Me</a></li>
+      <li ><a href="http://jholewinski.github.io/blog/publications/index.html">Publications</a></li>
+      <li ><a href="http://jholewinski.github.io/blog/resume/index.html">Resume</a></li>
+      <li ><a href="http://jholewinski.github.io/blog/source/index.html">Source</a></li>
+  
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content --> 
+<div class="span9">
+<h3 class="well well-small">Tag: OpenCL</h3>
+
+
+            <article>
+      <h1><a href="http://jholewinski.github.io/blog/amd-app-getting-device-assembly/index.html" rel="bookmark">AMD APP: Getting Device Assembly</a></h1>
+      
+      <p>Sometimes it is useful to look at the intermediate and assembly code for
+GPU programs. &nbsp;This can lead to some interesting performance insights,
+especially for compiler writers. &nbsp;Unfortunately, the AMD APP SDK is a
+bit limited on Linux, and the AMD APP KernelAnalyzer, which conveniently
+dumps the AMDIL and Device ISA for an OpenCL kernel, is not available on
+Linux. &nbsp;However, digging through the AMD APP OpenCL Programming Guide,
+one finds an environment variable that can be used for the same purpose:
+<tt class="docutils literal">GPU_DUMP_DEVICE_KERNEL</tt>.</p>
+<p>According to the programming guide, this environment variable can take
+one of three values:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>1</td>
+<td>Save intermediate IL files in local directory.</td>
+</tr>
+<tr><td>2</td>
+<td>Disassemble ISA file and save in local directory.</td>
+</tr>
+<tr><td>3</td>
+<td>Save both the IL and ISA files in local directory.</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, if you run your OpenCL program with:</p>
+<pre class="literal-block">
+$ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
+</pre>
+<p>You will get two files in your local directory:
+<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].il</span></tt> and
+<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].isa</span></tt>, which contain AMDIL and Device ISA
+disassembly, respectively.</p>
+
+      
+      <detail><p>
+      Posted Thu 09 February 2012
+ by <a class="url fn" href="http://jholewinski.github.io/blog/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://jholewinski.github.io/blog/category/programming.html">Programming</a>
+(<a href="http://jholewinski.github.io/blog/tag/gpu.html">GPU</a>, <a href="http://jholewinski.github.io/blog/tag/opencl.html">OpenCL</a>, <a href="http://jholewinski.github.io/blog/tag/amd.html">AMD</a>)      </p></detail>
+      
+              <aside id="comment-count"><p>
+        <a href="http://jholewinski.github.io/blog/amd-app-getting-device-assembly/index.html#disqus_thread" data-disqus-identifier="http://jholewinski.github.io/blog/amd-app-getting-device-assembly/index.html">Comments</a>        </p></aside>
+            </article>
+      
+            
+                <article>
+      <h1><a href="http://jholewinski.github.io/blog/llvm-3-0-ptx-backend/index.html" rel="bookmark">LLVM 3.0: PTX Backend</a></h1>
+      
+      <p><strong>NOTE</strong>: The information is this article only applies to LLVM 3.0 and
+3.1. As of LLVM 3.2, the PTX back-end has been replaced with the NVPTX
+back-end.</p>
+<p>With the release of LLVM 3.0, the PTX back-end is now in a fairly usable
+state. &nbsp;It even integrates with the Clang OpenCL front-end to produce
+correct PTX code usable by the nVidia OpenCL run-time. &nbsp;However, please
+note that the back-end is still experimental and there are unimplemented
+features. &nbsp;As always, please post any questions to the llvm-dev mailing
+list.</p>
+<p>In this post, I aim to give a quick overview of how to use the back-end
+to compile OpenCL kernels.</p>
+<p>As an example, consider the following matrix multiplication routine
+written in OpenCL:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#define BLOCK_SIZE 16</span>
+
+<span class="n">__kernel</span>
+<span class="kt">void</span> <span class="n">matmul</span><span class="p">(</span><span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">B</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="n">__local</span> <span class="kt">float</span> <span class="n">scratchA</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">][</span><span class="n">BLOCK_SIZE</span><span class="p">];</span>
+  <span class="n">__local</span> <span class="kt">float</span> <span class="n">scratchB</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">][</span><span class="n">BLOCK_SIZE</span><span class="p">];</span>
+
+  <span class="kt">int</span> <span class="n">globalX</span> <span class="o">=</span> <span class="n">get_global_id</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">globalY</span> <span class="o">=</span> <span class="n">get_global_id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">get_global_size</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0f</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">numBlocks</span> <span class="o">=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">tidX</span> <span class="o">=</span> <span class="n">get_local_id</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">tidY</span> <span class="o">=</span> <span class="n">get_local_id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">numBlocks</span><span class="p">;</span> <span class="o">++</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Populate a cache for A/B</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">BLOCK_SIZE</span> <span class="o">+</span> <span class="n">tidX</span><span class="p">;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">globalY</span><span class="p">;</span>
+
+    <span class="n">scratchA</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">tidX</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">x</span><span class="p">];</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">globalX</span><span class="p">;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">BLOCK_SIZE</span> <span class="o">+</span> <span class="n">tidY</span><span class="p">;</span>
+
+    <span class="n">scratchB</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">tidX</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">x</span><span class="p">];</span>
+
+    <span class="n">barrier</span><span class="p">(</span><span class="n">CLK_LOCAL_MEM_FENCE</span><span class="p">);</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">float</span> <span class="n">myA</span><span class="p">;</span>
+      <span class="kt">float</span> <span class="n">myB</span><span class="p">;</span>
+
+      <span class="n">myA</span> <span class="o">=</span> <span class="n">scratchA</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+      <span class="n">myB</span> <span class="o">=</span> <span class="n">scratchB</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">tidX</span><span class="p">];</span>
+
+      <span class="n">sum</span> <span class="o">+=</span> <span class="n">myA</span> <span class="o">*</span> <span class="n">myB</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">barrier</span><span class="p">(</span><span class="n">CLK_LOCAL_MEM_FENCE</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">C</span><span class="p">[</span><span class="n">globalY</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">globalX</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table><p>We can use the <a class="reference external" href="http://www.pcc.me.uk/~peter/libclc">libclc</a>&nbsp;library, written by Peter Collingbourne, to
+provide the OpenCL built-in functions for Clang. &nbsp;This library will map
+OpenCL built-in functions to target-specific functions in the LLVM IR
+that the PTX back-end knows how to handle. &nbsp;If <tt class="docutils literal">$LIBCLC</tt> points to the
+download of libclc, then you can invoke Clang with:</p>
+<pre class="literal-block">
+clang -ccc-host-triple ptx32
+  -Xclang -target-feature -Xclang +ptx23
+  -Xclang -target-feature -Xclang +sm20
+  -I$LIBCLC/include/generic -I$LIBCLC/include/ptx
+  -include clc/clc.h -Dcl_clang_storage_class_specifiers
+  -O3 matmul_kernel.cl -S -o matmul_kernel.ptx
+</pre>
+<p>The options can be a bit verbose at the moment, but practically all of
+them can be placed in a wrapper script. &nbsp;Clang will compile the kernel
+and emit the generated PTX code to <tt class="docutils literal">matmul_kernel.ptx</tt>. &nbsp;This code can
+then be loaded as an OpenCL binary kernel using the nVidia OpenCL SDK,
+using the <tt class="docutils literal">clCreateProgramWithBinary</tt> function. &nbsp;As an added bonus,
+the performance is about the same as if the kernel was compiled using
+the nVidia OpenCL compiler!</p>
+
+      
+            
+      <detail><p>
+      Posted Fri 02 December 2011
+ by <a class="url fn" href="http://jholewinski.github.io/blog/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://jholewinski.github.io/blog/category/programming.html">Programming</a>
+(<a href="http://jholewinski.github.io/blog/tag/gpu.html">GPU</a>, <a href="http://jholewinski.github.io/blog/tag/llvm.html">LLVM</a>, <a href="http://jholewinski.github.io/blog/tag/opencl.html">OpenCL</a>)      </p></detail>
+      
+              <aside id="comment-count"><p>
+        <a href="http://jholewinski.github.io/blog/llvm-3-0-ptx-backend/index.html#disqus_thread" data-disqus-identifier="http://jholewinski.github.io/blog/llvm-3-0-ptx-backend/index.html">Comments</a>        </p></aside>
+            </article>
+      
+            
+      
+
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="span3">
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://github.com/jholewinski" target="#blank">GitHub</a></li>
+</ul>
+
+
+<h2>Archives</h2>
+<ul class="nav nav-pulls nav-stacked">
+  <li>2012-02-09<br/><a href='http://jholewinski.github.io/blog/amd-app-getting-device-assembly/index.html'>AMD APP: Getting Device Assembly</a></li>
+  <li>2011-12-02<br/><a href='http://jholewinski.github.io/blog/llvm-3-0-ptx-backend/index.html'>LLVM 3.0: PTX Backend</a></li>
+<br/>
+<li><a href='http://jholewinski.github.io/blog/archives.html'>&lt;All&gt;</a></li>
+</ul>
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://jholewinski.github.io/blog/category/general.html">General</a></li>
+  <li ><a href="http://jholewinski.github.io/blog/category/programming.html">Programming</a></li>
+</ul>
+
+<h2>Tags</h2>
+<ul class="nav nav-pills nav-stacked">
+<!--  (<Tag Homebrew>, 1)  <li class="tag-1"><a href="/tag/Homebrew.html">Homebrew</a></li>
+  (<Tag Mac OS X>, 1)  <li class="tag-1"><a href="/tag/Mac-OS-X.html">Mac OS X</a></li>
+  (<Tag Matplotlib>, 1)  <li class="tag-1"><a href="/tag/Matplotlib.html">Matplotlib</a></li>
+  (<Tag OpenCL>, 1)  <li class="tag-1"><a href="/tag/OpenCL.html">OpenCL</a></li>
+  (<Tag Unreal>, 1)  <li class="tag-1"><a href="/tag/Unreal.html">Unreal</a></li>
+  (<Tag C++>, 1)  <li class="tag-1"><a href="/tag/C++.html">C++</a></li>
+  (<Tag LLVM>, 1)  <li class="tag-1"><a href="/tag/LLVM.html">LLVM</a></li>
+  (<Tag Games>, 1)  <li class="tag-1"><a href="/tag/Games.html">Games</a></li>
+  (<Tag GPU>, 1)  <li class="tag-1"><a href="/tag/GPU.html">GPU</a></li>
+  (<Tag Windows>, 1)  <li class="tag-1"><a href="/tag/Windows.html">Windows</a></li>
+  (<Tag Direct3D>, 1)  <li class="tag-1"><a href="/tag/Direct3D.html">Direct3D</a></li>
+  (<Tag Desktop>, 1)  <li class="tag-1"><a href="/tag/Desktop.html">Desktop</a></li>
+  (<Tag AMD>, 1)  <li class="tag-1"><a href="/tag/AMD.html">AMD</a></li>
+  (<Tag Qt>, 1)  <li class="tag-1"><a href="/tag/Qt.html">Qt</a></li>
+-->
+  <li><a href="http://jholewinski.github.io/blog/tag/amd.html">AMD (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/c.html">C++ (2)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/desktop.html">Desktop (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/direct3d.html">Direct3D (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/gpu.html">GPU (2)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/games.html">Games (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/homebrew.html">Homebrew (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/llvm.html">LLVM (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/mac-os-x.html">Mac OS X (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/matplotlib.html">Matplotlib (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/opencl.html">OpenCL (2)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/qt.html">Qt (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/unreal.html">Unreal (1)</a></li>
+  <li><a href="http://jholewinski.github.io/blog/tag/windows.html">Windows (3)</a></li>
+
+</ul>
+
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="span12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a>, a custom theme based on 
+<a href="https://github.com/wamonite/relapse">relapse</a>, and 
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></div>
+<!-- /Body -->
+
+<script src="http://jholewinski.github.io/blog/theme/js/jquery.js"></script>
+<script src="http://jholewinski.github.io/blog/theme/js/bootstrap.js"></script>
+  
+
+</body>
+</html>
