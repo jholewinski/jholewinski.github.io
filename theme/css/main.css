@@ -11,7 +11,7 @@ https://github.com/wamonite/relapse
   }
   header .container h1
   {
-    font-family: 'Patrick Hand SC', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 40pt;
     border-bottom: 0px;
     text-shadow: 2px 2px 5px #000000;
@@ -29,7 +29,11 @@ https://github.com/wamonite/relapse
   }
   header .container h1 a:hover
   {
-    color: #ddd;
+    color: #CCC;
+  }
+  header .container small
+  {
+    color: #CCC;
   }
 }
 
@@ -37,7 +41,7 @@ https://github.com/wamonite/relapse
 {
   header .container h1
   {
-    font-family: 'Patrick Hand SC', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 34pt;
     border-bottom: 0px;
     text-shadow: 1px 1px 3px #000000;
@@ -46,12 +50,13 @@ https://github.com/wamonite/relapse
 
 header .container h1
 {
+  font-family: 'Open Sans', sans-serif;
   margin: 10px 0 10px;
   padding-bottom: 10px;
 }
 body
 {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 a,a:hover
 {
@@ -67,7 +72,7 @@ section#body nav
 }
 article h1
 {
-  font-family: 'Patrick Hand SC', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   padding-top: 30px;
 }
 article detail
@@ -86,11 +91,11 @@ footer
 }
 code
 {
-  /*font-family: 'Source Code Pro', monospace;*/
+  font-family: 'Source Code Pro', monospace;
   color: #333;
 }
 pre
 {
-  /*font-family: 'Source Code Pro', monospace;*/
+  font-family: 'Source Code Pro', monospace;
   white-space: pre;
 }

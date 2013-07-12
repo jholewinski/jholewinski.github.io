@@ -9,10 +9,10 @@
   <link href="http://blog.jholewinski.org/theme/css/main.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
-  <link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Cantora+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
     
   <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -34,7 +34,23 @@
       (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
   }());
   </script>
-  </head>
+  
+ <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type= "text/javascript">
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  tex2jax: {
+    inlineMath: [ ['$','$'] ],
+    displayMath: [ ['$$','$$'] ],
+    processEscapes: true },
+    "HTML-CSS": {
+  styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+}
+});
+</script>
+</head>
 
 
 <body>
@@ -145,7 +161,7 @@ written in OpenCL:</p>
 51</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#define BLOCK_SIZE 16</span>
 
 <span class="n">__kernel</span>
-<span class="kt">void</span> <span class="n">matmul</span><span class="p">(</span><span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">B</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">B</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">C</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="n">__local</span> <span class="kt">float</span> <span class="n">scratchA</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">][</span><span class="n">BLOCK_SIZE</span><span class="p">];</span>
   <span class="n">__local</span> <span class="kt">float</span> <span class="n">scratchB</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">][</span><span class="n">BLOCK_SIZE</span><span class="p">];</span>

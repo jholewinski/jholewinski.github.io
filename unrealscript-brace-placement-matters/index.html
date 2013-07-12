@@ -9,10 +9,10 @@
   <link href="http://blog.jholewinski.org/theme/css/main.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
-  <link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Cantora+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
     
   <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -34,7 +34,23 @@
       (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
   }());
   </script>
-  </head>
+  
+ <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type= "text/javascript">
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  tex2jax: {
+    inlineMath: [ ['$','$'] ],
+    displayMath: [ ['$$','$$'] ],
+    processEscapes: true },
+    "HTML-CSS": {
+  styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+}
+});
+</script>
+</head>
 
 
 <body>
@@ -83,13 +99,13 @@ https://github.com/wamonite/relapse
 discovered a rather interesting quirk in the handling of braces within
 UnrealScript. &nbsp;All of the sample code I read use a syntax style that
 places opening braces on the following line:</p>
-<div class="highlight"><pre><span class="n">event</span> <span class="n">PostBeginPlay</span><span class="p">()</span>
+<div class="highlight"><pre><span class="n">event</span> <span class="nf">PostBeginPlay</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="c1">// Do something</span>
 <span class="p">}</span>
 </pre></div>
 <p>However, my typical style places the opening brace on the current line:</p>
-<div class="highlight"><pre><span class="n">event</span> <span class="n">PostBeginPlay</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="n">event</span> <span class="nf">PostBeginPlay</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Do something</span>
 <span class="p">}</span>
 </pre></div>

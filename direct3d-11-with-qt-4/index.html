@@ -9,10 +9,10 @@
   <link href="http://blog.jholewinski.org/theme/css/main.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
-  <link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Cantora+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
     
   <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -34,7 +34,23 @@
       (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
   }());
   </script>
-  </head>
+  
+ <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type= "text/javascript">
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  tex2jax: {
+    inlineMath: [ ['$','$'] ],
+    displayMath: [ ['$$','$$'] ],
+    processEscapes: true },
+    "HTML-CSS": {
+  styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+}
+});
+</script>
+</head>
 
 
 <body>
@@ -114,13 +130,13 @@ override <tt class="docutils literal">paintEngine()</tt> in our widget definitio
 11</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">D3DRenderWidget</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QWidget</span> <span class="p">{</span>
   <span class="n">Q_OBJECT</span>
   <span class="n">Q_DISABLE_COPY</span><span class="p">(</span><span class="n">D3DRenderWidget</span><span class="p">)</span>
-<span class="k">public</span><span class="o">:</span>
+<span class="nl">public:</span>
   <span class="n">D3DRenderWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="o">*</span> <span class="n">parent</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">);</span>
   <span class="k">virtual</span> <span class="o">~</span><span class="n">D3DRenderWidget</span><span class="p">();</span>
   <span class="k">virtual</span> <span class="n">QPaintEngine</span><span class="o">*</span> <span class="n">paintEngine</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span> <span class="p">}</span>
-<span class="k">protected</span><span class="o">:</span>
+<span class="nl">protected:</span>
   <span class="k">virtual</span> <span class="kt">void</span> <span class="n">resizeEvent</span><span class="p">(</span><span class="n">QResizeEvent</span><span class="o">*</span> <span class="n">evt</span><span class="p">);</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">paintEvent</span><span class="p">(</span><span class="n">QPaintEvent</span><span class="o">*</span> <span class="n">evt</span><span class="p">);</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">paintEvent</span><span class="p">(</span><span class="n">QPaintEvent</span><span class="o">*</span> <span class="n">evt</span><span class="p">);</span>
 <span class="p">};</span>
 </pre></div>
 </td></tr></table><p>(Note that for ease of viewing, all of the fields have been removed from
@@ -136,8 +152,8 @@ constructor:</p>
 7
 8</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">D3DRenderWidget</span><span class="o">::</span><span class="n">D3DRenderWidget</span><span class="p">(</span><span class="n">QWidget</span><span class="o">*</span> <span class="n">parent</span><span class="p">)</span>
   <span class="o">:</span> <span class="n">QWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_PaintOnScreen</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-  <span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_NativeWindow</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_PaintOnScreen</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+  <span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_NativeWindow</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
 
   <span class="c1">// Create Device</span>
   <span class="n">createDevice</span><span class="p">();</span>
@@ -173,7 +189,7 @@ to return the widget size and native window handle, respectively:</p>
 <span class="n">swapChainDesc_</span><span class="p">.</span><span class="n">BufferUsage</span> <span class="o">=</span> <span class="n">DXGI_USAGE_RENDER_TARGET_OUTPUT</span><span class="p">;</span>
 <span class="n">swapChainDesc_</span><span class="p">.</span><span class="n">SampleDesc</span><span class="p">.</span><span class="n">Count</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 <span class="n">swapChainDesc_</span><span class="p">.</span><span class="n">SampleDesc</span><span class="p">.</span><span class="n">Quality</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">swapChainDesc_</span><span class="p">.</span><span class="n">Windowed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="n">swapChainDesc_</span><span class="p">.</span><span class="n">Windowed</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 <span class="n">swapChainDesc_</span><span class="p">.</span><span class="n">OutputWindow</span> <span class="o">=</span> <span class="n">winId</span><span class="p">();</span>
 <span class="n">swapChainDesc_</span><span class="p">.</span><span class="n">BufferDesc</span><span class="p">.</span><span class="n">RefreshRate</span><span class="p">.</span><span class="n">Numerator</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
 <span class="n">swapChainDesc_</span><span class="p">.</span><span class="n">BufferDesc</span><span class="p">.</span><span class="n">RefreshRate</span><span class="p">.</span><span class="n">Denominator</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>

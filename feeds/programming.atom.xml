@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Justin's Code Haus</title><link href="http://blog.jholewinski.org/" rel="alternate"></link><link href="http://blog.jholewinski.org/feeds/programming.atom.xml" rel="self"></link><id>http://blog.jholewinski.org/</id><updated>2012-03-17T00:22:00+01:00</updated><entry><title>UnrealScript: Brace Placement Matters!</title><link href="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html" rel="alternate"></link><updated>2012-03-17T00:22:00+01:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2012-03-17:unrealscript-brace-placement-matters/index.html</id><summary type="html">&lt;p&gt;I was playing around with the Unreal Development Kit this evening, and
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Justin's Code Haus</title><link href="http://blog.jholewinski.org/" rel="alternate"></link><link href="http://blog.jholewinski.org/feeds/programming.atom.xml" rel="self"></link><id>http://blog.jholewinski.org/</id><updated>2012-03-17T00:22:00-04:00</updated><entry><title>UnrealScript: Brace Placement Matters!</title><link href="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html" rel="alternate"></link><updated>2012-03-17T00:22:00-04:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2012-03-17:unrealscript-brace-placement-matters/index.html</id><summary type="html">&lt;p&gt;I was playing around with the Unreal Development Kit this evening, and
 discovered a rather interesting quirk in the handling of braces within
 UnrealScript. &amp;nbsp;All of the sample code I read use a syntax style that
 places opening braces on the following line:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;event&lt;/span&gt; &lt;span class="n"&gt;PostBeginPlay&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;event&lt;/span&gt; &lt;span class="nf"&gt;PostBeginPlay&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="c1"&gt;// Do something&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;However, my typical style places the opening brace on the current line:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;event&lt;/span&gt; &lt;span class="n"&gt;PostBeginPlay&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;event&lt;/span&gt; &lt;span class="nf"&gt;PostBeginPlay&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="c1"&gt;// Do something&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -32,7 +32,7 @@ contained settings:&lt;/p&gt;
 &lt;p&gt;I was banging my head on the wall for at least an hour figuring this one
 out!&lt;/p&gt;
 &lt;p&gt;I hope this can help prevent someone else from repeating my mistake.&lt;/p&gt;
-</summary><category term="Unreal"></category></entry><entry><title>Space Hogs Binary Release</title><link href="http://blog.jholewinski.org/space-hogs-binary-release/index.html" rel="alternate"></link><updated>2012-02-17T12:35:00+01:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2012-02-17:space-hogs-binary-release/index.html</id><summary type="html">&lt;p&gt;I've converted my old Space Hogs game project to XNA 4.0 (it was
+</summary><category term="Unreal"></category></entry><entry><title>Space Hogs Binary Release</title><link href="http://blog.jholewinski.org/space-hogs-binary-release/index.html" rel="alternate"></link><updated>2012-02-17T12:35:00-05:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2012-02-17:space-hogs-binary-release/index.html</id><summary type="html">&lt;p&gt;I've converted my old Space Hogs game project to XNA 4.0 (it was
 originally written in XNA 1.0). There were enough API changes to make it
 a pain, but I think I have everything working now.&lt;/p&gt;
 &lt;p&gt;This game was developed by myself, Jason Kim, Joseph Ahn, Vjekoslav
@@ -44,7 +44,7 @@ Quarter 2007.&lt;/p&gt;
 included both of the redistributable packages in the zip file.&lt;/p&gt;
 &lt;p&gt;The source can be found on &lt;a class="reference external" href="https://bitbucket.org/jholewinski/space-hogs"&gt;BitBucket&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Enjoy!&lt;/p&gt;
-</summary><category term="Windows"></category><category term="Games"></category></entry><entry><title>Direct3D 11 with Qt 4</title><link href="http://blog.jholewinski.org/direct3d-11-with-qt-4/index.html" rel="alternate"></link><updated>2012-02-16T15:12:00+01:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2012-02-16:direct3d-11-with-qt-4/index.html</id><summary type="html">&lt;p&gt;(If you're in a hurry, the full source can be found on my &lt;a class="reference external" href="https://bitbucket.org/jholewinski/qt4-d3d11"&gt;BitBucket&lt;/a&gt;
+</summary><category term="Windows"></category><category term="Games"></category></entry><entry><title>Direct3D 11 with Qt 4</title><link href="http://blog.jholewinski.org/direct3d-11-with-qt-4/index.html" rel="alternate"></link><updated>2012-02-16T15:12:00-05:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2012-02-16:direct3d-11-with-qt-4/index.html</id><summary type="html">&lt;p&gt;(If you're in a hurry, the full source can be found on my &lt;a class="reference external" href="https://bitbucket.org/jholewinski/qt4-d3d11"&gt;BitBucket&lt;/a&gt;
 account)&lt;/p&gt;
 &lt;p&gt;When it comes to GUI frameworks for C++, it's very hard to beat &lt;a class="reference external" href="http://qt.nokia.com"&gt;Qt&lt;/a&gt;.
 &amp;nbsp;It's modular, easy to use, and available on practically any desktop
@@ -79,13 +79,13 @@ override &lt;tt class="docutils literal"&gt;paintEngine()&lt;/tt&gt; in our widg
 11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;D3DRenderWidget&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="n"&gt;QWidget&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;Q_OBJECT&lt;/span&gt;
   &lt;span class="n"&gt;Q_DISABLE_COPY&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;D3DRenderWidget&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
   &lt;span class="n"&gt;D3DRenderWidget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QWidget&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;parent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
   &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;D3DRenderWidget&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
   &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="n"&gt;QPaintEngine&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;paintEngine&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="k"&gt;protected&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="nl"&gt;protected:&lt;/span&gt;
   &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;resizeEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QResizeEvent&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;paintEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QPaintEvent&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;paintEvent&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QPaintEvent&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;evt&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;p&gt;(Note that for ease of viewing, all of the fields have been removed from
@@ -101,8 +101,8 @@ constructor:&lt;/p&gt;
 7
 8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;D3DRenderWidget&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;D3DRenderWidget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QWidget&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;parent&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
   &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;QWidget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parent&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;setAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Qt&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;WA_PaintOnScreen&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="n"&gt;setAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Qt&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;WA_NativeWindow&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;setAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Qt&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;WA_PaintOnScreen&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;setAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Qt&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;WA_NativeWindow&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
   &lt;span class="c1"&gt;// Create Device&lt;/span&gt;
   &lt;span class="n"&gt;createDevice&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
@@ -138,7 +138,7 @@ to return the widget size and native window handle, respectively:&lt;/p&gt;
 &lt;span class="n"&gt;swapChainDesc_&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BufferUsage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DXGI_USAGE_RENDER_TARGET_OUTPUT&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="n"&gt;swapChainDesc_&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SampleDesc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="n"&gt;swapChainDesc_&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SampleDesc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Quality&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;swapChainDesc_&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Windowed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;swapChainDesc_&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Windowed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="n"&gt;swapChainDesc_&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OutputWindow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;winId&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;span class="n"&gt;swapChainDesc_&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BufferDesc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RefreshRate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Numerator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="n"&gt;swapChainDesc_&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BufferDesc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RefreshRate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Denominator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -200,7 +200,7 @@ web).&lt;/p&gt;
 my &lt;a class="reference external" href="https://bitbucket.org/jholewinski/qt4-d3d11"&gt;BitBucket&lt;/a&gt; account. To build it, you need a relatively recent Qt
 release, the DirectX SDK, and the Qt Visual Studio Add-in.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="Direct3D"></category><category term="Qt"></category><category term="Windows"></category><category term="C++"></category></entry><entry><title>AMD APP: Getting Device Assembly</title><link href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html" rel="alternate"></link><updated>2012-02-09T13:01:00+01:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2012-02-09:amd-app-getting-device-assembly/index.html</id><summary type="html">&lt;p&gt;Sometimes it is useful to look at the intermediate and assembly code for
+</summary><category term="Direct3D"></category><category term="Qt"></category><category term="Windows"></category><category term="C++"></category></entry><entry><title>AMD APP: Getting Device Assembly</title><link href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html" rel="alternate"></link><updated>2012-02-09T13:01:00-05:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2012-02-09:amd-app-getting-device-assembly/index.html</id><summary type="html">&lt;p&gt;Sometimes it is useful to look at the intermediate and assembly code for
 GPU programs. &amp;nbsp;This can lead to some interesting performance insights,
 especially for compiler writers. &amp;nbsp;Unfortunately, the AMD APP SDK is a
 bit limited on Linux, and the AMD APP KernelAnalyzer, which conveniently
@@ -235,7 +235,7 @@ $ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;[kernel-name]_[device-name].il&lt;/span&gt;&lt;/tt&gt; and
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;[kernel-name]_[device-name].isa&lt;/span&gt;&lt;/tt&gt;, which contain AMDIL and Device ISA
 disassembly, respectively.&lt;/p&gt;
-</summary><category term="GPU"></category><category term="OpenCL"></category><category term="AMD"></category></entry><entry><title>LLVM 3.0: PTX Backend</title><link href="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html" rel="alternate"></link><updated>2011-12-02T11:17:00+01:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2011-12-02:llvm-3-0-ptx-backend/index.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: The information is this article only applies to LLVM 3.0 and
+</summary><category term="GPU"></category><category term="OpenCL"></category><category term="AMD"></category></entry><entry><title>LLVM 3.0: PTX Backend</title><link href="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html" rel="alternate"></link><updated>2011-12-02T11:17:00-05:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2011-12-02:llvm-3-0-ptx-backend/index.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: The information is this article only applies to LLVM 3.0 and
 3.1. As of LLVM 3.2, the PTX back-end has been replaced with the NVPTX
 back-end.&lt;/p&gt;
 &lt;p&gt;With the release of LLVM 3.0, the PTX back-end is now in a fairly usable
@@ -301,7 +301,7 @@ written in OpenCL:&lt;/p&gt;
 51&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#define BLOCK_SIZE 16&lt;/span&gt;
 
 &lt;span class="n"&gt;__kernel&lt;/span&gt;
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;matmul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__global&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;__global&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;__global&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;matmul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__global&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;__global&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;__global&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
 
   &lt;span class="n"&gt;__local&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;scratchA&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;BLOCK_SIZE&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;BLOCK_SIZE&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
   &lt;span class="n"&gt;__local&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;scratchB&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;BLOCK_SIZE&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;BLOCK_SIZE&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
@@ -370,7 +370,7 @@ then be loaded as an OpenCL binary kernel using the nVidia OpenCL SDK,
 using the &lt;tt class="docutils literal"&gt;clCreateProgramWithBinary&lt;/tt&gt; function. &amp;nbsp;As an added bonus,
 the performance is about the same as if the kernel was compiled using
 the nVidia OpenCL compiler!&lt;/p&gt;
-</summary><category term="GPU"></category><category term="LLVM"></category><category term="OpenCL"></category></entry><entry><title>The Beauty of C++ Templates</title><link href="http://blog.jholewinski.org/the-beauty-of-c-templates/index.html" rel="alternate"></link><updated>2011-04-01T12:50:00+02:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2011-04-01:the-beauty-of-c-templates/index.html</id><summary type="html">&lt;p&gt;Every so often, I'll get a random C++ question from a friend or
+</summary><category term="GPU"></category><category term="LLVM"></category><category term="OpenCL"></category></entry><entry><title>The Beauty of C++ Templates</title><link href="http://blog.jholewinski.org/the-beauty-of-c-templates/index.html" rel="alternate"></link><updated>2011-04-01T12:50:00-04:00</updated><author><name>Justin Holewinski</name></author><id>tag:blog.jholewinski.org,2011-04-01:the-beauty-of-c-templates/index.html</id><summary type="html">&lt;p&gt;Every so often, I'll get a random C++ question from a friend or
 colleague. &amp;nbsp;Most of the time the answers are trivial, at least for
 someone who has a history with the language. &amp;nbsp;Other questions make me
 stop and ponder, searching for the best &amp;quot;C++&amp;quot; way to do something.
@@ -384,7 +384,7 @@ that is parameterized by a single type, e.g.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;template&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;my_data&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="c1"&gt;// ...&lt;/span&gt;
-&lt;span class="k"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
   &lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="n"&gt;element_&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -459,7 +459,7 @@ check out this example:&lt;/p&gt;
   &lt;span class="p"&gt;};&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;
 
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;some_type&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;floatClass&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="n"&gt;some_type&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;doubleClass&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
@@ -471,18 +471,18 @@ check out this example:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And the generated code?&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;_main:&lt;/span&gt;
-  &lt;span class="nf"&gt;pushq&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rbx&lt;/span&gt;
-  &lt;span class="nf"&gt;leaq&lt;/span&gt; &lt;span class="nv"&gt;L_.str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rip&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rbx&lt;/span&gt;
-  &lt;span class="nf"&gt;movq&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rdi&lt;/span&gt;
+  &lt;span class="nf"&gt;pushq&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;
+  &lt;span class="nf"&gt;leaq&lt;/span&gt; &lt;span class="nv"&gt;L_.str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rip&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;
+  &lt;span class="nf"&gt;movq&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
   &lt;span class="nf"&gt;xorl&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;esi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;esi&lt;/span&gt;
   &lt;span class="nf"&gt;xorb&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;
   &lt;span class="nf"&gt;callq&lt;/span&gt; &lt;span class="nv"&gt;_printf&lt;/span&gt;
   &lt;span class="nf"&gt;movl&lt;/span&gt; &lt;span class="kc"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;esi&lt;/span&gt;
-  &lt;span class="nf"&gt;movq&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rdi&lt;/span&gt;
+  &lt;span class="nf"&gt;movq&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;rdi&lt;/span&gt;
   &lt;span class="nf"&gt;xorb&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;al&lt;/span&gt;
   &lt;span class="nf"&gt;callq&lt;/span&gt; &lt;span class="nv"&gt;_printf&lt;/span&gt;
   &lt;span class="nf"&gt;xorl&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;eax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;eax&lt;/span&gt;
-  &lt;span class="nf"&gt;popq&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;rbx&lt;/span&gt;
+  &lt;span class="nf"&gt;popq&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="nb"&gt;rbx&lt;/span&gt;
   &lt;span class="nf"&gt;ret&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
