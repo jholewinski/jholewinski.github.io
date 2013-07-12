@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - {{ article.title }}{% endblock %}
+
+{% block content %}
+<article>
+<h1>{{ article.title }}</h1>
+
+{{ article.content }}
+
+<detail><p>
+{% include 'block_article_detail.html' %}
+</p></detail>
+
+{% if DISQUS_SITENAME %}
+<aside id="comments">
+  {% include 'block_disqus.html' %}
+</aside>
+{% endif %}
+</article>
+{% endblock content %}
