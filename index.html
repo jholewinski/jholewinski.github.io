@@ -94,6 +94,40 @@ https://github.com/wamonite/relapse
 <div class="span9">
 
             <article>
+      <h1><a href="http://blog.jholewinski.org/i3-wm-default-workspace-settings/index.html" rel="bookmark">i3 WM: Default Workspace Settings</a></h1>
+      
+      <p>I've been playing around with the i3 window manager a lot lately, and I have
+to say I enjoy it very much!  But one default setting  that tripped me up (as
+set by <tt class="docutils literal"><span class="pre">i3-config-wizard</span></tt>) was the key bindings for workspace switching:</p>
+<div class="highlight"><pre>bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+# ...
+</pre></div>
+<p>This works well until you start naming your workspaces. With these bindings,
+you will switch to workspace <em>name</em> &quot;1&quot;, not <em>number</em> &quot;1&quot;.  So if you rename
+workspace 1 to &quot;1: Firefox&quot; and press Mod5+1, you'll end up opening a new
+workspace instead of going to the &quot;1: Firefox&quot; workspace.  Not very intuitive!
+Luckily, we can easily get the desired behavior with a slight tweak to the
+config file:</p>
+<div class="highlight"><pre>bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+# ...
+</pre></div>
+
+      
+      <detail><p>
+      Posted Thu 11 July 2013
+ by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/general.html">General</a>
+(<a href="http://blog.jholewinski.org/tag/linux.html">Linux</a>, <a href="http://blog.jholewinski.org/tag/i3.html">i3</a>)      </p></detail>
+      
+              <aside id="comment-count"><p>
+        <a href="http://blog.jholewinski.org/i3-wm-default-workspace-settings/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/i3-wm-default-workspace-settings/index.html">Comments</a>        </p></aside>
+            </article>
+      
+            
+                <article>
       <h1><a href="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html" rel="bookmark">2012 and still no multi-monitor lovin'...</a></h1>
       
       <p>For the past week, I've been giving Windows 8 a serious try. &nbsp;I've
@@ -138,6 +172,7 @@ workspaces, though.</p>
 configurations...</p>
 
       
+            
       <detail><p>
       Posted Tue 06 November 2012
  by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/general.html">General</a>
@@ -396,57 +431,6 @@ release, the DirectX SDK, and the Qt Visual Studio Add-in.</p>
         <a href="http://blog.jholewinski.org/direct3d-11-with-qt-4/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/direct3d-11-with-qt-4/index.html">Comments</a>        </p></aside>
             </article>
       
-            
-                <article>
-      <h1><a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html" rel="bookmark">AMD APP: Getting Device Assembly</a></h1>
-      
-      <p>Sometimes it is useful to look at the intermediate and assembly code for
-GPU programs. &nbsp;This can lead to some interesting performance insights,
-especially for compiler writers. &nbsp;Unfortunately, the AMD APP SDK is a
-bit limited on Linux, and the AMD APP KernelAnalyzer, which conveniently
-dumps the AMDIL and Device ISA for an OpenCL kernel, is not available on
-Linux. &nbsp;However, digging through the AMD APP OpenCL Programming Guide,
-one finds an environment variable that can be used for the same purpose:
-<tt class="docutils literal">GPU_DUMP_DEVICE_KERNEL</tt>.</p>
-<p>According to the programming guide, this environment variable can take
-one of three values:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<tbody valign="top">
-<tr><td>1</td>
-<td>Save intermediate IL files in local directory.</td>
-</tr>
-<tr><td>2</td>
-<td>Disassemble ISA file and save in local directory.</td>
-</tr>
-<tr><td>3</td>
-<td>Save both the IL and ISA files in local directory.</td>
-</tr>
-</tbody>
-</table>
-<p>Therefore, if you run your OpenCL program with:</p>
-<pre class="literal-block">
-$ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
-</pre>
-<p>You will get two files in your local directory:
-<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].il</span></tt> and
-<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].isa</span></tt>, which contain AMDIL and Device ISA
-disassembly, respectively.</p>
-
-      
-            
-      <detail><p>
-      Posted Thu 09 February 2012
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
-(<a href="http://blog.jholewinski.org/tag/gpu.html">GPU</a>, <a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL</a>, <a href="http://blog.jholewinski.org/tag/amd.html">AMD</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html">Comments</a>        </p></aside>
-            </article>
-      
               <nav class="pagination">
           <ul>
       <li class="disabled"><span>&laquo;</span></li>
@@ -472,9 +456,9 @@ disassembly, respectively.</p>
 
 <h2>Archives</h2>
 <ul class="nav nav-pulls nav-stacked">
+  <li>2013-07-11<br/><a href='http://blog.jholewinski.org/i3-wm-default-workspace-settings/index.html'>i3 WM: Default Workspace Settings</a></li>
   <li>2012-11-06<br/><a href='http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
   <li>2012-03-17<br/><a href='http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
-  <li>2012-02-17<br/><a href='http://blog.jholewinski.org/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
 <br/>
 <li><a href='http://blog.jholewinski.org/archives.html'>&lt;All&gt;</a></li>
 </ul>
@@ -495,12 +479,14 @@ disassembly, respectively.</p>
   <li><a href="http://blog.jholewinski.org/tag/games.html">Games (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/homebrew.html">Homebrew (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/llvm.html">LLVM (1)</a></li>
+  <li><a href="http://blog.jholewinski.org/tag/linux.html">Linux (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/mac-os-x.html">Mac OS X (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/matplotlib.html">Matplotlib (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL (2)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/qt.html">Qt (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/unreal.html">Unreal (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/windows.html">Windows (3)</a></li>
+  <li><a href="http://blog.jholewinski.org/tag/i3.html">i3 (1)</a></li>
 
 </ul>
 
