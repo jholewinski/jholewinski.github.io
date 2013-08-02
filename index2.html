@@ -94,276 +94,6 @@ https://github.com/wamonite/relapse
 <div class="span9">
 
             <article>
-      <h1><a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html" rel="bookmark">AMD APP: Getting Device Assembly</a></h1>
-      
-      <p>Sometimes it is useful to look at the intermediate and assembly code for
-GPU programs. &nbsp;This can lead to some interesting performance insights,
-especially for compiler writers. &nbsp;Unfortunately, the AMD APP SDK is a
-bit limited on Linux, and the AMD APP KernelAnalyzer, which conveniently
-dumps the AMDIL and Device ISA for an OpenCL kernel, is not available on
-Linux. &nbsp;However, digging through the AMD APP OpenCL Programming Guide,
-one finds an environment variable that can be used for the same purpose:
-<tt class="docutils literal">GPU_DUMP_DEVICE_KERNEL</tt>.</p>
-<p>According to the programming guide, this environment variable can take
-one of three values:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<tbody valign="top">
-<tr><td>1</td>
-<td>Save intermediate IL files in local directory.</td>
-</tr>
-<tr><td>2</td>
-<td>Disassemble ISA file and save in local directory.</td>
-</tr>
-<tr><td>3</td>
-<td>Save both the IL and ISA files in local directory.</td>
-</tr>
-</tbody>
-</table>
-<p>Therefore, if you run your OpenCL program with:</p>
-<pre class="literal-block">
-$ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
-</pre>
-<p>You will get two files in your local directory:
-<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].il</span></tt> and
-<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].isa</span></tt>, which contain AMDIL and Device ISA
-disassembly, respectively.</p>
-
-      
-            
-      <detail><p>
-      Posted Thu 09 February 2012
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
-(<a href="http://blog.jholewinski.org/tag/gpu.html">GPU</a>, <a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL</a>, <a href="http://blog.jholewinski.org/tag/amd.html">AMD</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html">Comments</a>        </p></aside>
-            </article>
-      
-            
-                <article>
-      <h1><a href="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html" rel="bookmark">LLVM 3.0: PTX Backend</a></h1>
-      
-      <p><strong>NOTE</strong>: The information is this article only applies to LLVM 3.0 and
-3.1. As of LLVM 3.2, the PTX back-end has been replaced with the NVPTX
-back-end.</p>
-<p>With the release of LLVM 3.0, the PTX back-end is now in a fairly usable
-state. &nbsp;It even integrates with the Clang OpenCL front-end to produce
-correct PTX code usable by the nVidia OpenCL run-time. &nbsp;However, please
-note that the back-end is still experimental and there are unimplemented
-features. &nbsp;As always, please post any questions to the llvm-dev mailing
-list.</p>
-<p>In this post, I aim to give a quick overview of how to use the back-end
-to compile OpenCL kernels.</p>
-<p>As an example, consider the following matrix multiplication routine
-written in OpenCL:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#define BLOCK_SIZE 16</span>
-
-<span class="n">__kernel</span>
-<span class="kt">void</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">B</span><span class="p">,</span> <span class="n">__global</span> <span class="kt">float</span><span class="o">*</span> <span class="n">C</span><span class="p">)</span> <span class="p">{</span>
-
-  <span class="n">__local</span> <span class="kt">float</span> <span class="n">scratchA</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">][</span><span class="n">BLOCK_SIZE</span><span class="p">];</span>
-  <span class="n">__local</span> <span class="kt">float</span> <span class="n">scratchB</span><span class="p">[</span><span class="n">BLOCK_SIZE</span><span class="p">][</span><span class="n">BLOCK_SIZE</span><span class="p">];</span>
-
-  <span class="kt">int</span> <span class="n">globalX</span> <span class="o">=</span> <span class="n">get_global_id</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">globalY</span> <span class="o">=</span> <span class="n">get_global_id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">get_global_size</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
-  <span class="kt">float</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0f</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">numBlocks</span> <span class="o">=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-
-  <span class="kt">int</span> <span class="n">tidX</span> <span class="o">=</span> <span class="n">get_local_id</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">tidY</span> <span class="o">=</span> <span class="n">get_local_id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-
-  <span class="k">for</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">numBlocks</span><span class="p">;</span> <span class="o">++</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Populate a cache for A/B</span>
-    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
-
-    <span class="n">x</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">BLOCK_SIZE</span> <span class="o">+</span> <span class="n">tidX</span><span class="p">;</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">globalY</span><span class="p">;</span>
-
-    <span class="n">scratchA</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">tidX</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">x</span><span class="p">];</span>
-
-    <span class="n">x</span> <span class="o">=</span> <span class="n">globalX</span><span class="p">;</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">BLOCK_SIZE</span> <span class="o">+</span> <span class="n">tidY</span><span class="p">;</span>
-
-    <span class="n">scratchB</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">tidX</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">x</span><span class="p">];</span>
-
-    <span class="n">barrier</span><span class="p">(</span><span class="n">CLK_LOCAL_MEM_FENCE</span><span class="p">);</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kt">float</span> <span class="n">myA</span><span class="p">;</span>
-      <span class="kt">float</span> <span class="n">myB</span><span class="p">;</span>
-
-      <span class="n">myA</span> <span class="o">=</span> <span class="n">scratchA</span><span class="p">[</span><span class="n">tidY</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
-      <span class="n">myB</span> <span class="o">=</span> <span class="n">scratchB</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">tidX</span><span class="p">];</span>
-
-      <span class="n">sum</span> <span class="o">+=</span> <span class="n">myA</span> <span class="o">*</span> <span class="n">myB</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="n">barrier</span><span class="p">(</span><span class="n">CLK_LOCAL_MEM_FENCE</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="n">C</span><span class="p">[</span><span class="n">globalY</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">globalX</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table><p>We can use the <a class="reference external" href="http://www.pcc.me.uk/~peter/libclc">libclc</a>&nbsp;library, written by Peter Collingbourne, to
-provide the OpenCL built-in functions for Clang. &nbsp;This library will map
-OpenCL built-in functions to target-specific functions in the LLVM IR
-that the PTX back-end knows how to handle. &nbsp;If <tt class="docutils literal">$LIBCLC</tt> points to the
-download of libclc, then you can invoke Clang with:</p>
-<pre class="literal-block">
-clang -ccc-host-triple ptx32
-  -Xclang -target-feature -Xclang +ptx23
-  -Xclang -target-feature -Xclang +sm20
-  -I$LIBCLC/include/generic -I$LIBCLC/include/ptx
-  -include clc/clc.h -Dcl_clang_storage_class_specifiers
-  -O3 matmul_kernel.cl -S -o matmul_kernel.ptx
-</pre>
-<p>The options can be a bit verbose at the moment, but practically all of
-them can be placed in a wrapper script. &nbsp;Clang will compile the kernel
-and emit the generated PTX code to <tt class="docutils literal">matmul_kernel.ptx</tt>. &nbsp;This code can
-then be loaded as an OpenCL binary kernel using the nVidia OpenCL SDK,
-using the <tt class="docutils literal">clCreateProgramWithBinary</tt> function. &nbsp;As an added bonus,
-the performance is about the same as if the kernel was compiled using
-the nVidia OpenCL compiler!</p>
-
-      
-            
-      <detail><p>
-      Posted Fri 02 December 2011
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
-(<a href="http://blog.jholewinski.org/tag/gpu.html">GPU</a>, <a href="http://blog.jholewinski.org/tag/llvm.html">LLVM</a>, <a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html">Comments</a>        </p></aside>
-            </article>
-      
-            
-                <article>
-      <h1><a href="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html" rel="bookmark">Installing Matplotlib on OS X 10.7 with Homebrew</a></h1>
-      
-      <p>[edit: It looks like things have changed a bit since the release of
-10.7, so your mileage may vary with this method. &nbsp;This was written when
-10.7 was brand new and most software was not yet updated for it.]</p>
-<p>For those of you that do not know, <a class="reference external" href="http://matplotlib.sourceforge.net">Matplotlib</a> is an excellent Python
-plotting library that allows you to create professional-quality plots
-for inclusion on web pages, Latex documents, Beamer presentations,
-Keynote presentations, and any other software that can import SVG, EPS,
-PNG, or virtually any graphic format.</p>
-<p>However, getting matplotlib installed on Mac OS X 10.7 can be a bit
-tricky, especially if you are using <a class="reference external" href="http://mxcl.github.com/homebrew/">Homebrew</a> as your &quot;package
-manager.&quot; &nbsp;First off, Homebrew does not have packages for matplotlib, as
-well as some of its dependencies. &nbsp;Additionally, the current Matplotlib
-release version (1.0.1 as of this post) does not compile out-of-the-box
-against libpng 1.5, which is included in the X11 distribution shipped
-with Mac OS X 10.7.</p>
-<p>For previous versions of Mac OS X (10.6, 10.5), the usual way to install
-matplotlib was to install python, pkg-config, and gfortran with
-Homebrew, then install numpy and matplotlib through pip, ala:</p>
-<pre class="literal-block">
-$ brew install python
-$ brew install gfortran
-$ brew install pkg-config
-$ easy_install pip
-$ pip install numpy
-$ pip install matplotlib
-</pre>
-<p>Unfortunately, as previously mentioned, all is not so easy in the world
-of Mac OS X 10.7, and the difficulty lies with libpng 1.5, installed
-with Mac OS X 10.7's version of X11. Briefly put, Matplotlib 1.0.1 is
-not compatible with libpng 1.5 due to a change in the API. Fortunately,
-the fix is already applied up-stream and will probably be a part of
-Matplotlib 1.0.2, or 1.1.0, or whatever the next released version is.</p>
-<p>Until the next release, the Matplotlib sources in Git can be used.
-Instead of pulling the sources from the Matplotlib SourceForge site, you
-need to pull them from the Matplotlib GitHub site. I'm not sure if this
-GitHub site is &quot;official,&quot; but is looks to be.</p>
-<p>All that is needed is to build Matplotlib from source instead of using
-pip, so the installation procedure is now:</p>
-<pre class="literal-block">
-$ brew install python
-$ brew install gfortran
-$ brew install pkg-config
-$ easy_install pip
-$ pip install numpy
-$ cd $HOME
-$ git clone https://github.com/matplotlib/matplotlib.git
-$ cd matplotlib
-$ python setup.py build
-$ python setup.py install
-</pre>
-<p>And now you're good to go! Hopefully this will become much easier with
-the next official release of Matplotlib.</p>
-
-      
-            
-      <detail><p>
-      Posted Thu 21 July 2011
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/general.html">General</a>
-(<a href="http://blog.jholewinski.org/tag/homebrew.html">Homebrew</a>, <a href="http://blog.jholewinski.org/tag/mac-os-x.html">Mac OS X</a>, <a href="http://blog.jholewinski.org/tag/matplotlib.html">Matplotlib</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html">Comments</a>        </p></aside>
-            </article>
-      
-            
-                <article>
       <h1><a href="http://blog.jholewinski.org/the-beauty-of-c-templates/index.html" rel="bookmark">The Beauty of C++ Templates</a></h1>
       
       <p>Every so often, I'll get a random C++ question from a friend or
@@ -526,9 +256,9 @@ such an elegant and efficient solution that I cannot help feeling giddy.</p>
 
 <h2>Archives</h2>
 <ul class="nav nav-pulls nav-stacked">
-  <li>2013-07-11<br/><a href='http://blog.jholewinski.org/i3-wm-default-workspace-settings/index.html'>i3 WM: Default Workspace Settings</a></li>
   <li>2012-11-06<br/><a href='http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
   <li>2012-03-17<br/><a href='http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
+  <li>2012-02-17<br/><a href='http://blog.jholewinski.org/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
 <br/>
 <li><a href='http://blog.jholewinski.org/archives.html'>&lt;All&gt;</a></li>
 </ul>
@@ -542,21 +272,16 @@ such an elegant and efficient solution that I cannot help feeling giddy.</p>
 <h2>Tags</h2>
 <ul class="nav nav-pills nav-stacked">
   <li><a href="http://blog.jholewinski.org/tag/amd.html">AMD (1)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/c.html">C++ (2)</a></li>
+  <li><a href="http://blog.jholewinski.org/tag/c.html">C++ (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/desktop.html">Desktop (1)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/direct3d.html">Direct3D (1)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/gpu.html">GPU (2)</a></li>
+  <li><a href="http://blog.jholewinski.org/tag/gpu.html">GPU (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/games.html">Games (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/homebrew.html">Homebrew (1)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/llvm.html">LLVM (1)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/linux.html">Linux (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/mac-os-x.html">Mac OS X (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/matplotlib.html">Matplotlib (1)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL (2)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/qt.html">Qt (1)</a></li>
+  <li><a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL (1)</a></li>
   <li><a href="http://blog.jholewinski.org/tag/unreal.html">Unreal (1)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/windows.html">Windows (3)</a></li>
-  <li><a href="http://blog.jholewinski.org/tag/i3.html">i3 (1)</a></li>
+  <li><a href="http://blog.jholewinski.org/tag/windows.html">Windows (2)</a></li>
 
 </ul>
 
