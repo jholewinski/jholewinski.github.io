@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Justin's Code Haus</title>
+  <title>Justin's Code Haus - Tag: LLVM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="http://blog.jholewinski.org/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
@@ -74,7 +74,7 @@ https://github.com/wamonite/relapse
 <div class="row"><div class="span12">
 <nav class="navbar"><div class="navbar-inner">
 <ul class="nav">
-  <li class="active"><a href="http://blog.jholewinski.org/index.html">Home</a></li>
+  <li><a href="http://blog.jholewinski.org/index.html">Home</a></li>
   
                                 
       <li ><a href="http://blog.jholewinski.org/about-me/index.html">About Me</a></li>
@@ -92,6 +92,8 @@ https://github.com/wamonite/relapse
 
 <!-- Content --> 
 <div class="span9">
+<h3 class="well well-small">Tag: LLVM</h3>
+
 
             <article>
       <h1><a href="http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html" rel="bookmark">LLVM 3.0: PTX Backend</a></h1>
@@ -233,7 +235,6 @@ the performance is about the same as if the kernel was compiled using
 the nVidia OpenCL compiler!</p>
 
       
-            
       <detail><p>
       Posted Fri 02 December 2011
  by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
@@ -244,223 +245,8 @@ the nVidia OpenCL compiler!</p>
             </article>
       
             
-                <article>
-      <h1><a href="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html" rel="bookmark">Installing Matplotlib on OS X 10.7 with Homebrew</a></h1>
       
-      <p>[edit: It looks like things have changed a bit since the release of
-10.7, so your mileage may vary with this method. &nbsp;This was written when
-10.7 was brand new and most software was not yet updated for it.]</p>
-<p>For those of you that do not know, <a class="reference external" href="http://matplotlib.sourceforge.net">Matplotlib</a> is an excellent Python
-plotting library that allows you to create professional-quality plots
-for inclusion on web pages, Latex documents, Beamer presentations,
-Keynote presentations, and any other software that can import SVG, EPS,
-PNG, or virtually any graphic format.</p>
-<p>However, getting matplotlib installed on Mac OS X 10.7 can be a bit
-tricky, especially if you are using <a class="reference external" href="http://mxcl.github.com/homebrew/">Homebrew</a> as your &quot;package
-manager.&quot; &nbsp;First off, Homebrew does not have packages for matplotlib, as
-well as some of its dependencies. &nbsp;Additionally, the current Matplotlib
-release version (1.0.1 as of this post) does not compile out-of-the-box
-against libpng 1.5, which is included in the X11 distribution shipped
-with Mac OS X 10.7.</p>
-<p>For previous versions of Mac OS X (10.6, 10.5), the usual way to install
-matplotlib was to install python, pkg-config, and gfortran with
-Homebrew, then install numpy and matplotlib through pip, ala:</p>
-<pre class="literal-block">
-$ brew install python
-$ brew install gfortran
-$ brew install pkg-config
-$ easy_install pip
-$ pip install numpy
-$ pip install matplotlib
-</pre>
-<p>Unfortunately, as previously mentioned, all is not so easy in the world
-of Mac OS X 10.7, and the difficulty lies with libpng 1.5, installed
-with Mac OS X 10.7's version of X11. Briefly put, Matplotlib 1.0.1 is
-not compatible with libpng 1.5 due to a change in the API. Fortunately,
-the fix is already applied up-stream and will probably be a part of
-Matplotlib 1.0.2, or 1.1.0, or whatever the next released version is.</p>
-<p>Until the next release, the Matplotlib sources in Git can be used.
-Instead of pulling the sources from the Matplotlib SourceForge site, you
-need to pull them from the Matplotlib GitHub site. I'm not sure if this
-GitHub site is &quot;official,&quot; but is looks to be.</p>
-<p>All that is needed is to build Matplotlib from source instead of using
-pip, so the installation procedure is now:</p>
-<pre class="literal-block">
-$ brew install python
-$ brew install gfortran
-$ brew install pkg-config
-$ easy_install pip
-$ pip install numpy
-$ cd $HOME
-$ git clone https://github.com/matplotlib/matplotlib.git
-$ cd matplotlib
-$ python setup.py build
-$ python setup.py install
-</pre>
-<p>And now you're good to go! Hopefully this will become much easier with
-the next official release of Matplotlib.</p>
 
-      
-            
-      <detail><p>
-      Posted Thu 21 July 2011
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/general.html">General</a>
-(<a href="http://blog.jholewinski.org/tag/homebrew.html">Homebrew</a>, <a href="http://blog.jholewinski.org/tag/mac-os-x.html">Mac OS X</a>, <a href="http://blog.jholewinski.org/tag/matplotlib.html">Matplotlib</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html">Comments</a>        </p></aside>
-            </article>
-      
-            
-                <article>
-      <h1><a href="http://blog.jholewinski.org/the-beauty-of-c-templates/index.html" rel="bookmark">The Beauty of C++ Templates</a></h1>
-      
-      <p>Every so often, I'll get a random C++ question from a friend or
-colleague. &nbsp;Most of the time the answers are trivial, at least for
-someone who has a history with the language. &nbsp;Other questions make me
-stop and ponder, searching for the best &quot;C++&quot; way to do something.
-&nbsp;Yesterday, the question was simple and the solution turned out to be
-equally simple, but getting to the solution made me stop and appreciate
-some of the cool things one can do with C++ templates.</p>
-<div class="section" id="the-problem">
-<h2>The Problem</h2>
-<p>The problem was simple. &nbsp;Suppose you have a C++ template class/struct
-that is parameterized by a single type, e.g.</p>
-<div class="highlight"><pre><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">my_data</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-<span class="nl">private:</span>
-  <span class="n">T</span> <span class="n">element_</span><span class="p">;</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-<div class="section" id="the-solution">
-<h2>The Solution</h2>
-<p>Now, the question is, &quot;how do I write a method for this class/struct
-that maps the type of T to an enumeration value?&quot; &nbsp;For context, the real
-problem involved mapping T to an MPI data type, e.g. (float -&gt;
-MPI_FLOAT), (double -&gt; MPI_DOUBLE), etc..</p>
-<p>The first thought for anyone familiar with containers may be to
-explicitly generate a map, e.g. std::map in this case, to hold all
-possible mappings from the C++ type (via typeid()) to the MPI type
-(really just an integer). &nbsp;Such a solution is certainly valid and may be
-the best way to approach the problem in another language such as C# or
-Java. &nbsp;After pondering the &quot;C++&quot; solution to the problem for a few
-minutes, my colleague and I came up with a fairly elegant solution
-involving templates. &nbsp;Or, at least I found it quite elegant.</p>
-<div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * This struct wrappers the MPI data type value for the given C++ type.</span>
-<span class="cm"> *</span>
-<span class="cm"> * Any valid MPI data type value must have a corresponding explicit template</span>
-<span class="cm"> * instantiation below.</span>
-<span class="cm"> */</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">mpi_type_wrapper</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">mpi_type</span><span class="p">;</span>
-  <span class="n">mpi_type_wrapper</span><span class="p">();</span>
-<span class="p">};</span>
-
-<span class="c1">// Explicit instantiation for `float&#39;</span>
-<span class="k">template</span> <span class="o">&lt;&gt;</span>
-<span class="n">mpi_type_wrapper</span><span class="o">::</span><span class="n">mpi_type_wrapper</span><span class="p">()</span>
-<span class="o">:</span> <span class="n">mpi_type</span><span class="p">(</span><span class="n">MPI_FLOAT</span><span class="p">)</span> <span class="p">{}</span>
-
-<span class="c1">// Explicit instantiation for `double&#39;</span>
-<span class="k">template</span> <span class="o">&lt;&gt;</span>
-<span class="n">mpi_type_wrapper</span><span class="o">::</span><span class="n">mpi_type_wrapper</span><span class="p">()</span>
-<span class="o">:</span> <span class="n">mpi_type</span><span class="p">(</span><span class="n">MPI_DOUBLE</span><span class="p">)</span> <span class="p">{}</span>
-</pre></div>
-<p>The mpi_type_wrapper struct is a convenient way to convert an
-arbitrary C++ type to an equivalent MPI type. &nbsp;All one has to do is
-declare a local variable of type mpi_type_wrapper&lt;T&gt; (with appropriate
-T) and read the value of its mpi_type field. &nbsp;Of course, none of this
-is specific to MPI in any way. &nbsp;The only requirement is that an explicit
-instantiation of the constructor must be provided for any C++ types that
-are to be converted.</p>
-</div>
-<div class="section" id="why-this-solution">
-<h2>Why This Solution?</h2>
-<p>This solution strikes me as elegant for two reasons. &nbsp;First, it is a
-solution that would be difficult, if not impossible, to express in many
-other languages. &nbsp;Second, and most interesting to me, there is <em>no</em>
-run-time overhead associated with this solution. &nbsp;You can even compile
-this with RTTI turned off. &nbsp;Any reasonable compiler automatically
-inlines the appropriate constructor, then constant propagation replaces
-any uses of the mpi_type field with the appropriate MPI_* enumeration
-value. &nbsp;There is no memory overhead associated with explicitly keeping a
-map at run-time, nor any time overhead of performing a map look-up. &nbsp;The
-final code just uses the constant value! &nbsp;If you do not believe me,
-check out this example:</p>
-<div class="highlight"><pre><span class="cm">/**</span>
-<span class="cm"> * Some template class that needs to know the MPI_DataType value for its</span>
-<span class="cm"> * template parameter type.</span>
-<span class="cm"> */</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">some_type</span> <span class="p">{</span>
-  <span class="kt">void</span> <span class="n">printType</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">mpi_type_wrapper</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">wrap</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;My Type: %d&quot;</span><span class="p">,</span> <span class="n">wrap</span><span class="p">.</span><span class="n">mpi_type</span><span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">};</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">some_type</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">floatClass</span><span class="p">;</span>
-  <span class="n">some_type</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">doubleClass</span><span class="p">;</span>
-
-  <span class="n">floatClass</span><span class="p">.</span><span class="n">printType</span><span class="p">();</span>
-  <span class="n">doubleClass</span><span class="p">.</span><span class="n">printType</span><span class="p">();</span>
-
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-<p>And the generated code?</p>
-<div class="highlight"><pre><span class="nl">_main:</span>
-  <span class="nf">pushq</span> <span class="o">%</span><span class="nb">rbx</span>
-  <span class="nf">leaq</span> <span class="nv">L_.str</span><span class="p">(</span><span class="o">%</span><span class="nv">rip</span><span class="p">),</span> <span class="o">%</span><span class="nb">rbx</span>
-  <span class="nf">movq</span> <span class="o">%</span><span class="nb">rbx</span><span class="p">,</span> <span class="o">%</span><span class="nb">rdi</span>
-  <span class="nf">xorl</span> <span class="o">%</span><span class="nb">esi</span><span class="p">,</span> <span class="o">%</span><span class="nb">esi</span>
-  <span class="nf">xorb</span> <span class="o">%</span><span class="nb">al</span><span class="p">,</span> <span class="o">%</span><span class="nb">al</span>
-  <span class="nf">callq</span> <span class="nv">_printf</span>
-  <span class="nf">movl</span> <span class="kc">$</span><span class="mi">1</span><span class="p">,</span> <span class="o">%</span><span class="nb">esi</span>
-  <span class="nf">movq</span> <span class="o">%</span><span class="nb">rbx</span><span class="p">,</span> <span class="o">%</span><span class="nb">rdi</span>
-  <span class="nf">xorb</span> <span class="o">%</span><span class="nb">al</span><span class="p">,</span> <span class="o">%</span><span class="nb">al</span>
-  <span class="nf">callq</span> <span class="nv">_printf</span>
-  <span class="nf">xorl</span> <span class="o">%</span><span class="nb">eax</span><span class="p">,</span> <span class="o">%</span><span class="nb">eax</span>
-  <span class="nf">popq</span> <span class="o">%</span><span class="nb">rbx</span>
-  <span class="nf">ret</span>
-</pre></div>
-</div>
-<div class="section" id="conclusion">
-<h2>Conclusion</h2>
-<p>While this example is probably trivial for most experienced C++
-programmers out there, including myself, I always find myself stopping
-and appreciating such solutions. &nbsp;In this case, C++ templates provide
-such an elegant and efficient solution that I cannot help feeling giddy.</p>
-</div>
-
-      
-            
-      <detail><p>
-      Posted Fri 01 April 2011
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
-(<a href="http://blog.jholewinski.org/tag/c.html">C++</a>)      </p></detail>
-      
-              <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/the-beauty-of-c-templates/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/the-beauty-of-c-templates/index.html">Comments</a>        </p></aside>
-            </article>
-      
-              <nav class="pagination">
-          <ul>
-            <li><a href="http://blog.jholewinski.org/index.html">&laquo;</a></li>
-        
-                    <li><a href="http://blog.jholewinski.org/index.html">1</a></li>
-                      <li class="active"><span>2</span></li>
-        
-      <li class="disabled"><span>&raquo;</span></li>
-  </ul>        </nav>
-            
-      
 </div>
 <!-- /Content -->
 
@@ -475,9 +261,7 @@ such an elegant and efficient solution that I cannot help feeling giddy.</p>
 
 <h2>Archives</h2>
 <ul class="nav nav-pulls nav-stacked">
-  <li>2012-11-06<br/><a href='http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
-  <li>2012-03-17<br/><a href='http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
-  <li>2012-02-17<br/><a href='http://blog.jholewinski.org/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
+  <li>2011-12-02<br/><a href='http://blog.jholewinski.org/llvm-3-0-ptx-backend/index.html'>LLVM 3.0: PTX Backend</a></li>
 <br/>
 <li><a href='http://blog.jholewinski.org/archives.html'>&lt;All&gt;</a></li>
 </ul>

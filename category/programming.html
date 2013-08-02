@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Justin's Code Haus - Author: Justin Holewinski</title>
+  <title>Justin's Code Haus - Category: Programming</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="http://blog.jholewinski.org/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
@@ -92,112 +92,82 @@ https://github.com/wamonite/relapse
 
 <!-- Content --> 
 <div class="span9">
-<h3 class="well well-small">Author: Justin Holewinski</h3>
+<h3 class="well well-small">Category: Programming</h3>
 
 
             <article>
-      <h1><a href="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html" rel="bookmark">2012 and still no multi-monitor lovin'...</a></h1>
+      <h1><a href="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html" rel="bookmark">UnrealScript: Brace Placement Matters!</a></h1>
       
-      <p>For the past week, I've been giving Windows 8 a serious try. &nbsp;I've
-dabbled with the various preview versions, but now it's time to try the
-released version. &nbsp;I've read the reviews, saw the mixed reactions to the
-new &quot;Modern UI&quot;, and decided to see for myself how I feel about
-it.&nbsp;Generally speaking, I don't mind the new interface. &nbsp;My usual method
-of launching a program was pressing the Win key, typing the first few
-letters of the application name, and then hitting Enter. &nbsp;Still works in
-the Start Screen. &nbsp;Start Menu vs. Start Screen, it doesn't bother me.
-&nbsp;Except for one little detail...</p>
-<p><em>... the complete lack of multi-monitor support in the Modern UI!</em></p>
-<p>Simply put, there can only be one full-screen Modern UI app displayed at
-a time. &nbsp;So if I open, say, Mail on one screen and attempt to open Maps
-on another screen, the screen showing Mail will go back to the desktop.
-&nbsp;To make matters worse, the Start Screen counts as a Modern UI app in
-this regard. &nbsp;If I have Mail open on one screen and try to open the
-Start Screen on another screen to launch an application, the screen
-showing Mail goes back to the desktop and I have to alt+tab back to it.
-&nbsp;Talk about a disruption in my workflow!</p>
-<p>Did I mention my main desktop is triple-head? &nbsp;It comes in handy for
-coding. &nbsp;All of the Windows 8 reviews I read talk about the pros and
-cons of the new Modern UI, but I rarely see any reference to the
-complete lack of multi-monitor support in it. &nbsp;I'm not sure if this is
-just a feature oversight, or a more fundamental limitation in the model
-used for WinRT apps. &nbsp; Is there a fundamental technical limitation in
-the operating system that prevents multiple Modern UI apps to be visible
-at the same time? If the Modern UI is the future, I sure hope they get
-this fixed ASAP! &nbsp;For now, it's easy enough to just avoid Modern UI apps
-altogether, but what happens in the future when I find an app I want to
-keep open on one of my screens?</p>
-<p>Perhaps more disturbing, this is becoming a trend in mainstream
-operating systems. &nbsp;While Windows 8 has this limitation for Modern UI
-apps, full-screen apps in Mac OS X are not really any better. &nbsp;If I
-full-screen an application in a multi-monitor configuration, I get that
-app on one monitor and a pretty background on all others. &nbsp;I would much
-rather have the ability to put multiple apps in full-screen mode
-side-by-side, or perhaps have the option to have a full-screen app next
-to a desktop workspace on another monitor. &nbsp;At least I can have multiple
-workspaces, though.</p>
-<p>Perhaps I'm just too adjusted to my Linux multi-monitor
-configurations...</p>
+      <p>I was playing around with the Unreal Development Kit this evening, and
+discovered a rather interesting quirk in the handling of braces within
+UnrealScript. &nbsp;All of the sample code I read use a syntax style that
+places opening braces on the following line:</p>
+<div class="highlight"><pre><span class="n">event</span> <span class="nf">PostBeginPlay</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Do something</span>
+<span class="p">}</span>
+</pre></div>
+<p>However, my typical style places the opening brace on the current line:</p>
+<div class="highlight"><pre><span class="n">event</span> <span class="nf">PostBeginPlay</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Do something</span>
+<span class="p">}</span>
+</pre></div>
+<p>Unfortunately, this does not seem to work for <tt class="docutils literal">defaultproperties</tt>
+blocks. If you place the brace on the same line, the compiler will not
+give you any warnings or errors, but the entire <tt class="docutils literal">defaultproperties</tt>
+block is just ignored!</p>
+<p>So this code works:</p>
+<div class="highlight"><pre>defaultproperties
+{
+  PlayerControllerClass=class&#39;MyPlayerController&#39;
+}
+</pre></div>
+<p>while the following code compiles but silently just ignores all of the
+contained settings:</p>
+<div class="highlight"><pre>defaultproperties {
+  PlayerControllerClass=class&#39;MyPlayerController&#39;
+}
+</pre></div>
+<p>I was banging my head on the wall for at least an hour figuring this one
+out!</p>
+<p>I hope this can help prevent someone else from repeating my mistake.</p>
 
       
       <detail><p>
-      Posted Tue 06 November 2012
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/general.html">General</a>
-(<a href="http://blog.jholewinski.org/tag/windows.html">Windows</a>, <a href="http://blog.jholewinski.org/tag/desktop.html">Desktop</a>)      </p></detail>
+      Posted Sat 17 March 2012
+ by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
+(<a href="http://blog.jholewinski.org/tag/unreal.html">Unreal</a>)      </p></detail>
       
               <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html">Comments</a>        </p></aside>
+        <a href="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html">Comments</a>        </p></aside>
             </article>
       
             
                 <article>
-      <h1><a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html" rel="bookmark">AMD APP: Getting Device Assembly</a></h1>
+      <h1><a href="http://blog.jholewinski.org/space-hogs-binary-release/index.html" rel="bookmark">Space Hogs Binary Release</a></h1>
       
-      <p>Sometimes it is useful to look at the intermediate and assembly code for
-GPU programs. &nbsp;This can lead to some interesting performance insights,
-especially for compiler writers. &nbsp;Unfortunately, the AMD APP SDK is a
-bit limited on Linux, and the AMD APP KernelAnalyzer, which conveniently
-dumps the AMDIL and Device ISA for an OpenCL kernel, is not available on
-Linux. &nbsp;However, digging through the AMD APP OpenCL Programming Guide,
-one finds an environment variable that can be used for the same purpose:
-<tt class="docutils literal">GPU_DUMP_DEVICE_KERNEL</tt>.</p>
-<p>According to the programming guide, this environment variable can take
-one of three values:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<tbody valign="top">
-<tr><td>1</td>
-<td>Save intermediate IL files in local directory.</td>
-</tr>
-<tr><td>2</td>
-<td>Disassemble ISA file and save in local directory.</td>
-</tr>
-<tr><td>3</td>
-<td>Save both the IL and ISA files in local directory.</td>
-</tr>
-</tbody>
-</table>
-<p>Therefore, if you run your OpenCL program with:</p>
-<pre class="literal-block">
-$ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
-</pre>
-<p>You will get two files in your local directory:
-<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].il</span></tt> and
-<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].isa</span></tt>, which contain AMDIL and Device ISA
-disassembly, respectively.</p>
+      <p>I've converted my old Space Hogs game project to XNA 4.0 (it was
+originally written in XNA 1.0). There were enough API changes to make it
+a pain, but I think I have everything working now.</p>
+<p>This game was developed by myself, Jason Kim, Joseph Ahn, Vjekoslav
+Kovacevic, and Daniel Guinn for a computer animation class during Winter
+Quarter 2007.</p>
+<a class="reference external image-reference" href="http://blog.jholewinski.org/static/images/spacehogs-screen1.png"><img alt="Spacehogs Screenshot" src="http://blog.jholewinski.org/static/images/spacehogs-screen1.png" style="width: 600px;" /></a>
+<p>You can find a zip file <a class="reference external" href="/static/SpaceHogs.zip">here</a>. This requires XNA 4.0 and the February
+2010 DX packages to be installed on your machine. For convenience, I've
+included both of the redistributable packages in the zip file.</p>
+<p>The source can be found on <a class="reference external" href="https://bitbucket.org/jholewinski/space-hogs">BitBucket</a>.</p>
+<p>Enjoy!</p>
 
       
             
       <detail><p>
-      Posted Thu 09 February 2012
+      Posted Fri 17 February 2012
  by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
-(<a href="http://blog.jholewinski.org/tag/gpu.html">GPU</a>, <a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL</a>, <a href="http://blog.jholewinski.org/tag/amd.html">AMD</a>)      </p></detail>
+(<a href="http://blog.jholewinski.org/tag/windows.html">Windows</a>, <a href="http://blog.jholewinski.org/tag/games.html">Games</a>)      </p></detail>
       
               <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html">Comments</a>        </p></aside>
+        <a href="http://blog.jholewinski.org/space-hogs-binary-release/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/space-hogs-binary-release/index.html">Comments</a>        </p></aside>
             </article>
       
             
@@ -374,70 +344,53 @@ release, the DirectX SDK, and the Qt Visual Studio Add-in.</p>
       
             
                 <article>
-      <h1><a href="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html" rel="bookmark">Installing Matplotlib on OS X 10.7 with Homebrew</a></h1>
+      <h1><a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html" rel="bookmark">AMD APP: Getting Device Assembly</a></h1>
       
-      <p>[edit: It looks like things have changed a bit since the release of
-10.7, so your mileage may vary with this method. &nbsp;This was written when
-10.7 was brand new and most software was not yet updated for it.]</p>
-<p>For those of you that do not know, <a class="reference external" href="http://matplotlib.sourceforge.net">Matplotlib</a> is an excellent Python
-plotting library that allows you to create professional-quality plots
-for inclusion on web pages, Latex documents, Beamer presentations,
-Keynote presentations, and any other software that can import SVG, EPS,
-PNG, or virtually any graphic format.</p>
-<p>However, getting matplotlib installed on Mac OS X 10.7 can be a bit
-tricky, especially if you are using <a class="reference external" href="http://mxcl.github.com/homebrew/">Homebrew</a> as your &quot;package
-manager.&quot; &nbsp;First off, Homebrew does not have packages for matplotlib, as
-well as some of its dependencies. &nbsp;Additionally, the current Matplotlib
-release version (1.0.1 as of this post) does not compile out-of-the-box
-against libpng 1.5, which is included in the X11 distribution shipped
-with Mac OS X 10.7.</p>
-<p>For previous versions of Mac OS X (10.6, 10.5), the usual way to install
-matplotlib was to install python, pkg-config, and gfortran with
-Homebrew, then install numpy and matplotlib through pip, ala:</p>
+      <p>Sometimes it is useful to look at the intermediate and assembly code for
+GPU programs. &nbsp;This can lead to some interesting performance insights,
+especially for compiler writers. &nbsp;Unfortunately, the AMD APP SDK is a
+bit limited on Linux, and the AMD APP KernelAnalyzer, which conveniently
+dumps the AMDIL and Device ISA for an OpenCL kernel, is not available on
+Linux. &nbsp;However, digging through the AMD APP OpenCL Programming Guide,
+one finds an environment variable that can be used for the same purpose:
+<tt class="docutils literal">GPU_DUMP_DEVICE_KERNEL</tt>.</p>
+<p>According to the programming guide, this environment variable can take
+one of three values:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>1</td>
+<td>Save intermediate IL files in local directory.</td>
+</tr>
+<tr><td>2</td>
+<td>Disassemble ISA file and save in local directory.</td>
+</tr>
+<tr><td>3</td>
+<td>Save both the IL and ISA files in local directory.</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, if you run your OpenCL program with:</p>
 <pre class="literal-block">
-$ brew install python
-$ brew install gfortran
-$ brew install pkg-config
-$ easy_install pip
-$ pip install numpy
-$ pip install matplotlib
+$ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
 </pre>
-<p>Unfortunately, as previously mentioned, all is not so easy in the world
-of Mac OS X 10.7, and the difficulty lies with libpng 1.5, installed
-with Mac OS X 10.7's version of X11. Briefly put, Matplotlib 1.0.1 is
-not compatible with libpng 1.5 due to a change in the API. Fortunately,
-the fix is already applied up-stream and will probably be a part of
-Matplotlib 1.0.2, or 1.1.0, or whatever the next released version is.</p>
-<p>Until the next release, the Matplotlib sources in Git can be used.
-Instead of pulling the sources from the Matplotlib SourceForge site, you
-need to pull them from the Matplotlib GitHub site. I'm not sure if this
-GitHub site is &quot;official,&quot; but is looks to be.</p>
-<p>All that is needed is to build Matplotlib from source instead of using
-pip, so the installation procedure is now:</p>
-<pre class="literal-block">
-$ brew install python
-$ brew install gfortran
-$ brew install pkg-config
-$ easy_install pip
-$ pip install numpy
-$ cd $HOME
-$ git clone https://github.com/matplotlib/matplotlib.git
-$ cd matplotlib
-$ python setup.py build
-$ python setup.py install
-</pre>
-<p>And now you're good to go! Hopefully this will become much easier with
-the next official release of Matplotlib.</p>
+<p>You will get two files in your local directory:
+<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].il</span></tt> and
+<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].isa</span></tt>, which contain AMDIL and Device ISA
+disassembly, respectively.</p>
 
       
             
       <detail><p>
-      Posted Thu 21 July 2011
- by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/general.html">General</a>
-(<a href="http://blog.jholewinski.org/tag/homebrew.html">Homebrew</a>, <a href="http://blog.jholewinski.org/tag/mac-os-x.html">Mac OS X</a>, <a href="http://blog.jholewinski.org/tag/matplotlib.html">Matplotlib</a>)      </p></detail>
+      Posted Thu 09 February 2012
+ by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
+(<a href="http://blog.jholewinski.org/tag/gpu.html">GPU</a>, <a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL</a>, <a href="http://blog.jholewinski.org/tag/amd.html">AMD</a>)      </p></detail>
       
               <aside id="comment-count"><p>
-        <a href="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html">Comments</a>        </p></aside>
+        <a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html">Comments</a>        </p></aside>
             </article>
       
             
@@ -596,9 +549,9 @@ the nVidia OpenCL compiler!</p>
       <li class="disabled"><span>&laquo;</span></li>
     
             <li class="active"><span>1</span></li>
-                        <li><a href="http://blog.jholewinski.org/author/justin-holewinski2.html">2</a></li>
+                        <li><a href="http://blog.jholewinski.org/category/programming2.html">2</a></li>
               
-      <li><a href="http://blog.jholewinski.org/author/justin-holewinski2.html">&raquo;</a></li>
+      <li><a href="http://blog.jholewinski.org/category/programming2.html">&raquo;</a></li>
   </ul>        </nav>
             
       
@@ -617,9 +570,9 @@ the nVidia OpenCL compiler!</p>
 
 <h2>Archives</h2>
 <ul class="nav nav-pulls nav-stacked">
-  <li>2012-11-06<br/><a href='http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
   <li>2012-03-17<br/><a href='http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
   <li>2012-02-17<br/><a href='http://blog.jholewinski.org/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
+  <li>2012-02-16<br/><a href='http://blog.jholewinski.org/direct3d-11-with-qt-4/index.html'>Direct3D 11 with Qt 4</a></li>
 <br/>
 <li><a href='http://blog.jholewinski.org/archives.html'>&lt;All&gt;</a></li>
 </ul>
@@ -627,7 +580,7 @@ the nVidia OpenCL compiler!</p>
 <h2>Categories</h2>
 <ul class="nav nav-pills nav-stacked">
   <li ><a href="http://blog.jholewinski.org/category/general.html">General</a></li>
-  <li ><a href="http://blog.jholewinski.org/category/programming.html">Programming</a></li>
+  <li class="active"><a href="http://blog.jholewinski.org/category/programming.html">Programming</a></li>
 </ul>
 
 <h2>Tags</h2>

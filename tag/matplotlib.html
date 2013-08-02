@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Justin's Code Haus - Archives</title>
+  <title>Justin's Code Haus - Tag: Matplotlib</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="http://blog.jholewinski.org/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
@@ -92,25 +92,78 @@ https://github.com/wamonite/relapse
 
 <!-- Content --> 
 <div class="span9">
-<h1>Archives</h1>
-<dl class="dl-horizontal">
-  <dt>2012-11-06</dt>
-  <dd><a href='2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></dd>
-  <dt>2012-03-17</dt>
-  <dd><a href='unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></dd>
-  <dt>2012-02-17</dt>
-  <dd><a href='space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></dd>
-  <dt>2012-02-16</dt>
-  <dd><a href='direct3d-11-with-qt-4/index.html'>Direct3D 11 with Qt 4</a></dd>
-  <dt>2012-02-09</dt>
-  <dd><a href='amd-app-getting-device-assembly/index.html'>AMD APP: Getting Device Assembly</a></dd>
-  <dt>2011-12-02</dt>
-  <dd><a href='llvm-3-0-ptx-backend/index.html'>LLVM 3.0: PTX Backend</a></dd>
-  <dt>2011-07-21</dt>
-  <dd><a href='installing-matplotlib-on-os-x-10-7-with-homebrew/index.html'>Installing Matplotlib on OS X 10.7 with Homebrew</a></dd>
-  <dt>2011-04-01</dt>
-  <dd><a href='the-beauty-of-c-templates/index.html'>The Beauty of C++ Templates</a></dd>
-</dl>
+<h3 class="well well-small">Tag: Matplotlib</h3>
+
+
+            <article>
+      <h1><a href="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html" rel="bookmark">Installing Matplotlib on OS X 10.7 with Homebrew</a></h1>
+      
+      <p>[edit: It looks like things have changed a bit since the release of
+10.7, so your mileage may vary with this method. &nbsp;This was written when
+10.7 was brand new and most software was not yet updated for it.]</p>
+<p>For those of you that do not know, <a class="reference external" href="http://matplotlib.sourceforge.net">Matplotlib</a> is an excellent Python
+plotting library that allows you to create professional-quality plots
+for inclusion on web pages, Latex documents, Beamer presentations,
+Keynote presentations, and any other software that can import SVG, EPS,
+PNG, or virtually any graphic format.</p>
+<p>However, getting matplotlib installed on Mac OS X 10.7 can be a bit
+tricky, especially if you are using <a class="reference external" href="http://mxcl.github.com/homebrew/">Homebrew</a> as your &quot;package
+manager.&quot; &nbsp;First off, Homebrew does not have packages for matplotlib, as
+well as some of its dependencies. &nbsp;Additionally, the current Matplotlib
+release version (1.0.1 as of this post) does not compile out-of-the-box
+against libpng 1.5, which is included in the X11 distribution shipped
+with Mac OS X 10.7.</p>
+<p>For previous versions of Mac OS X (10.6, 10.5), the usual way to install
+matplotlib was to install python, pkg-config, and gfortran with
+Homebrew, then install numpy and matplotlib through pip, ala:</p>
+<pre class="literal-block">
+$ brew install python
+$ brew install gfortran
+$ brew install pkg-config
+$ easy_install pip
+$ pip install numpy
+$ pip install matplotlib
+</pre>
+<p>Unfortunately, as previously mentioned, all is not so easy in the world
+of Mac OS X 10.7, and the difficulty lies with libpng 1.5, installed
+with Mac OS X 10.7's version of X11. Briefly put, Matplotlib 1.0.1 is
+not compatible with libpng 1.5 due to a change in the API. Fortunately,
+the fix is already applied up-stream and will probably be a part of
+Matplotlib 1.0.2, or 1.1.0, or whatever the next released version is.</p>
+<p>Until the next release, the Matplotlib sources in Git can be used.
+Instead of pulling the sources from the Matplotlib SourceForge site, you
+need to pull them from the Matplotlib GitHub site. I'm not sure if this
+GitHub site is &quot;official,&quot; but is looks to be.</p>
+<p>All that is needed is to build Matplotlib from source instead of using
+pip, so the installation procedure is now:</p>
+<pre class="literal-block">
+$ brew install python
+$ brew install gfortran
+$ brew install pkg-config
+$ easy_install pip
+$ pip install numpy
+$ cd $HOME
+$ git clone https://github.com/matplotlib/matplotlib.git
+$ cd matplotlib
+$ python setup.py build
+$ python setup.py install
+</pre>
+<p>And now you're good to go! Hopefully this will become much easier with
+the next official release of Matplotlib.</p>
+
+      
+      <detail><p>
+      Posted Thu 21 July 2011
+ by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/general.html">General</a>
+(<a href="http://blog.jholewinski.org/tag/homebrew.html">Homebrew</a>, <a href="http://blog.jholewinski.org/tag/mac-os-x.html">Mac OS X</a>, <a href="http://blog.jholewinski.org/tag/matplotlib.html">Matplotlib</a>)      </p></detail>
+      
+              <aside id="comment-count"><p>
+        <a href="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html">Comments</a>        </p></aside>
+            </article>
+      
+            
+      
+
 </div>
 <!-- /Content -->
 
@@ -125,9 +178,7 @@ https://github.com/wamonite/relapse
 
 <h2>Archives</h2>
 <ul class="nav nav-pulls nav-stacked">
-  <li>2012-11-06<br/><a href='http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
-  <li>2012-03-17<br/><a href='http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
-  <li>2012-02-17<br/><a href='http://blog.jholewinski.org/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
+  <li>2011-07-21<br/><a href='http://blog.jholewinski.org/installing-matplotlib-on-os-x-10-7-with-homebrew/index.html'>Installing Matplotlib on OS X 10.7 with Homebrew</a></li>
 <br/>
 <li><a href='http://blog.jholewinski.org/archives.html'>&lt;All&gt;</a></li>
 </ul>

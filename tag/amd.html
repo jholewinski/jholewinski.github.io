@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Justin's Code Haus - Archives</title>
+  <title>Justin's Code Haus - Tag: AMD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="http://blog.jholewinski.org/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
   <link href="http://blog.jholewinski.org/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
@@ -92,25 +92,61 @@ https://github.com/wamonite/relapse
 
 <!-- Content --> 
 <div class="span9">
-<h1>Archives</h1>
-<dl class="dl-horizontal">
-  <dt>2012-11-06</dt>
-  <dd><a href='2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></dd>
-  <dt>2012-03-17</dt>
-  <dd><a href='unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></dd>
-  <dt>2012-02-17</dt>
-  <dd><a href='space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></dd>
-  <dt>2012-02-16</dt>
-  <dd><a href='direct3d-11-with-qt-4/index.html'>Direct3D 11 with Qt 4</a></dd>
-  <dt>2012-02-09</dt>
-  <dd><a href='amd-app-getting-device-assembly/index.html'>AMD APP: Getting Device Assembly</a></dd>
-  <dt>2011-12-02</dt>
-  <dd><a href='llvm-3-0-ptx-backend/index.html'>LLVM 3.0: PTX Backend</a></dd>
-  <dt>2011-07-21</dt>
-  <dd><a href='installing-matplotlib-on-os-x-10-7-with-homebrew/index.html'>Installing Matplotlib on OS X 10.7 with Homebrew</a></dd>
-  <dt>2011-04-01</dt>
-  <dd><a href='the-beauty-of-c-templates/index.html'>The Beauty of C++ Templates</a></dd>
-</dl>
+<h3 class="well well-small">Tag: AMD</h3>
+
+
+            <article>
+      <h1><a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html" rel="bookmark">AMD APP: Getting Device Assembly</a></h1>
+      
+      <p>Sometimes it is useful to look at the intermediate and assembly code for
+GPU programs. &nbsp;This can lead to some interesting performance insights,
+especially for compiler writers. &nbsp;Unfortunately, the AMD APP SDK is a
+bit limited on Linux, and the AMD APP KernelAnalyzer, which conveniently
+dumps the AMDIL and Device ISA for an OpenCL kernel, is not available on
+Linux. &nbsp;However, digging through the AMD APP OpenCL Programming Guide,
+one finds an environment variable that can be used for the same purpose:
+<tt class="docutils literal">GPU_DUMP_DEVICE_KERNEL</tt>.</p>
+<p>According to the programming guide, this environment variable can take
+one of three values:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>1</td>
+<td>Save intermediate IL files in local directory.</td>
+</tr>
+<tr><td>2</td>
+<td>Disassemble ISA file and save in local directory.</td>
+</tr>
+<tr><td>3</td>
+<td>Save both the IL and ISA files in local directory.</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, if you run your OpenCL program with:</p>
+<pre class="literal-block">
+$ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
+</pre>
+<p>You will get two files in your local directory:
+<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].il</span></tt> and
+<tt class="docutils literal"><span class="pre">[kernel-name]_[device-name].isa</span></tt>, which contain AMDIL and Device ISA
+disassembly, respectively.</p>
+
+      
+      <detail><p>
+      Posted Thu 09 February 2012
+ by <a class="url fn" href="http://blog.jholewinski.org/author/justin-holewinski.html">Justin Holewinski</a> in <a href="http://blog.jholewinski.org/category/programming.html">Programming</a>
+(<a href="http://blog.jholewinski.org/tag/gpu.html">GPU</a>, <a href="http://blog.jholewinski.org/tag/opencl.html">OpenCL</a>, <a href="http://blog.jholewinski.org/tag/amd.html">AMD</a>)      </p></detail>
+      
+              <aside id="comment-count"><p>
+        <a href="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html#disqus_thread" data-disqus-identifier="http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html">Comments</a>        </p></aside>
+            </article>
+      
+            
+      
+
 </div>
 <!-- /Content -->
 
@@ -125,9 +161,7 @@ https://github.com/wamonite/relapse
 
 <h2>Archives</h2>
 <ul class="nav nav-pulls nav-stacked">
-  <li>2012-11-06<br/><a href='http://blog.jholewinski.org/2012-and-still-no-multi-monitor-lovin/index.html'>2012 and still no multi-monitor lovin'...</a></li>
-  <li>2012-03-17<br/><a href='http://blog.jholewinski.org/unrealscript-brace-placement-matters/index.html'>UnrealScript: Brace Placement Matters!</a></li>
-  <li>2012-02-17<br/><a href='http://blog.jholewinski.org/space-hogs-binary-release/index.html'>Space Hogs Binary Release</a></li>
+  <li>2012-02-09<br/><a href='http://blog.jholewinski.org/amd-app-getting-device-assembly/index.html'>AMD APP: Getting Device Assembly</a></li>
 <br/>
 <li><a href='http://blog.jholewinski.org/archives.html'>&lt;All&gt;</a></li>
 </ul>
