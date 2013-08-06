@@ -51,7 +51,7 @@ PAGE_SAVE_AS = PAGE_URL
 
 DISQUS_SITENAME = 'justinscodehaus'
 
-STATIC_PATHS = [ 'images', 'papers' ]
+STATIC_PATHS = [ 'images', 'papers', 'downloads' ]
 
 TAG_CLOUD_STEPS = 1
 #PDF_GENERATOR = True

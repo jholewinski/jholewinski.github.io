@@ -27,5 +27,5 @@ The source can be found on `BitBucket`_.
 
 Enjoy!
 
-.. _here: /static/SpaceHogs.zip
+.. _here: |filename|/downloads/SpaceHogs.zip
 .. _BitBucket: https://bitbucket.org/jholewinski/space-hogs
