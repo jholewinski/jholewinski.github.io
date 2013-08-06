@@ -20,5 +20,5 @@ simulations, and shading.
 *Legal Disclaimer: The views expressed on this site of those of myself
 and may not reflect those of my employer, NVIDIA Corporation.*
 
-.. |image0| image:: http://jholewinski.org/static/uploads/2012/02/me.png
-   :target: http://jholewinski.org/static/uploads/2012/02/me.png
+.. |image0| image:: |filename|/images/me.png
+   :target: |filename|/images/me.png
