@@ -1,4 +1,4 @@
-PY=python
+PY=/usr/bin/env python3
 PELICAN=pelican
 PELICANOPTS=
 
@@ -84,6 +84,7 @@ s3_upload: publish
 github: publish
 	echo "blog.jholewinski.org" > $(OUTPUTDIR)/CNAME
 	ghp-import -b master $(OUTPUTDIR)
-	git push git@github.com:jholewinski/jholewinski.github.io master
+	@echo "When you're satisfied, run:"
+	@echo git push git@github.com:jholewinski/jholewinski.github.io master
 
 .PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload github
