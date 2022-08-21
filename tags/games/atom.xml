@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 	<title> - Games</title>
-	<link href="https://jholewinski.github.io/tags/games/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://jholewinski.github.io"/>
+	<link href="https://blog.jholewinski.org/tags/games/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://blog.jholewinski.org"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
 	<updated>2012-02-17T00:00:00+00:00</updated>
-	<id>https://jholewinski.github.io/tags/games/atom.xml</id>
+	<id>https://blog.jholewinski.org/tags/games/atom.xml</id>
 	<entry xml:lang="en">
 		<title>Space Hogs Binary Release</title>
 		<published>2012-02-17T00:00:00+00:00</published>
 		<updated>2012-02-17T00:00:00+00:00</updated>
-		<link rel="alternate" href="https://jholewinski.github.io/blog/space-hogs-binary-release/" type="text/html"/>
-		<id>https://jholewinski.github.io/blog/space-hogs-binary-release/</id>
+		<link rel="alternate" href="https://blog.jholewinski.org/blog/space-hogs-binary-release/" type="text/html"/>
+		<id>https://blog.jholewinski.org/blog/space-hogs-binary-release/</id>
 		<content type="html">&lt;p&gt;I&#x27;ve converted my old Space Hogs game project to XNA 4.0 (it was originally
 written in XNA 1.0). There were enough API changes to make it a pain, but I
 think I have everything working now.&lt;&#x2F;p&gt;

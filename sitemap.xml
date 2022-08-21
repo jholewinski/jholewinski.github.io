@@ -1,111 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://jholewinski.github.io/</loc>
+        <loc>https://blog.jholewinski.org/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/about-me/</loc>
+        <loc>https://blog.jholewinski.org/about-me/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/</loc>
+        <loc>https://blog.jholewinski.org/blog/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/2012-and-still-no-multi-monitor-lovin/</loc>
+        <loc>https://blog.jholewinski.org/blog/2012-and-still-no-multi-monitor-lovin/</loc>
         <lastmod>2012-11-06</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/amd-app-getting-device-assembly/</loc>
+        <loc>https://blog.jholewinski.org/blog/amd-app-getting-device-assembly/</loc>
         <lastmod>2012-02-09</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/direct3d-11-with-qt-4/</loc>
+        <loc>https://blog.jholewinski.org/blog/direct3d-11-with-qt-4/</loc>
         <lastmod>2012-02-16</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/i3-wm-default-settings/</loc>
+        <loc>https://blog.jholewinski.org/blog/i3-wm-default-settings/</loc>
         <lastmod>2013-07-11</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/installing-matplotlib-on-os-x-10-7-with-homebrew/</loc>
+        <loc>https://blog.jholewinski.org/blog/installing-matplotlib-on-os-x-10-7-with-homebrew/</loc>
         <lastmod>2011-07-21</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/llvm-3-0-ptx-backend/</loc>
+        <loc>https://blog.jholewinski.org/blog/llvm-3-0-ptx-backend/</loc>
         <lastmod>2011-12-02</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/space-hogs-binary-release/</loc>
+        <loc>https://blog.jholewinski.org/blog/space-hogs-binary-release/</loc>
         <lastmod>2012-02-17</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/the-beauty-of-c-templates/</loc>
+        <loc>https://blog.jholewinski.org/blog/the-beauty-of-c-templates/</loc>
         <lastmod>2011-04-01</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/blog/unrealscript-brace-placement-matters/</loc>
+        <loc>https://blog.jholewinski.org/blog/unrealscript-brace-placement-matters/</loc>
         <lastmod>2012-03-17</lastmod>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/categories/</loc>
+        <loc>https://blog.jholewinski.org/categories/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/publications/</loc>
+        <loc>https://blog.jholewinski.org/publications/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/</loc>
+        <loc>https://blog.jholewinski.org/tags/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/amd/</loc>
+        <loc>https://blog.jholewinski.org/tags/amd/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/c/</loc>
+        <loc>https://blog.jholewinski.org/tags/c/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/desktop/</loc>
+        <loc>https://blog.jholewinski.org/tags/desktop/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/direct3d/</loc>
+        <loc>https://blog.jholewinski.org/tags/direct3d/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/games/</loc>
+        <loc>https://blog.jholewinski.org/tags/games/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/gpu/</loc>
+        <loc>https://blog.jholewinski.org/tags/gpu/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/homebrew/</loc>
+        <loc>https://blog.jholewinski.org/tags/homebrew/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/i3/</loc>
+        <loc>https://blog.jholewinski.org/tags/i3/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/linux/</loc>
+        <loc>https://blog.jholewinski.org/tags/linux/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/llvm/</loc>
+        <loc>https://blog.jholewinski.org/tags/llvm/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/mac-os-x/</loc>
+        <loc>https://blog.jholewinski.org/tags/mac-os-x/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/matplotlib/</loc>
+        <loc>https://blog.jholewinski.org/tags/matplotlib/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/opencl/</loc>
+        <loc>https://blog.jholewinski.org/tags/opencl/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/qt/</loc>
+        <loc>https://blog.jholewinski.org/tags/qt/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/unreal/</loc>
+        <loc>https://blog.jholewinski.org/tags/unreal/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/tags/windows/</loc>
+        <loc>https://blog.jholewinski.org/tags/windows/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/teaching/</loc>
+        <loc>https://blog.jholewinski.org/teaching/</loc>
     </url>
     <url>
-        <loc>https://jholewinski.github.io/teaching/cse3902/</loc>
+        <loc>https://blog.jholewinski.org/teaching/cse3902/</loc>
     </url>
 </urlset>
