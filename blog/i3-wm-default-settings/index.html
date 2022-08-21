@@ -33,14 +33,13 @@
         </div>
 
         
-        
-                <nav class="menu">
+        <nav class="menu">
             <ul class="menu__inner">
-                <li class="active"><a href="https://jholewinski.github.io">Home</a></li>
+                <li><a href="https://jholewinski.github.io">Home</a></li>
             
                 <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
             
-                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+                <li class="active"><a href="https://jholewinski.github.io/blog">Blog</a></li>
             
                 <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
             
@@ -59,11 +58,51 @@
 
     <div class="content">
         
-        <div class="posts"><div class="pagination">
-                <div class="pagination__buttons"></div>
-            </div>
-        </div>
+    <div class="post">
         
+    <h1 class="post-title"><a href="https://jholewinski.github.io/blog/i3-wm-default-settings/">i3 WM: Default Workspace Settings</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2013-07-11
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/linux/">#Linux</a>&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/i3/">#i3</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>I've been playing around with the i3 window manager a lot lately, and I have to
+say I enjoy it very much! But one default setting that tripped me up (as set by
+<code>i3-config-wizard</code>) was the key bindings for workspace switching:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>  bindsym $mod+1 workspace 1
+</span><span>  bindsym $mod+2 workspace 2
+</span><span>  bindsym $mod+3 workspace 3
+</span><span>  # ...
+</span></code></pre>
+<p>This works well until you start naming your workspaces. With these bindings,
+you will switch to workspace <em>name</em> &quot;1&quot;, not <em>number</em> &quot;1&quot;.  So if you rename
+workspace 1 to &quot;1: Firefox&quot; and press Mod5+1, you'll end up opening a new
+workspace instead of going to the &quot;1: Firefox&quot; workspace.  Not very intuitive!
+Luckily, we can easily get the desired behavior with a slight tweak to the
+config file:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>  bindsym $mod+1 workspace number 1
+</span><span>  bindsym $mod+2 workspace number 2
+</span><span>  bindsym $mod+3 workspace number 3
+</span><span>  # ...
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
     </div>
 
     

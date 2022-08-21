@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://gitlab.com/jholewinski" target="_blank" rel="noopener noreferrer">GitLab</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/blog/llvm-3-0-ptx-backend/">LLVM 3.0: PTX Backend</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2011-12-02
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/gpu/">#GPU</a>&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/llvm/">#LLVM</a>&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/opencl/">#OpenCL</a></span>
+    
+
+        
+        <div class="post-content">
+            <p><strong>NOTE</strong>: The information is this article only applies to LLVM 3.0 and 3.1. As
+of LLVM 3.2, the PTX back-end has been replaced with the NVPTX back-end.</p>
+<p>With the release of LLVM 3.0, the PTX back-end is now in a fairly usable state.
+It even integrates with the Clang OpenCL front-end to produce correct PTX code
+usable by the nVidia OpenCL run-time. However, please note that the back-end is
+still experimental and there are unimplemented features. As always, please post
+any questions to the llvm-dev mailing list.</p>
+<p>In this post, I aim to give a quick overview of how to use the back-end to
+compile OpenCL kernels.</p>
+<p>As an example, consider the following matrix multiplication routine written in
+OpenCL:</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#b48ead;">#define </span><span>BLOCK_SIZE </span><span style="color:#d08770;">16
+</span><span>
+</span><span>   __kernel
+</span><span>   </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">matmul</span><span>(__global </span><span style="color:#b48ead;">float</span><span>* </span><span style="color:#bf616a;">A</span><span>, __global </span><span style="color:#b48ead;">float</span><span>* </span><span style="color:#bf616a;">B</span><span>, __global </span><span style="color:#b48ead;">float</span><span>* </span><span style="color:#bf616a;">C</span><span>) {
+</span><span>
+</span><span>     __local </span><span style="color:#b48ead;">float</span><span> scratchA[BLOCK_SIZE][BLOCK_SIZE];
+</span><span>     __local </span><span style="color:#b48ead;">float</span><span> scratchB[BLOCK_SIZE][BLOCK_SIZE];
+</span><span>
+</span><span>     </span><span style="color:#b48ead;">int</span><span> globalX = </span><span style="color:#bf616a;">get_global_id</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>     </span><span style="color:#b48ead;">int</span><span> globalY = </span><span style="color:#bf616a;">get_global_id</span><span>(</span><span style="color:#d08770;">1</span><span>);
+</span><span>     </span><span style="color:#b48ead;">int</span><span> size = </span><span style="color:#bf616a;">get_global_size</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>     </span><span style="color:#b48ead;">int</span><span> k;
+</span><span>     </span><span style="color:#b48ead;">float</span><span> sum = </span><span style="color:#d08770;">0.0</span><span style="color:#b48ead;">f</span><span>;
+</span><span>     </span><span style="color:#b48ead;">int</span><span> numBlocks = size / BLOCK_SIZE;
+</span><span>     </span><span style="color:#b48ead;">int</span><span> b;
+</span><span>
+</span><span>     </span><span style="color:#b48ead;">int</span><span> tidX = </span><span style="color:#bf616a;">get_local_id</span><span>(</span><span style="color:#d08770;">0</span><span>);
+</span><span>     </span><span style="color:#b48ead;">int</span><span> tidY = </span><span style="color:#bf616a;">get_local_id</span><span>(</span><span style="color:#d08770;">1</span><span>);
+</span><span>
+</span><span>     </span><span style="color:#b48ead;">for</span><span>(b = </span><span style="color:#d08770;">0</span><span>; b &lt; numBlocks; ++b) {
+</span><span>       </span><span style="color:#65737e;">// Populate a cache for A/B
+</span><span>       </span><span style="color:#b48ead;">int</span><span> x;
+</span><span>       </span><span style="color:#b48ead;">int</span><span> y;
+</span><span>
+</span><span>       x = b * BLOCK_SIZE + tidX;
+</span><span>       y = globalY;
+</span><span>
+</span><span>       scratchA[tidY][tidX] = A[y * size + x];
+</span><span>
+</span><span>       x = globalX;
+</span><span>       y = b * BLOCK_SIZE + tidY;
+</span><span>
+</span><span>       scratchB[tidY][tidX] = B[y * size + x];
+</span><span>
+</span><span>       </span><span style="color:#bf616a;">barrier</span><span>(CLK_LOCAL_MEM_FENCE);
+</span><span>
+</span><span>       </span><span style="color:#b48ead;">for</span><span>(k = </span><span style="color:#d08770;">0</span><span>; k &lt; BLOCK_SIZE; ++k) {
+</span><span>         </span><span style="color:#b48ead;">float</span><span> myA;
+</span><span>         </span><span style="color:#b48ead;">float</span><span> myB;
+</span><span>
+</span><span>         myA = scratchA[tidY][k];
+</span><span>         myB = scratchB[k][tidX];
+</span><span>
+</span><span>         sum += myA * myB;
+</span><span>       }
+</span><span>
+</span><span>       </span><span style="color:#bf616a;">barrier</span><span>(CLK_LOCAL_MEM_FENCE);
+</span><span>     }
+</span><span>
+</span><span>     C[globalY * size + globalX] = sum;
+</span><span>   }
+</span></code></pre>
+<p>We can use the <code>libclc</code>_ library, written by Peter Collingbourne, to provide the
+OpenCL built-in functions for Clang. This library will map OpenCL built-in
+functions to target-specific functions in the LLVM IR that the PTX back-end
+knows how to handle. If <code>$LIBCLC</code> points to the download of libclc, then you
+can invoke Clang with:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>   clang -ccc-host-triple ptx32
+</span><span>     -Xclang -target-feature -Xclang +ptx23
+</span><span>     -Xclang -target-feature -Xclang +sm20
+</span><span>     -I$LIBCLC/include/generic -I$LIBCLC/include/ptx
+</span><span>     -include clc/clc.h -Dcl_clang_storage_class_specifiers
+</span><span>     -O3 matmul_kernel.cl -S -o matmul_kernel.ptx
+</span></code></pre>
+<p>The options can be a bit verbose at the moment, but practically all of them can
+be placed in a wrapper script. Clang will compile the kernel and emit the
+generated PTX code to <code>matmul_kernel.ptx</code>. This code can then be loaded as an
+OpenCL binary kernel using the nVidia OpenCL SDK, using the
+<code>clCreateProgramWithBinary</code> function. As an added bonus, the performance is
+about the same as if the kernel was compiled using the nVidia OpenCL compiler!</p>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2022
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

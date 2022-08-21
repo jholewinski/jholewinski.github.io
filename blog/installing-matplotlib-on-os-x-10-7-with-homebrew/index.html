@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://gitlab.com/jholewinski" target="_blank" rel="noopener noreferrer">GitLab</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/blog/installing-matplotlib-on-os-x-10-7-with-homebrew/">Installing Matplotlib on OS X 10.7 with Homebrew</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2011-07-21
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/homebrew/">#Homebrew</a>&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/mac-os-x/">#Mac OS X</a>&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/matplotlib/">#Matplotlib</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>[edit: It looks like things have changed a bit since the release of 10.7, so
+your mileage may vary with this method. This was written when 10.7 was brand new
+and most software was not yet updated for it.]</p>
+<p>For those of you that do not know, <code>Matplotlib</code> is an excellent Python plotting
+library that allows you to create professional-quality plots for inclusion on
+web pages, Latex documents, Beamer presentations, Keynote presentations, and any
+other software that can import SVG, EPS, PNG, or virtually any graphic format.</p>
+<p>However, getting matplotlib installed on Mac OS X 10.7 can be a bit tricky,
+especially if you are using <code>Homebrew</code> as your &quot;package manager.&quot; First off,
+Homebrew does not have packages for matplotlib, as well as some of its
+dependencies. Additionally, the current Matplotlib release version (1.0.1 as of
+this post) does not compile out-of-the-box against libpng 1.5, which is included
+in the X11 distribution shipped with Mac OS X 10.7.</p>
+<p>For previous versions of Mac OS X (10.6, 10.5), the usual way to install
+matplotlib was to install python, pkg-config, and gfortran with Homebrew, then
+install numpy and matplotlib through pip, ala:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>   $ brew install python
+</span><span>   $ brew install gfortran
+</span><span>   $ brew install pkg-config
+</span><span>   $ easy_install pip
+</span><span>   $ pip install numpy
+</span><span>   $ pip install matplotlib
+</span></code></pre>
+<p>Unfortunately, as previously mentioned, all is not so easy in the world of Mac
+OS X 10.7, and the difficulty lies with libpng 1.5, installed with Mac OS X
+10.7's version of X11. Briefly put, Matplotlib 1.0.1 is not compatible with
+libpng 1.5 due to a change in the API. Fortunately, the fix is already applied
+up-stream and will probably be a part of Matplotlib 1.0.2, or 1.1.0, or whatever
+the next released version is.</p>
+<p>Until the next release, the Matplotlib sources in Git can be used. Instead of
+pulling the sources from the Matplotlib SourceForge site, you need to pull them
+from the Matplotlib GitHub site. I'm not sure if this GitHub site is &quot;official,&quot;
+but is looks to be.</p>
+<p>All that is needed is to build Matplotlib from source instead of using pip, so
+the installation procedure is now:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>   $ brew install python
+</span><span>   $ brew install gfortran
+</span><span>   $ brew install pkg-config
+</span><span>   $ easy_install pip
+</span><span>   $ pip install numpy
+</span><span>   $ cd $HOME
+</span><span>   $ git clone https://github.com/matplotlib/matplotlib.git
+</span><span>   $ cd matplotlib
+</span><span>   $ python setup.py build
+</span><span>   $ python setup.py install
+</span></code></pre>
+<p>And now you're good to go! Hopefully this will become much easier with the next
+official release of Matplotlib.</p>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2022
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

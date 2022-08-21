@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Game Framework Syntax and Game Implementation Topics</title>
+</head>
+<body>
+
+<h1>MonoGame and Game Implementation Topics</h1>
+
+<h2>MonoGame Documentation</h2>
+<ul>
+    <li><a href="http://www.monogame.net/documentation/?page=main">Root page for documentation on MonoGame framework</a>
+	<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb198548(v=xnagamestudio.42)">Root page for documentation on writing code in XNA</a>
+	
+	<li>Input - <a href="http://www.monogame.net/documentation/?page=N_Microsoft_Xna_Framework_Input">input namespace</a>
+		<ul>
+			<li>Microsoft docs: summary of user input for XNA/MonoGame <a href="https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb203899(v=xnagamestudio.40)">link</a>
+			<li><a href="https://docs.monogame.net/api/Microsoft.Xna.Framework.Input.KeyboardState.html">KeyboardState members</a>
+			<li><a href="https://docs.monogame.net/api/Microsoft.Xna.Framework.Input.GamePadState.html">GamepadState members</a>
+			<li><a href="https://docs.monogame.net/api/Microsoft.Xna.Framework.Input.MouseState.html">MouseState members</a>
+			<li><a href="https://www.gamefromscratch.com/post/2015/06/28/MonoGame-Tutorial-Handling-Keyboard-Mouse-and-GamePad-Input.aspx">Input example from GameFromScratch.com</a>
+		</ul>
+	<li>2D drawing
+		<ul>
+			<li>Microsoft doc: drawing a sprite <a href="https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb194908(v=xnagamestudio.42)">link</a>
+			<li>Microsoft doc: drawing text <a href="https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb447673(v=xnagamestudio.42)">link</a>
+			<li><a href="http://www.monogame.net/documentation/?page=T_Microsoft_Xna_Framework_Graphics_SpriteBatch">Spritebatch members</a>
+			<li><a href="https://www.gamefromscratch.com/post/2015/06/19/MonoGame-Tutorial-Textures-and-SpriteBatch.aspx">Content pipeline and drawing example from GameFromScratch.com</a>
+			<li>What exactly is a pixel? - <a href="http://www.notdoppler.com/repixel.php">Repixel game</a> as an example ; Flash r.i.p.
+		</ul>
+	<li>Sound
+		<ul>
+			<li>Monogame types: <a href="https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb195053(v=xnagamestudio.42)">Playing a sound once (type: SoundEffect)</a> and
+			<a href="https://docs.microsoft.com/en-us/previous-versions/windows/xna/dd940203(v=xnagamestudio.42)">Playing a sound looped (type: SoundEffectInstance)</a>
+			<li>System.Media type: <a href="https://docs.microsoft.com/en-us/dotnet/api/system.media.soundplayer?view=netframework-4.8">Soundplayer</a>
+		</ul>
+	<li>Misc
+		<ul>
+			<li>Contents of the <a href="Game.cs">Game class</a> that Game1 inherits
+			<li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/xna/ff634571(v=xnagamestudio.42)">Viewport</a> if you want to get/set window dimensions in code
+		</ul>
+	<li>Additional tutorials listed under Sprint0 page
+</ul>
+
+<h2>File I/O options (for level loading and possibly saving)</h2>
+<ul>
+	<li>The content pipeline can be used to load xml files, but it is somewhat restrictive and therefore not recommended. See <a href="http://dylanwilson.net/creating-custom-content-importers-for-the-monogame-pipeline">here</a> or <a href="https://dzone.com/articles/getting-started-with-monogame-using-xml">here</a> if you want examples anyways</a>
+	<li>Working with files using .NET objects
+		<ul>
+			<li><a href="http://support.microsoft.com/kb/304430/en-us">File I/O in C# (useful for both csv and xml files)</a>
+			<li><a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/how-to-stream-xml-fragments-from-an-xmlreader">Streaming from an XMLReader in C#</a>
+		</ul>
+	<li>Partial examples of files for input
+		<ul>
+			<li><a href="level file examples/PartialLevelOne.xml">xml example file</a>
+			<li><a href="level file examples/PartialLevelOne.csv">csv example file</a>
+		</ul>
+</ul>
+
+
+
+<br><br><br>
+Note: since MonoGame is essentially XNA, you may find documentation and examples in XNA to be useful. These links are not actively maintained and so may be broken.<br><br>
+All msdn.microsoft.com links are effectively broken due to redirection the root level documentation to https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb200104(v=xnagamestudio.41)?redirectedfrom=MSDN
+<hr>
+
+<h2>XNA Documentation</h2>
+<ul>
+    <li><a href="https://msdn.microsoft.com/en-us/library/bb203940.aspx">Root page for documentation on XNA framework</a>
+	
+	
+	<li>Input - <a href="https://msdn.microsoft.com/en-us/library/Microsoft.Xna.Framework.Input.aspx">input namespace</a>
+		<ul>
+			<li>Keyboard input <a href="https://msdn.microsoft.com/en-us/library/bb203902.aspx">example</a>
+			<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.keyboardstate_methods.aspx">KeyboardState members</a>
+			<li>Gamepad input <a href="https://msdn.microsoft.com/en-us/library/bb203900.aspx">example</a>
+			<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.gamepadstate_members.aspx">GamepadState members</a>
+		</ul>
+	<li>2D drawing
+		<ul>
+			<li>Sprites and text <a href="https://msdn.microsoft.com/en-us/library/ff634505">drawing examples</a>
+			<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.spritebatch_members.aspx">Spritebatch members</a>
+		</ul>
+	<li>Sound
+		<ul>
+			<li>Sound <a href="https://msdn.microsoft.com/en-us/library/bb195038.aspx">playing examples</a>
+			<li><a href="http://msdn.microsoft.com/en-us/library/bb195053.aspx">Playing a sound once</a>
+			<li><a href="http://msdn.microsoft.com/en-us/library/dd940203.aspx">Playing a sound looped</a>
+		</ul>
+	<li>Working with files (for level loading and possibly saving)
+		<ul>
+			<li><a href="https://msdn.microsoft.com/en-us/library/ff604979.aspx">XML files in XNA using ContentLoader</a>
+			<li><strike><a href="http://www.cs.usfca.edu/~galles/cs420/lecture/UsingXNA4XML/XNA_XML.html">More examples of using XML in XNA</a></strike>(link down 2/12/16)
+			<li><a href="https://msdn.microsoft.com/en-us/library/cc189056(v=vs.95).aspx">Using .NET's XMLReader in C#</a>
+			<li><a href="http://support.microsoft.com/kb/304430/en-us">File I/O in C# (useful for both csv and xml files)</a>
+		</ul>
+</ul>
+
+<h2>XNA Tutorials</h2>
+<ul>
+  <li><a href="http://msdn.microsoft.com/en-us/library/bb203893.aspx">Microsoft's Easiest XNA demo (step-by-step)</a>
+  <li><a href="http://xnafan.net/2013/04/simple-platformer-game-in-xna-tutorial-part-one/">Platformer tutorials (step-by-step and includes some discussion on code quality and object oriented design)</a>
+  <li><a href="http://rbwhitaker.wikidot.com/xna-tutorials">RB Whitaker - C#, XNA, and game development tutorials (mostly stand-alone)</a>
+  <li><a href="http://www.xnadevelopment.com/">XNA development - 2D tutorials and example games (some stand-alone, some step-by-step)</a>
+  <li><a href="http://www.riemers.net/eng/Tutorials/XNA/Csharp/series2d.php">Riemer's XNA and DirectX tutorials (step-by-step) </a> [menu on the right side-bar]
+  <li><a href="http://xnagpa.net/xna4beginner.php">XNA Brick Breaker Tutorial (step-by-step)</a>
+  <li><a href="http://xnaresources.com/default.asp?page=TUTORIALS">XNA Resources (step-by-step)</a>
+  <li><a href="http://www.youtube.com/watch?v=Kxs1iHwUhA0">XNA zombie game (video tutorial)</a>
+  <li><a href="http://www.xnavideotutorial.com/modules/XNA_101/">XNA 101 (video tutorials)</a>
+</ul>
+
+<h3>Other 2D Game Development Information and Tutorials</h3>
+<ul>
+	<li><a href="http://games.greggman.com/game/programming_m_c__kids/">Programming M.C. Kids</a> - a 2D platformer on the NES
+	<li>How to make a 2d Platform Game (in actionscript but has some useful math/algorithm concepts)  <a href="http://www.wildbunny.co.uk/blog/2011/12/11/how-to-make-a-2d-platform-game-part-1/">part 1</a> - <a href="http://www.wildbunny.co.uk/blog/2011/12/14/how-to-make-a-2d-platform-game-part-2-collision-detection/">part 2</a>
+	
+</ul>
+
+<h2>Distribution and deployment</h2>
+<ul>
+	<li><a href="https://msdn.microsoft.com/en-us/library/bb464156.aspx">Making an installer</a>
+	<li><a href="http://www.reddit.com/r/gamedev/comments/1wr3jn/xna_in_your_browser_i_ported_my_xna_candy_jam/">Embedding an XNA program in a webpage</a>
+	<li><a href="https://msdn.microsoft.com/en-us/library/bb975643.aspx">Porting an XNA game to an Xbox360</a>
+</ul>
+
+
+</body>
+</html>

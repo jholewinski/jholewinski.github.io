@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Design Patterns</title>
+</head>
+<body>
+<h1>Design Patterns</h1>
+
+<h2>Lecture Material</h2>
+<ul>
+	<li><a href="DesignPatternIntroduction.pptx">Introduction to software design patterns</a>
+</ul>
+
+<h2>Reference Material</h2>
+<ul>
+    <li><a href="https://www.dofactory.com/net/design-patterns">Code examples of design patterns in C# and .NET</a></li>
+	<li><a href="http://gameprogrammingpatterns.com/">Game Programming Patterns</a> - examples tailored to game development in C++
+	<li><a href="http://gamedev.stackexchange.com/questions/4157/what-are-some-programming-design-patterns-that-are-useful-in-game-development">Q&A with some good specific (but high level) examples</a>
+</ul>
+	<h3>Handling Input: command pattern + events</h3>
+<ul>
+	<li>Some starter code ideas for <a href="slides/KeyboardController.cs">command based keyboard controls</a> and a <a href="slides/SetDeadPlayerSpriteCommand.cs">command to change the current sprite to dead mario</a>
+	<li><a href="https://www.dofactory.com/net/command-design-pattern">Command design pattern example</a>
+	<li><a href="http://en.wikipedia.org/wiki/Event-driven_programming">Event driven programming</a> and the Command design pattern - <a href="http://en.wikipedia.org/wiki/Command_pattern">wikipedia</a></li>
+	<li><a href="http://msdn.microsoft.com/en-us/library/awbftdfh.aspx">Events in C#</a>
+	<li><a href="http://msdn.microsoft.com/en-us/library/aa645739(v=vs.71).aspx">C# events tutorial</a>
+	<li>On the difference between events and commands - <a href="http://stackoverflow.com/questions/2952956/wpf-commands-vs-events-advantages-disadvantages"> 1 </a> - 
+														<a href="http://stackoverflow.com/questions/4962755/why-are-commands-and-events-separately-represented"> 2 </a>
+</ul>	
+	<h3>Management of objects: factories, factory methods, singletons, and static classes</h3>
+<ul>
+	<li>Factory - <a href="http://en.wikipedia.org/wiki/Factory_(object-oriented_programming)">wikipedia</a>
+	<li>Factory method pattern - <a href="http://en.wikipedia.org/wiki/Factory_method_pattern">wikipedia</a>
+	<li>Singleton pattern - <a href="http://en.wikipedia.org/wiki/Singleton_pattern"> wikipedia</a>
+	<li><a href="http://msdn.microsoft.com/en-us/library/ff650316.aspx">C# singleton example with "lazy initialization"</a> - use this version if you need to load content in the singleton's constructor
+	<li><a href="http://msdn.microsoft.com/en-us/library/79b3xss3(v=vs.90).aspx">Static classes</a>
+	<li>Some starter code ideas: a <a href="slides/EnemySpriteFactorySingletonExample.cs">Enemy sprite factory as a singleton (using eager initialization and a Game1 singleton)</a>
+	<li>Some starter code ideas: a <a href="slides/Texture2DStorageStaticClassExample.cs">static class to store Texture2Ds</a>
+</ul>
+	<h3>Object behavior: state and strategy patterns</h3>
+<ul>
+	<li><a href="https://web.archive.org/web/20140413073448/http://www.evelands.net/evan/xna03.php">Old example - enum based C# code for game and enemy state machines in XNA</a>
+	<li><a href="https://udn.epicgames.com/Three/MasteringUnrealScriptStates.html">Game state machine diagram example</a>
+	<li><a href="http://gameprogrammingpatterns.com/state.html">Limited player character state machine diagram example</a>
+	<li>State design pattern - <a href="http://en.wikipedia.org/wiki/State_pattern">wikipedia</a>
+	<li>Some starter code ideas: <a href="slides/GoombaStateExample.cs">Goomba class using state pattern</a> and <a href="slides/GoombaStateMachineExample.cs">Goomba class using state machine</a>
+	<li><a href="http://www.generation5.org/content/2003/fsm_tutorial.asp">Finite state machine tutorial in C++</a>
+	<br>FYI, another way to handle state transition logic <a href="http://www.codeproject.com/Articles/42732/Table-driven-Approach">Table-driven Approach</a>
+		and <a href="adventure.pdf">Table-based State Machine and Literate Programming for the Adventure Game</a>
+	<li>Consider splitting up state logic by rarely made state changes being an element of the player: IPlayer implemented by 
+		BigMario (<a href="StateTransitionsBigMario.png">Partial state diagram - BigMario</a>),
+		SmallMario (<a href="StateTransitionsSmallMario.png">Partial state diagram - SmallMario</a>), etc.
+	<li><a href="https://www.dofactory.com/net/strategy-design-pattern">Strategy design pattern example</a>
+	<li>Strategy design pattern - <a href="http://en.wikipedia.org/wiki/Strategy_pattern">wikipedia</a>
+</ul>
+	<h3>More on object behavior: decorator pattern</h3>
+<ul>
+	<li><a href="https://www.dofactory.com/net/decorator-design-pattern">Decorator design pattern example</a>
+    <li>Decorator design pattern - <a href="http://en.wikipedia.org/wiki/Decorator_pattern">wikipedia</a>
+	<li><a href="slides/DecoratorExample(Mario).cs">Star Mario decorator</a>
+		<li><a href="slides/DecoratorExample(Link).cs">Damaged Link decorator</a>
+</ul>
+	<h3>More on objects: null object pattern</h3>
+<ul>
+	<li>Null object design pattern - <a href="http://en.wikipedia.org/wiki/Null_Object_pattern">wikipedia</a>
+</ul>
+
+<br><hr>
+<p>Since you can only master a topic when you understand both sides of it, here are articles <b>against</b> the use of design patterns</p>
+<ul>
+<li><a href="http://realtimecollisiondetection.net/blog/?p=44">Design patterns are from hell!</a> and the better followup <a href="http://realtimecollisiondetection.net/blog/?p=81">Design patterns are from hell^2!</a>. In particular, note that design patterns generally only apply to object oriented programming and some pattern-like behaviors are included in the core syntax of some programming languages (for example, events in C# compared to the observer pattern).
+
+</ul>
+
+
+
+
+
+</body></html>

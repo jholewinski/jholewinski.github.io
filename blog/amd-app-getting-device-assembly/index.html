@@ -33,14 +33,13 @@
         </div>
 
         
-        
-                <nav class="menu">
+        <nav class="menu">
             <ul class="menu__inner">
-                <li class="active"><a href="https://jholewinski.github.io">Home</a></li>
+                <li><a href="https://jholewinski.github.io">Home</a></li>
             
                 <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
             
-                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+                <li class="active"><a href="https://jholewinski.github.io/blog">Blog</a></li>
             
                 <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
             
@@ -59,11 +58,53 @@
 
     <div class="content">
         
-        <div class="posts"><div class="pagination">
-                <div class="pagination__buttons"></div>
-            </div>
-        </div>
+    <div class="post">
         
+    <h1 class="post-title"><a href="https://jholewinski.github.io/blog/amd-app-getting-device-assembly/">AMD APP: Getting Device Assembly</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2012-02-09
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/gpu/">#GPU</a>&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/opencl/">#OpenCL</a>&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/amd/">#AMD</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>Sometimes it is useful to look at the intermediate and assembly code for GPU
+programs. This can lead to some interesting performance insights, especially for
+compiler writers. Unfortunately, the AMD APP SDK is a bit limited on Linux, and
+the AMD APP KernelAnalyzer, which conveniently dumps the AMDIL and Device ISA
+for an OpenCL kernel, is not available on Linux. However, digging through the
+AMD APP OpenCL Programming Guide, one finds an environment variable that can be
+used for the same purpose: <code>GPU_DUMP_DEVICE_KERNEL</code>.</p>
+<p>According to the programming guide, this environment variable can take one of
+three values:</p>
+<table columns="3">
+<tr><td>1</td><td>Save intermediate IL files in local directory.</td></tr>
+<tr><td>2</td><td>Disassemble ISA file and save in local directory.</td></tr>
+<tr><td>3</td><td>Save both the IL and ISA files in local directory.</td></tr>
+</table>
+<p>Therefore, if you run your OpenCL program with:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>    $ GPU_DUMP_DEVICE_KERNEL=3 ./my-program
+</span></code></pre>
+<p>You will get two files in your local directory:
+<code>[kernel-name]_[device-name].il</code> and <code>[kernel-name]_[device-name].isa</code>, which
+contain AMDIL and Device ISA disassembly, respectively.</p>
+
+        </div>
+
+        
+    </div>
+
     </div>
 
     

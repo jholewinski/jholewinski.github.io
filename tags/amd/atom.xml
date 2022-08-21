@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title> - AMD</title>
+	<link href="https://jholewinski.github.io/tags/amd/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://jholewinski.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2012-02-09T00:00:00+00:00</updated>
+	<id>https://jholewinski.github.io/tags/amd/atom.xml</id>
+	<entry xml:lang="en">
+		<title>AMD APP: Getting Device Assembly</title>
+		<published>2012-02-09T00:00:00+00:00</published>
+		<updated>2012-02-09T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/amd-app-getting-device-assembly/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/amd-app-getting-device-assembly/</id>
+		<content type="html">&lt;p&gt;Sometimes it is useful to look at the intermediate and assembly code for GPU
+programs. This can lead to some interesting performance insights, especially for
+compiler writers. Unfortunately, the AMD APP SDK is a bit limited on Linux, and
+the AMD APP KernelAnalyzer, which conveniently dumps the AMDIL and Device ISA
+for an OpenCL kernel, is not available on Linux. However, digging through the
+AMD APP OpenCL Programming Guide, one finds an environment variable that can be
+used for the same purpose: &lt;code&gt;GPU_DUMP_DEVICE_KERNEL&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;According to the programming guide, this environment variable can take one of
+three values:&lt;&#x2F;p&gt;
+&lt;table columns=&quot;3&quot;&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;&#x2F;td&gt;&lt;td&gt;Save intermediate IL files in local directory.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;&#x2F;td&gt;&lt;td&gt;Disassemble ISA file and save in local directory.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;Save both the IL and ISA files in local directory.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;table&gt;
+&lt;p&gt;Therefore, if you run your OpenCL program with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;    $ GPU_DUMP_DEVICE_KERNEL=3 .&#x2F;my-program
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You will get two files in your local directory:
+&lt;code&gt;[kernel-name]_[device-name].il&lt;&#x2F;code&gt; and &lt;code&gt;[kernel-name]_[device-name].isa&lt;&#x2F;code&gt;, which
+contain AMDIL and Device ISA disassembly, respectively.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

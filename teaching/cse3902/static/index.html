@@ -1,0 +1,778 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSE 3902 Homepage</title>
+</head>
+
+<body>
+<h1>CSE 3902 Project: Design, Development, and Documentation of Interactive Systems</h1>
+<blockquote>
+  <p>
+  This is a Junior-level (or advanced Sophomore) course on professional software development. 
+  Our goals are to craft high-quality software, understand the process of Agile software development,
+  survey design patterns, become familiar with advanced tools for software development and project management,
+  and experience working in a small team (sized 4-6). To facilitate reaching these goals, you will
+  work on developing and refining a 2D game application over the course of the semester.
+  There will be a large amount of critiquing of code and interactive feedback. 
+  This will lead to refinement and improvement of your software for future expansion and maintenance.
+  </p>
+</blockquote>
+
+<p>
+<strong>Class meetings:</strong><br>
+Section - MWF 9:10-10:05 in CL0220<br>
+</p>
+
+<p>
+<strong>Instructor:</strong> Justin Holewinski ( .5 )<br>
+Office hours: I will be around the classroom approximately half an hour before and after the scheduled meeting times.
+You can also make a Zoom appointment by emailing me. The Zoom meeting room information is available on Carmen.
+</p>
+
+<p>
+<strong>Graders:</strong> Info will be posted on Carmen
+</p>
+
+<p>
+<strong>Grading Policy:</strong> <a indepth="true" href="gradingplan.html">Grading plan and scale</a>
+</p>
+
+<p>
+<strong>Assignments submission and scores posted on </strong> <a href="https://carmen.osu.edu/">Carmen</a><br><br>
+<strong>Online Q&A: </strong> <a href="https://piazza.com">Piazza</a>, CSE 3902 AU22 HOLEWINSKI, refer to announcement sent to osu.edu email to opt-in<br><br>
+<strong>Team formation and peer reviewing: </strong><a href="https://www.catme.org/login/index">CATME</a><br><br>
+</p>
+
+<h2>Project development stages - Sprint descriptions</h2>
+<ul>
+  Individual based
+  <ul>
+	<li><a href="sprint0.html">Sprint 0</a> - tool setup (Visual Studio and MonoGame); sprite drawing and user input with a focus on using interfaces<br>
+	<li><a href="">Sprint 1</a> - team project tool usage (task tracking and version control)
+  </ul>
+  Team based<ul>
+	<li><a href="">Sprint 2</a> - Game Objects and Sprites
+	<li><a href="">Sprint 3</a> - Level as segmented screens and collision handling
+	<li><a href="">Sprint 4</a> - Finished framework and first level
+	<li><a href="">Sprint 5</a> - New features of your choice
+  </ul>
+</ul>
+<p>
+<a href="Rough Project Requirements-SizeColorCoded.docx">List of recommended features to include based on differing team sizes</a><br>
+<a href="Rough Project Requirements-ChallengingCases">Documentation on challenging cases, those likely to be missed when requirements gathering</a><br>
+<a href="ProjectGrading.html">Broad notes on grading of sprints</a><br>
+</p>
+
+<h2>Course Topics and Notes:</h2>
+<p>
+Most of the following links are to subpages with lists of individual articles or webpages, 
+some of which we will discuss in class but others that you are expected to look into on your own.
+In some cases direct links are provided in the calender below, 
+so you may find CTRL+F or "Find on Page" a useful alternative to the subpages.
+</p>
+
+<p>
+This list is copied from Matt Boggus' course site. You may be able to find more up-to-date information by going <a href="https://web.cse.ohio-state.edu/~boggus.2/3902/">here</a>.
+Though please note that this is for a different session, so due dates and times may not match.
+</p>
+
+<ul>
+  <li><a href="Syllabus.docx">Syllabus</a>
+  <li><a indepth="true" href="http://web.cse.ohio-state.edu/~boggus.2/ReadingResources/">Reading Resources</a>
+  <li><a indepth="true" href="csharp.html">C#, .NET, and software design</a>
+  <li><a indepth="true" href="visualstudio.html">Visual Studio</a>
+  <li><a indepth="true" href="designpatterns.html">Design Patterns</a>
+  <li><a indepth="true" href="codequality.html">Code Quality (code analysis, code metrics, code smells, and refactoring)</a>
+  <li><a indepth="true" href="alm.html">Agile Software Development (and requirements gathering, application life-cycle management, and teamwork skills)</a>
+  <li><a indepth="true" href="gameresources.html">2D game information, examples, and art and sound assets</a>
+  <li><a indepth="true" href="gameframework.html">Game framework (MonoGame) syntax and game development tutorials and tips</a>
+</ul>
+<h2>Supplemental Notes:</h2>
+<ul>
+  <li><a indepth="true" href="http://www.cse.ohio-state.edu/~boggus.2/GameInformation/">Game Development and Design Information (perpetually out of date; slightly cleaned up summer 2022, but you might ask about newer stuff during office hours)</a>
+  <li><a indepth="true" href="kinect.html">Kinect</a>
+</ul>
+
+
+<h2>Tentative/Working Schedule Autumn 2022</h2>
+<p>Regarding book links in the schedule - they might not work for your setup and require you to search for them manually in the OSU library catelog.
+Some problems we've had over the years: links work for some but not all browsers (Au'22 worked for me on Chrome but not Firefox), 
+links will work on campus but not off campus, 
+and "permanent" library links changing in the system so the url here becomes flat out wrong.
+</p>
+
+<table border="1">
+ 
+<tr> <th scope="col">Meeting</th>
+     <th scope="col">Day</th>
+     <th scope="col">Date</th>
+     <th scope="col">Topic</th>
+     <th scope="col">Notes/Slides</th>
+	 <th scope="col">Reading</th>
+     <th scope="col">Work</th>
+</tr>
+
+<th bgcolor="#DDDDDD" colspan = "7">Week 1</th>
+<tr class=""> <td scope="row">  1 </td>
+     <td> W </td>
+     <td> 8/24  </td>
+     <td> Class overview <br><br>
+		  Take home final exam distributed<br><br>
+		  Designing high quality software <br><br>
+		  Sprint 0 preparation <br>
+		  </td>
+     <td> <a href="Software Quality.pptx">Software Quality slides </a><br><br>
+		  <a href="slides/blockExample1.cs">blockExample1.cs</a><br>
+		  <a href="slides/blockExample2.cs">blockExample2.cs</a><br>
+		  </td>
+	 <td> (Required) review object-oriented programming terms (in SW I&II course material and/or through other OOP reference material)</td>
+     <td> Read course website and syllabus<br><br>
+		  Sprint 0 (C#, Monogame, sprites, and controllers) assigned
+	 </td>
+</tr>
+<tr class=""> <td scope="row">  2 </td>
+     <td> F </td>
+     <td> 8/26  </td>
+     <td> C# and object oriented programming concepts<br><br>
+		  <b>Quiz/Recall Practice</b>(3902 learning objectives; syllabus contents)</td>
+	 <td> <a href="http://web.cse.ohio-state.edu/~boggus/3902/csharp.html">C#, .NET, and software design subpage</a><br><br>
+		  <a href="CSharp.pptx">C# slides </a><br><br>
+		  <a href="slides/personWithoutProperties.cs">personWithoutProperties.cs</a><br>
+		  <a href="slides/personWithProperties.cs">personWithProperties.cs</a><br>
+	 </td>
+     <td> (Reference) <a href="https://library.ohio-state.edu/record=b9208531~S7">C# in a Nutshell by Albahari</a></td>
+     <td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 2</th>
+
+
+<tr class=""> <td scope="row"> 3 </td>
+     <td> M </td>
+     <td> 8/29  </td>
+	 <td> Visual Studio and Monogame projects<br><br>
+		  User input in Monogame<br><br>
+ 	      Sprint 0
+		  </td>
+	 <td> <a href="gameframework.html">Game framework subpage</td>
+	 <td> (Required) <a href="https://library.ohio-state.edu/record=b9155587~S7">Head First Design Patterns</a> Ch. 1</td>
+	 <td> CATME survey due ; optional additional survey questions due </td>   
+</tr>
+
+<tr class=""> <td scope="row"> 4 </td>
+     <td> W </td>
+     <td> 8/31  </td>
+	 	  <td> 2D coordinate systems, images, and sprites <br>
+		  Drawing sprites in Monogame<br><br>
+		  <b>Quiz/Recall Practice</b>(OOP; software quality)
+	 </td>
+	 <td> <a href="2D drawing basics.pptx">2D drawing basics slides</a><br><br>
+		  Sprite atlas tutorial linked on Sprint0 page<br><br>
+		  <a href="slides/ManualAnimatedSprite.cs">ManualAnimatedSprite.cs</a><br><br>
+		  </td>     
+	 <td> (Reference) <a href="gameframework.html">Framework tutorials</a> </td>	  
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 5 </td>
+     <td> F </td>
+     <td> 9/02  </td>
+	 	 <td> Sprint 0 design comparisons (code examples and object diagrams)<br><br>
+     </td>
+	 <td> 
+		  <a href="slides/WithInterfaces.cs">Example code using interfaces</a><br>
+		  <a href="slides/WithObjects.cs">Example code using objects but no interfaces</a><br>
+		  <a href="slides/WithoutInterfaces.cs">Example code using neither objects nor interfaces</a><br><br>
+	 </td>
+	 <td> (Reference) <a href="https://library.ohio-state.edu/record=b9155587~S7">Head First Design Patterns</a><br><br>
+		  (Reference) <a href="https://library.ohio-state.edu/record=b4589834~S7">Design Patterns: Elements of Reusable Object-Oriented Software (a.k.a. Gang of Four) by Gamma et al</a><br><br>
+		  (Required) <a href="https://library.ohio-state.edu/record=b9155587~S7">Head First Design Patterns</a> Ch. 6 up to page 217 (where the undo functionality is introduced), or <br>
+		  <a href="https://library.ohio-state.edu/record=b4589834~S7">Design Patterns: Elements ...</a> Ch. 19
+	</td>
+	<td> Sprint 0 (early bonus) deadline </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 3</th>
+
+<tr class=""> <td scope="row"> 6 </td>
+    <td> M </td>
+    <td> 9/05</td>   
+	<td><b>No class meeting - Labor Day</b></td>
+	<td> &nbsp;</td>
+	<td> &nbsp;</td>
+	<td> &nbsp;</td>
+</tr>
+
+<tr class=""> <td scope="row"> 7 </td>
+     <td> W </td>
+     <td> 9/07</td>
+	 <td> Command pattern<br><br>
+		  Agile software development<br><br>
+		  Sprint 1<br><br>
+		  <b>Quiz/Recall Practice</b> (topic TBD; likely MonoGame, sprites)
+		  </td>
+     <td> 
+		  <a href="designpatterns.html">Design pattern subpage</a><br>
+		  <a href="slides/KeyboardController.cs">Command based keyboard controller</a><br>
+		  <a href="slides/SetDeadPlayerSpriteCommand.cs">Command to change the current sprite to a dead player</a><br><br>
+
+  		  <a href="http://agilemanifesto.org/">Agile Manifesto</a>
+	  </td>
+	 <td>
+		(Reference) "Agile Methods The Good, the Hype and the Ugly," talk by Bertrand Meyer - <a href="https://www.youtube.com/watch?v=ffkIQrq-m34">video</a> (watch on your own)<br><br>
+		
+	 </td> 	 
+	 <td> Work on Sprint 1 (project management and version control software) activity </td>
+</tr>
+<tr class=""> <td scope="row"> 8 </td>
+     <td> F </td>
+     <td> 9/09</td>
+     <td> Visual Studio Team Tab (Azure DevOps) and GitHub<br><br>
+		  Version control <br><br>
+	      Communication and teamwork topics<br><br>
+	 </td>
+	 <td> <a href="Source Code Control.pptx">Version control slides</a>	<br>
+		  <a href="TeamTopics.pptx">Team topics slides</a><br>
+    </td>
+	 <td> <a href="GitHub notes.pptx">GitHub notes slides</a><br>
+		(Required if you've never used GIT before) <a href="https://missing.csail.mit.edu/2020/version-control/">MIT lecture content on GIT</a><br><br>
+		(Reference) <a href="https://msdn.microsoft.com/en-us/library/ee191595.aspx">Sprint task planning using Visual Studio Online</a> article<br>
+		(Reference) <a href="https://docs.microsoft.com/en-us/shows/visual-studio-2012-premium-and-ultimate-overview/visual-studio-ultimate-2012-coordinate-your-team-agile-project-management"> Agile project management using Visual Studio Online</a> video<br>
+		(Reference) <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects">Github Projects tool</a><br><br>
+		</td>
+	 <td> Last day for Sprint 0 (re)submission is Sunday 9/11; 
+	 No late penalty if turned in before 9/11, 5% late penalty if submitting on 9/11</td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 4</th>
+
+<tr class=""> <td scope="row"> 9 </td>
+     <td> M </td>
+     <td> 9/12 </td>
+     <td> Sprint 2 and long term aspirations - Mario Crossover, Baba is You <br>
+		  Requirements gathering for the project<br><br>
+		  Encapsulating Texture2Ds - static class or<br>
+		  Factory, Factory method, Singleton<br><br>
+		  Meeting and coaching time (10 min)
+		  </td>
+	 <td> <a href="gameresources.html">Game resources subpage</a><br>
+		  <a href="Rough Project Requirements-SizeColorCoded.docx">List of recommended features for up through Sprint4 for teams of sized 4-6</a><br><br>
+		  <a href="slides/Texture2DStorageStaticClassExample.cs">Static class example</a><br>
+		  <a href="slides/EnemySpriteFactorySingletonExample.cs">Factory example</a>
+		  </td>
+	</td>
+	 <td> (Required) <a href="https://library.ohio-state.edu/record=b9155587~S7">Head First Design Patterns</a> Ch. 4 up to page 119 (stop after the Simple Factory example, when the text's example mentions franchising), or <br>
+			<a href="https://library.ohio-state.edu/record=b4589834~S7">Design Patterns: Elements ...</a> Ch. 3<br><br>
+	 		  (Required) <a href="https://library.ohio-state.edu/record=b9155587~S7">Head First Design Patterns</a> Ch. 5, or<br>
+			<a href="https://library.ohio-state.edu/record=b4589834~S7">Design Patterns: Elements ...</a> Ch. 2
+		  </td>
+	 <td> Sprint 2 (game objects) assigned </td>
+</tr>
+
+<tr class=""> <td scope="row"> 10 </td>
+     <td> W </td>
+     <td> 9/14 </td>
+     <td> Separation of Sprites from GameObjects <a href="https://youtu.be/sVntwsrjNe4?t=495">Rain World GDC talk @ 8:19</a><br><br>
+		  State machines<br>
+		  State design pattern<br><br>
+		  <b>Quiz/Recall Practice</b> (topic tbd, command pattern)</b><br><br>
+		  Meeting and coaching time (5 min)
+		  </td>
+	 <td> <a href="designpatterns.html">Design pattern subpage</a><br><br>
+		  <a href="slides/GoombaStateMachineExample(FullEnumeration).cs">Goomba class using state machine which has one field</a><br>
+		  <a href="slides/GoombaStateMachineExample.cs">Goomba class using state machine which has multiple fields</a><br>
+		  <a href="slides/GoombaStateExample.cs">Goomba class using state pattern</a>  
+	 </td>
+	 <td> (Required) <a href="https://library.ohio-state.edu/record=b9155587~S7">Head First Design Patterns</a> Ch. 10, or<br>
+			<a href="https://library.ohio-state.edu/record=b4589834~S7">Design Patterns: Elements ...</a> Ch. 20
+	</td>
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row">  11</td>
+     <td> F </td>
+     <td> 9/16 </td>
+	 <td> Pieces of state logic for Link player character<br><br>
+		  Decorator pattern <br>
+		  Interaction between states and a decorator<br><br>
+		  Meeting and coaching time (10 min)
+	 </td>
+	 <td> <a href="designpatterns.html">Design pattern subpage</a><br><br>
+		  <a href="slides/DecoratorExample(Link).cs">Damaged Link decorator</a> </td>
+     <td> (Required) <a href="https://library.ohio-state.edu/record=b9155587~S7">Head First Design Patterns</a> Ch. 3, or<br>
+			<a href="https://library.ohio-state.edu/record=b4589834~S7">Design Patterns: Elements ...</a> Ch. 13
+	</td>
+	 <td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 5</th>
+
+<tr class=""> <td scope="row">  12</td>
+     <td> M </td>
+     <td> 9/19 </td>
+	      <td> Code quality - code metrics for evaluating sprints<br>
+		  Code quality - cohesion and coupling<br><br>
+		  Peer reviewing discussion<br><br>
+		  Meeting and coaching time (10 min)
+		  </td>
+ 	 <td> <a href="codequality.html"> Code quality subpage </a> </td>
+	 <td> (Reference) <a href="https://library.ohio-state.edu/record=b9147767~S7">Code Complete by McConnell</a><br>
+		  (Reference) <a href="https://library.ohio-state.edu/record=b9170977~S7">Refactoring by Fowler</a> </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 13 </td>
+     <td> W </td>
+     <td> 9/21 </td>
+     <td> Motivating the need for assessment when improving a system - Amdahl's law<br><br>
+		  Code smells<br><br>
+		  Object diagrams related to Sprint 2, with focus on Link's state and sprites<br><br>
+		  <b>Quiz/Recall Practice</b> (topic tbd, concepts from required readings)</b><br><br>
+		  Meeting and coaching time (5 min)<br><br>
+		  </td>
+ 	 <td> <a href="codequality.html"> Code quality subpage </a> </td>
+	 <td> &nbsp;</td>
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 14 </td>
+     <td> F </td>
+     <td> 9/23</td>
+ 	 <td> Brief look at Strategy and Null object patterns<br>
+	 Anti-patterns<br>
+	 Refactoring and Technical Debt (determining where to refactor proactively vs. reactively)<br><br>
+	 Meeting and coaching time (15+ min)
+     </td>
+	 <td> <a href="designpatterns.html">Design pattern subpage</a><br><br>
+		  <a href="codequality.html"> Code quality subpage </a>
+	 </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 6</th>
+
+<tr class=""> <td scope="row"> 15 </td>
+     <td> M </td>
+     <td> 9/26</td>
+     <td> 10:20 ... code review<br>
+	      11:30 ... code review<br>
+	 </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+	 <td> Sprint 2 functionality check-in due</td>
+</tr>
+
+<tr class=""> <td scope="row"> 16 </td>
+     <td> W </td>
+     <td> 9/28</td>
+     <td> 10:20 ... code review<br>
+	      11:30 ... code review<br>
+	 </td>
+	 <td> &nbsp;</td>
+	 <td> &nbsp;</td>
+	 <td> &nbsp;</td>
+</tr>
+
+<tr class=""> <td scope="row"> 17 </td>
+     <td> F </td>
+     <td> 9/30</td>
+     <td> 10:20 ... code review<br>
+	      11:30 ... code review<br>
+	 </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 7</th>
+
+<tr class=""> <td scope="row"> 18 </td>
+     <td> M </td>
+     <td> 10/03</td>
+	 <td> Sprint deliverables<br>
+		  Sprint 3<br>
+		  Levels and file loading<br>
+		  Format of in class code review meetings<br>
+		  Meeting and coaching time (25+ min)<br>
+		  </td>
+	 <td> <a href="gameframework.html">Game framework subpage</a> </td>
+	 <td> &nbsp;</td>	<td> Sprint 2 due today ; Sprint 2 CATME peer review due Tuesday <br><br>
+	      Sprint 3 (collision detection, level loading and segmentation into screens) assigned </td>
+</tr>
+
+<tr class=""> <td scope="row"> 19 </td>
+     <td> W </td>
+     <td> 10/05</td>
+	 	 <td>Sprint 2 peer review reminder<br><br>
+		 Collisions and movement speed<br><br>
+		 Collision detection logic<br><br>
+		 <b>Quiz/Recall Practice</b> (topic tbd, concepts from required readings on specific design patterns)</b><br><br>
+	 	 Meeting and coaching time (10+ min)</td>
+	 <td> <a href="2D collision detection basics.pptx">2D collision detection slides</a>
+		  </td>
+	 <td> &nbsp; </td>	 
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 20 </td>
+     <td> F </td>
+     <td> 10/07</td>
+	 	 <td> 
+		  Collision response software organization<br><br>
+		  Meeting and coaching time (15+ min)
+		  </td>
+	 <td> <a href="2D collision response basics.pptx">2D collision response slides</a>
+		  </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 8</th>
+
+<tr class=""> <td scope="row"> 21 </td>
+     <td> M </td>
+     <td> 10/10</td>
+	 <td> Cameras and camera controllers <br>
+		  Quality assurance: unit testing and telemetry<br><br>
+		  Mid-semester keep, stop, start feedback<br><br>
+		  Meeting and coaching time (15+ min) </td>
+	 <td> <a href="2D physics and coordinate systems.pptx">2D physics and coordinate systems.pptx</a><br><br>
+		  <a href="Software Testing.pptx">Software Testing slides</a><br>
+		 <a href="visualstudio.html">Visual Studio subpage</a>
+	 </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 22 </td>
+     <td> W </td>
+     <td> 10/12</td>
+		<td> More on select topics: game physics, platforming logic, graphics transformations, etc.<br>
+		  (Types in Box2D, Unity2D)<br><br>
+		  OSU computer graphics and ai course information<br><br>
+		  <b>Quiz/Recall Practice</b> (code quality)</b><br><br>
+		  Meeting and coaching time (20+ min)</td>
+	 <td> <a href="https://github.com/erincatto/Box2D">Box2D</a><br><br>
+		  Unity 2D <a href="https://learn.unity.com/tutorial/2d-physics">physics</a> and <a href="https://learn.unity.com/tutorial/applying-2d-colliders-for-physics-interactions">collisions</a><br><br>
+		  <a href="http://web.cse.ohio-state.edu/~parent/Semesters/courses.html">OSU graphics courses<br>
+		  <a href="https://cse.osu.edu/current-students/undergraduate/focus-areas">Suggested courses for focus areas</a></td>
+     <td> &nbsp;</td>
+	 <td> &nbsp;</td>
+</tr>
+
+<tr class=""> <td scope="row"> 23 </td>
+     <td> F </td>
+     <td> 10/14</td>
+	 <td> <b>No class meeting - Fall Break</b>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 9 </th>
+
+<tr class=""> <td scope="row"> 24 </td>
+     <td> M </td>
+     <td> 10/17</td>
+     <td> 10:20 ... code review<br>
+	      11:30 ... code review<br>
+	 </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+	 <td> Sprint 3 functionality check-in due </td>
+</tr>
+
+<tr class=""> <td scope="row"> 25 </td>
+     <td> W </td>
+     <td> 10/19</td>
+     <td> 10:20 ... code review<br>
+	      11:30 ... code review<br>
+	 </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+ 	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 26 </td>
+     <td> F </td>
+     <td> 10/21</td>
+	 <td> 10:20 ... code review<br>
+	      11:30 ... code review<br>
+	 </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 10 </th>
+
+<tr class=""> <td scope="row"> 27 </td>
+     <td> M </td>
+     <td> 10/24</td>
+	 <td>	  Sprint 4 <br>
+		  Sound <br>
+		  Heads up display <br>
+		  Meeting and coaching time (25+ min)
+	 </td>
+	 <td> <a href="gameframework.html">Game framework subpage</a></td>
+ 	 <td> &nbsp; </td>
+	 <td> Sprint 3 due today; Sprint 3 CATME peer review due Tuesday<br><br>
+	 Sprint 4 (finished framework - one level) assigned
+	 </td>
+</tr>
+
+<tr class=""> <td scope="row"> 28 </td>
+     <td> W </td>
+     <td> 10/26</td>
+	 <td> Sprint 3 playtesting and additional Q&A for Sprint 4<br><br>
+	      <b>Quiz/Recall Practice</b> (topic tbd)</b><br><br>
+	      Meeting and coaching time (varies based on demo time; likely 10-15 min)
+	 </td>
+	 <td> &nbsp;</td>
+	 <td> <a href="https://strategywiki.org/wiki/The_Legend_of_Zelda/Table_of_Contents">StrategyWiki as a another requirements gathering resource</a></td>
+	 <td> &nbsp;</td>
+</tr>
+
+<tr class=""> <td scope="row"> 29 </td>
+     <td> F </td>
+     <td> 10/28</td>
+	 	 <td> Misc. topic: DeepCoder research (and Github copilot) + bloom's taxonomy <br>
+		  Misc. topic: Company consolidation, game and software industry project management practices (synthesis example) <br>
+		  Meeting and coaching time (30+ min)<br>
+	 </td>
+	 <td> 
+		  <a href="https://mspoweruser.com/microsoft-research-developing-ai-put-coders-job/">deepcoder<br>
+		  <a href="https://www.ncta.com/platform/broadband-internet/the-expanding-consolidation-of-the-consumer-internet-3/">consumer internet consolidation<br>
+		  <a href="https://en.wikipedia.org/wiki/List_of_acquisitions_by_Electronic_Arts">Electronic Arts game studio purchases<br>
+	 </td>	  
+	 <td> <a href="https://blogs.msdn.microsoft.com/vsappcenter/how-the-visual-studio-mobile-center-team-does-code-review/">MS mobile center code reviews</a></td>
+
+	 <td> &nbsp;</td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 11</th>
+
+<tr class=""> <td scope="row"> 30 </td>
+     <td> M </td>
+     <td> 10/31</td>
+ 	 <td> Discussion of <a href="https://github.com/NoelFB/Celeste/tree/master/Source/Player">player code from Celeste</a><br>
+		  Discussion of <a href="https://github.com/AdamMcIntosh/StawdewValley">Stardew Valley code</a><br>
+		  Sprint 5<br><br>
+		  Review of quizzes/recall practice thusfar<br><br>
+		  Meeting and coaching time<br>
+	 </td>
+ 	 <td> &nbsp;</td>
+	 <td> &nbsp;</td> 
+	 <td> &nbsp;</td>
+</tr>
+
+<tr class=""> <td scope="row"> 31 </td>
+     <td> W </td>
+     <td> 11/02</td>
+	 	 <td> Additional design patterns (flyweight, object pool, builder, memento)<br>
+		  Entity-Component systems<br><br>
+		  <b>Quiz/Recall Practice</b> (cumulative, with topic) - cumulative, focus on concepts to be evaluated on take home final<br><br>
+		  Meeting and coaching time<br>
+	 </td>
+	 <td> <a href="Additional Design Patterns for Games.pptx">Additional Design Patterns slides</a></td> </td>
+	 <td> &nbsp;</td>
+
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 32 </td>
+     <td> F </td>
+     <td> 11/04</td>
+	 <td>
+	 Notes/reminders on the take home final exam <br><br>
+	 Other misc. Q&A extending beyond the scope of 3902<br>
+	 </td>
+	 <td> &nbsp;</td>
+	 <td> &nbsp;</td> 
+	 <td> &nbsp;</td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 12 </th>
+
+<tr class=""> <td scope="row"> 33</td>
+     <td> M </td>
+     <td> 11/07</td>
+	 <td> 10:20 ... code review<br>
+	      11:30 ... code review<br>
+	 </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+	 <td> Sprint 4 functionality check-in due</td> 
+</tr>
+
+<tr class=""> <td scope="row"> 34 </td>
+     <td> W </td>
+     <td> 11/09</td>
+	 <td> 10:20 ... code review<br>
+	      11:30 ... code review<br>
+	 </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 35 </td>
+     <td> F </td>
+     <td> 11/11</td>
+	<td> <b>No class meeting - Veteran's day</b>	 </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 13</th>
+
+<tr class=""> <td scope="row"> 36 </td>
+     <td> M </td>
+     <td> 11/14</td>
+	<td> code reviews or work period or TBD lecture/discussion
+	 </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+	<td> Sprint 4 due ; Sprint 4 CATME peer review due Tuesday<br>
+		  Sprint 5 (choose your features) assigned </td>
+</tr>
+
+<tr class=""> <td scope="row"> 37</td>
+     <td> W </td>
+     <td> 11/16</td>
+	 <td>   Student presentation advice <br><br>
+			<b>Quiz/Recall Practice</b> (topic tbd)</b><br><br>
+			Meeting and coaching time </td>
+	 <td> <a href="https://web.cse.ohio-state.edu/~boggus.2/5912/">5912 webpage; presentation slides</a></td>
+	<td> &nbsp; </td>
+	<td> &nbsp;</td>
+</tr>
+
+<tr class=""> <td scope="row"> 38 </td>
+     <td> F </td>
+     <td> 11/18</td>
+	 <td>code reviews or work period or TBD lecture/discussion</td>
+	 <td> &nbsp;</td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp;</td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 14</th>
+
+<tr class=""> <td scope="row"> 39 </td>
+     <td> M </td>
+     <td> 11/21</td>
+     <td> code reviews or work period or TBD lecture/discussion</td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 40 </td>
+     <td> W </td>
+     <td> 11/23</td>
+  	<td> <b>No class meeting - Thanksgiving Break</b>
+	 </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+ 	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 41 </td>
+     <td> F </td>
+     <td> 11/25</td>
+  	<td> <b>No class meeting - Thanksgiving Break</b>
+	 </td>
+	 </td>
+	<td> &nbsp; </td>
+	<td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 15</th>
+
+<tr class=""> <td scope="row"> 42 </td>
+     <td> M </td>
+     <td> 11/28</td>
+     <td> Overview of select topics in AI </td>
+	 <td> <a href="AI Survey.pptx">Misc. AI topics</a> </td>
+	 <td> &nbsp; </td>
+	<td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 43 </td>
+     <td> W </td>
+     <td> 11/30</td>
+     <td> Overview of select topics in Graphics </td>
+	 <td> <a href="Graphics and Games Survey.pptx">Misc. Graphics and Games topics</a> </td>
+	 <td> &nbsp; </td>
+	 <td> </td>
+</tr>
+
+<tr class=""> <td scope="row"> 44 </td>
+     <td> F </td>
+     <td> 12/02</td>
+     <td> code reviews or work period or TBD lecture/discussion</td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<!-- Week -->
+<th bgcolor="#DDDDDD" colspan = "7">Week 16</th>
+
+<tr class=""> <td scope="row"> 45 </td>
+     <td> M </td>
+     <td> 12/05</td>
+     <td> Course wrap up <br>
+          Scheduling order of final project presentations <br><br>
+		  Review <br><br>
+		  <b>Quiz/Recall Practice</b> (topic tbd)</b><br><br>
+		  Meeting and coaching time </td>
+	 <td> &nbsp;</td>
+	 <td> &nbsp; </td>
+	 <td> &nbsp; </td>
+</tr>
+
+<tr class=""> <td scope="row"> 46 </td>
+     <td> W </td>
+     <td> 12/07</td>
+     <td> Early project presentations <br><br>
+		  Reminders <br><br>
+		  Free time </td>
+	 <td> &nbsp;</td>
+	 <td> &nbsp; </td>
+	 <td> Sprint 5 due; Sprint 5 CATME peer review open through the date of final project presentations </td>
+</tr>
+
+</table>
+
+<p><strong>Final Exam</strong><br>
+Take home exam due on Carmen by 11:59pm, 
+on the date of the University's schedule for final exams:<br>
+TBD
+</p>
+
+<p><strong>Project demonstrations</strong><br>
+University scheduled final exam time slots will be used for teams presenting projects<br><br>
+TBD
+</p>
+
+</body></html>

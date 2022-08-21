@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title> - GPU</title>
+	<link href="https://jholewinski.github.io/tags/gpu/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://jholewinski.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2012-02-09T00:00:00+00:00</updated>
+	<id>https://jholewinski.github.io/tags/gpu/atom.xml</id>
+	<entry xml:lang="en">
+		<title>AMD APP: Getting Device Assembly</title>
+		<published>2012-02-09T00:00:00+00:00</published>
+		<updated>2012-02-09T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/amd-app-getting-device-assembly/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/amd-app-getting-device-assembly/</id>
+		<content type="html">&lt;p&gt;Sometimes it is useful to look at the intermediate and assembly code for GPU
+programs. This can lead to some interesting performance insights, especially for
+compiler writers. Unfortunately, the AMD APP SDK is a bit limited on Linux, and
+the AMD APP KernelAnalyzer, which conveniently dumps the AMDIL and Device ISA
+for an OpenCL kernel, is not available on Linux. However, digging through the
+AMD APP OpenCL Programming Guide, one finds an environment variable that can be
+used for the same purpose: &lt;code&gt;GPU_DUMP_DEVICE_KERNEL&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;According to the programming guide, this environment variable can take one of
+three values:&lt;&#x2F;p&gt;
+&lt;table columns=&quot;3&quot;&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;&#x2F;td&gt;&lt;td&gt;Save intermediate IL files in local directory.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;&#x2F;td&gt;&lt;td&gt;Disassemble ISA file and save in local directory.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;Save both the IL and ISA files in local directory.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;table&gt;
+&lt;p&gt;Therefore, if you run your OpenCL program with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;    $ GPU_DUMP_DEVICE_KERNEL=3 .&#x2F;my-program
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You will get two files in your local directory:
+&lt;code&gt;[kernel-name]_[device-name].il&lt;&#x2F;code&gt; and &lt;code&gt;[kernel-name]_[device-name].isa&lt;&#x2F;code&gt;, which
+contain AMDIL and Device ISA disassembly, respectively.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>LLVM 3.0: PTX Backend</title>
+		<published>2011-12-02T00:00:00+00:00</published>
+		<updated>2011-12-02T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/llvm-3-0-ptx-backend/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/llvm-3-0-ptx-backend/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2F;strong&gt;: The information is this article only applies to LLVM 3.0 and 3.1. As
+of LLVM 3.2, the PTX back-end has been replaced with the NVPTX back-end.&lt;&#x2F;p&gt;
+&lt;p&gt;With the release of LLVM 3.0, the PTX back-end is now in a fairly usable state.
+It even integrates with the Clang OpenCL front-end to produce correct PTX code
+usable by the nVidia OpenCL run-time. However, please note that the back-end is
+still experimental and there are unimplemented features. As always, please post
+any questions to the llvm-dev mailing list.&lt;&#x2F;p&gt;
+&lt;p&gt;In this post, I aim to give a quick overview of how to use the back-end to
+compile OpenCL kernels.&lt;&#x2F;p&gt;
+&lt;p&gt;As an example, consider the following matrix multiplication routine written in
+OpenCL:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;#define &lt;&#x2F;span&gt;&lt;span&gt;BLOCK_SIZE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;16
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   __kernel
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;matmul&lt;&#x2F;span&gt;&lt;span&gt;(__global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;A&lt;&#x2F;span&gt;&lt;span&gt;, __global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;B&lt;&#x2F;span&gt;&lt;span&gt;, __global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;C&lt;&#x2F;span&gt;&lt;span&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;     __local &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; scratchA[BLOCK_SIZE][BLOCK_SIZE];
+&lt;&#x2F;span&gt;&lt;span&gt;     __local &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; scratchB[BLOCK_SIZE][BLOCK_SIZE];
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; globalX = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_global_id&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; globalY = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_global_id&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; size = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_global_size&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; k;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; sum = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; numBlocks = size &#x2F; BLOCK_SIZE;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; b;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; tidX = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_local_id&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; tidY = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_local_id&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for&lt;&#x2F;span&gt;&lt;span&gt;(b = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;; b &amp;lt; numBlocks; ++b) {
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Populate a cache for A&#x2F;B
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; x;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; y;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;       x = b * BLOCK_SIZE + tidX;
+&lt;&#x2F;span&gt;&lt;span&gt;       y = globalY;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;       scratchA[tidY][tidX] = A[y * size + x];
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;       x = globalX;
+&lt;&#x2F;span&gt;&lt;span&gt;       y = b * BLOCK_SIZE + tidY;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;       scratchB[tidY][tidX] = B[y * size + x];
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;barrier&lt;&#x2F;span&gt;&lt;span&gt;(CLK_LOCAL_MEM_FENCE);
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for&lt;&#x2F;span&gt;&lt;span&gt;(k = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;; k &amp;lt; BLOCK_SIZE; ++k) {
+&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; myA;
+&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; myB;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;         myA = scratchA[tidY][k];
+&lt;&#x2F;span&gt;&lt;span&gt;         myB = scratchB[k][tidX];
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;         sum += myA * myB;
+&lt;&#x2F;span&gt;&lt;span&gt;       }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;barrier&lt;&#x2F;span&gt;&lt;span&gt;(CLK_LOCAL_MEM_FENCE);
+&lt;&#x2F;span&gt;&lt;span&gt;     }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;     C[globalY * size + globalX] = sum;
+&lt;&#x2F;span&gt;&lt;span&gt;   }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can use the &lt;code&gt;libclc&lt;&#x2F;code&gt;_ library, written by Peter Collingbourne, to provide the
+OpenCL built-in functions for Clang. This library will map OpenCL built-in
+functions to target-specific functions in the LLVM IR that the PTX back-end
+knows how to handle. If &lt;code&gt;$LIBCLC&lt;&#x2F;code&gt; points to the download of libclc, then you
+can invoke Clang with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;   clang -ccc-host-triple ptx32
+&lt;&#x2F;span&gt;&lt;span&gt;     -Xclang -target-feature -Xclang +ptx23
+&lt;&#x2F;span&gt;&lt;span&gt;     -Xclang -target-feature -Xclang +sm20
+&lt;&#x2F;span&gt;&lt;span&gt;     -I$LIBCLC&#x2F;include&#x2F;generic -I$LIBCLC&#x2F;include&#x2F;ptx
+&lt;&#x2F;span&gt;&lt;span&gt;     -include clc&#x2F;clc.h -Dcl_clang_storage_class_specifiers
+&lt;&#x2F;span&gt;&lt;span&gt;     -O3 matmul_kernel.cl -S -o matmul_kernel.ptx
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The options can be a bit verbose at the moment, but practically all of them can
+be placed in a wrapper script. Clang will compile the kernel and emit the
+generated PTX code to &lt;code&gt;matmul_kernel.ptx&lt;&#x2F;code&gt;. This code can then be loaded as an
+OpenCL binary kernel using the nVidia OpenCL SDK, using the
+&lt;code&gt;clCreateProgramWithBinary&lt;&#x2F;code&gt; function. As an added bonus, the performance is
+about the same as if the kernel was compiled using the nVidia OpenCL compiler!&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

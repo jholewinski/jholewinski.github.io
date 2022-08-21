@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title> - C++</title>
+	<link href="https://jholewinski.github.io/tags/c/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://jholewinski.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2012-02-16T00:00:00+00:00</updated>
+	<id>https://jholewinski.github.io/tags/c/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Direct3d 11 With Qt 4</title>
+		<published>2012-02-16T00:00:00+00:00</published>
+		<updated>2012-02-16T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/direct3d-11-with-qt-4/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/direct3d-11-with-qt-4/</id>
+		<content type="html">&lt;p&gt;(If you&#x27;re in a hurry, the full source can be found on my &lt;a href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;jholewinski&#x2F;qt4-d3d11&quot;&gt;Bitbucket&lt;&#x2F;a&gt; account)&lt;&#x2F;p&gt;
+&lt;p&gt;When it comes to GUI frameworks for C++, it&#x27;s very hard to beat Qt.
+It&#x27;s modular, easy to use, and available on practically any desktop
+system (and even a few mobile systems).  The MOC&#x27;ing can get a bit
+annoying, but IDE and command-line support is very mature at this point.
+However, only OpenGL is supported currently for real-time 3D rendering.
+If you want to render to a Qt widget from a Direct3D 11 device, you end
+up having to do a lot of setup yourself.&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately, there is not a lot of information out on the internet
+about setting up Direct3D to play nice with Qt.  Most of the information
+is either out-dated, or only applies to Direct3D 9.  Lately, I&#x27;ve been
+playing around with this and I want to share my method for combining
+Direct3D 11 and Qt.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;qtd3d11-screen1.png&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;creating-a-widget&quot;&gt;Creating a Widget&lt;&#x2F;h1&gt;
+&lt;p&gt;To start, we define a new widget sub-class specifically for Direct3D 11
+rendering. On the Qt side, the key to eliminating flickering or UI
+artifacts is the &lt;code&gt;paintEngine()&lt;&#x2F;code&gt; method.  We need a way to tell Qt
+that we want complete control over drawing for our widget, so we can
+override &lt;code&gt;paintEngine()&lt;&#x2F;code&gt; in our widget definition:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ebcb8b;&quot;&gt;D3DRenderWidget &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;public &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;QWidget &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     Q_OBJECT
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Q_DISABLE_COPY&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;(D3DRenderWidget)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;public&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;D3DRenderWidget&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;(QWidget&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;parent &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;NULL&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;virtual &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;~D3DRenderWidget&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;();
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;virtual&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt; QPaintEngine&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;paintEngine&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;{ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;NULL&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;; }
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;protected&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;virtual void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;resizeEvent&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;(QResizeEvent&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;evt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;virtual void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;paintEvent&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;(QPaintEvent&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;evt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;   }&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;(Note that for ease of viewing, all of the fields have been removed from
+this code snippet)&lt;&#x2F;p&gt;
+&lt;p&gt;We also need to set a few attributes on our widget, as shown in the
+constructor:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   D3DRenderWidget::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;D3DRenderWidget&lt;&#x2F;span&gt;&lt;span&gt;(QWidget* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;parent&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;     : &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;QWidget&lt;&#x2F;span&gt;&lt;span&gt;(parent) {
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;setAttribute&lt;&#x2F;span&gt;&lt;span&gt;(Qt::WA_PaintOnScreen, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;setAttribute&lt;&#x2F;span&gt;&lt;span&gt;(Qt::WA_NativeWindow, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Create Device
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;createDevice&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;   }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;First, we tell Qt that we do not want it to do any draw buffering for
+us. Second, we require a native window handle for our widget. Otherwise,
+Qt may re-use the same native handle for multiple widgets and cause
+problems for our Direct3D rendering. You may have also noticed the
+&lt;code&gt;createDevice()&lt;&#x2F;code&gt; method call; this will be explained in a bit.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;creating-the-direct3d-11-device&quot;&gt;Creating the Direct3D 11 Device&lt;&#x2F;h1&gt;
+&lt;p&gt;Now that we have a basic widget that can support Direct3D rendering, we
+can initialize the Direct3D 11 device we want. This procedure is mostly
+identical to setting up Direct3D in a raw window. The only difference is
+that we must use the &lt;code&gt;width()&lt;&#x2F;code&gt;, &lt;code&gt;height()&lt;&#x2F;code&gt;, and &lt;code&gt;winId()&lt;&#x2F;code&gt; methods
+to return the widget size and native window handle, respectively:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BufferCount &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BufferDesc&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Width &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;width&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BufferDesc&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Height &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;height&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BufferDesc&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Format &lt;&#x2F;span&gt;&lt;span&gt;= DXGI_FORMAT_R8G8B8A8_UNORM;
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BufferUsage &lt;&#x2F;span&gt;&lt;span&gt;= DXGI_USAGE_RENDER_TARGET_OUTPUT;
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;SampleDesc&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Count &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;SampleDesc&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Quality &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Windowed &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;OutputWindow &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;winId&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BufferDesc&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RefreshRate&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Numerator &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;60&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;   swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BufferDesc&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RefreshRate&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Denominator &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Everything else remains the same... pretty easy, huh? :)&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;handling-paint-events&quot;&gt;Handling Paint Events&lt;&#x2F;h1&gt;
+&lt;p&gt;Remember the &lt;code&gt;paintEvent&lt;&#x2F;code&gt; override from the widget class definition?
+We can simply implement it with a call to some rendering function:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span&gt;D3DRenderWidget::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;paintEvent&lt;&#x2F;span&gt;&lt;span&gt;(QPaintEvent* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;evt&lt;&#x2F;span&gt;&lt;span&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;render&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;   }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here, &lt;code&gt;render()&lt;&#x2F;code&gt; is just some arbitrary method that uses the Direct3D
+11 device to render something to the primary swap chain.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;handling-resize-events&quot;&gt;Handling Resize Events&lt;&#x2F;h1&gt;
+&lt;p&gt;Resize events are perhaps the hardest events to handle when integrating
+Direct3D 11 and Qt. To resize our swap chain, we need to release all
+device-allocated resources, and reallocate them. The procedure I follow
+is:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span&gt;D3DRenderWidget::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;resizeEvent&lt;&#x2F;span&gt;&lt;span&gt;(QResizeEvent* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;evt&lt;&#x2F;span&gt;&lt;span&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;releaseBuffers&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;     swapChain_-&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ResizeBuffers&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;width&lt;&#x2F;span&gt;&lt;span&gt;(), &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;height&lt;&#x2F;span&gt;&lt;span&gt;(), swapChainDesc_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BufferDesc&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Format&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     swapChain_-&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;GetDesc&lt;&#x2F;span&gt;&lt;span&gt;(&amp;amp;swapChainDesc_);
+&lt;&#x2F;span&gt;&lt;span&gt;     viewport_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Width &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;width&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;     viewport_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Height &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;height&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;createBuffers&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;   }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We start by releasing all of the buffers we had allocated (vertex
+buffers, index buffers, shaders, textures, etc.). We then issue a resize
+request to the swap chain, resize our rendering viewport, and then
+recreate all of our needed buffers. In this snippet,
+&lt;code&gt;releaseBuffers()&lt;&#x2F;code&gt; will call &lt;code&gt;Release()&lt;&#x2F;code&gt; on all buffers, and
+&lt;code&gt;createBuffers()&lt;&#x2F;code&gt; will create all of the needed resources (again).&lt;&#x2F;p&gt;
+&lt;p&gt;It would probably be easier to just allow the swap chain to grow and
+just adjust the viewport if the widget shrinks, but this method shows
+how to keep the swap chain the exact same size as the widget.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h1&gt;
+&lt;p&gt;At this point, you should have a functional Direct3D 11 rendering
+context for a Qt widget. For brevity, I have omitted most of the
+Direct3D initialization code (this can be found in many places on the
+web).&lt;&#x2F;p&gt;
+&lt;p&gt;If you want to check out the complete sample program, it is located on
+my &lt;a href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;jholewinski&#x2F;qt4-d3d11&quot;&gt;BitBucket&lt;&#x2F;a&gt; account.
+To build it, you need a relatively recent Qt
+release, the DirectX SDK, and the Qt Visual Studio Add-in.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>The Beauty of C++ Templates</title>
+		<published>2011-04-01T00:00:00+00:00</published>
+		<updated>2011-04-01T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/the-beauty-of-c-templates/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/the-beauty-of-c-templates/</id>
+		<content type="html">&lt;p&gt;Every so often, I&#x27;ll get a random C++ question from a friend or colleague. Most
+of the time the answers are trivial, at least for someone who has a history with
+the language. Other questions make me stop and ponder, searching for the best
+&amp;quot;C++&amp;quot; way to do something. Yesterday, the question was simple and the solution
+turned out to be equally simple, but getting to the solution made me stop and
+appreciate some of the cool things one can do with C++ templates.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-problem&quot;&gt;The Problem&lt;&#x2F;h1&gt;
+&lt;p&gt;The problem was simple. Suppose you have a C++ template class&#x2F;struct that is
+parameterized by a single type, e.g.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;template&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;typename&lt;&#x2F;span&gt;&lt;span&gt; T&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ebcb8b;&quot;&gt;my_data &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;{
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; ...
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;private&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;     T element_;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eff1f5;&quot;&gt;   }&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;the-solution&quot;&gt;The Solution&lt;&#x2F;h1&gt;
+&lt;p&gt;Now, the question is, &amp;quot;how do I write a method for this class&#x2F;struct that maps
+the type of T to an enumeration value?&amp;quot; For context, the real problem involved
+mapping T to an MPI data type, e.g. (float -&amp;gt; MPI_FLOAT), (double -&amp;gt;
+MPI_DOUBLE), etc..&lt;&#x2F;p&gt;
+&lt;p&gt;The first thought for anyone familiar with containers may be to explicitly
+generate a map, e.g. std::map in this case, to hold all possible mappings from
+the C++ type (via typeid()) to the MPI type (really just an integer). Such a
+solution is certainly valid and may be the best way to approach the problem in
+another language such as C# or Java. After pondering the &amp;quot;C++&amp;quot; solution to the
+problem for a few minutes, my colleague and I came up with a fairly elegant
+solution involving templates. Or, at least I found it quite elegant.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;**
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    * This struct wrappers the MPI data type value for the given C++ type.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    *
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    * Any valid MPI data type value must have a corresponding explicit template
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    * instantiation below.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    *&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;template&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;typename&lt;&#x2F;span&gt;&lt;span&gt; T&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;mpi_type_wrapper {
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; mpi_type;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;mpi_type_wrapper&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;   };
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Explicit instantiation for `float&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;template &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   mpi_type_wrapper::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;mpi_type_wrapper&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;   : &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;mpi_type&lt;&#x2F;span&gt;&lt;span&gt;(MPI_FLOAT) {}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Explicit instantiation for `double&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;template &lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   mpi_type_wrapper::&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;mpi_type_wrapper&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;   : &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;mpi_type&lt;&#x2F;span&gt;&lt;span&gt;(MPI_DOUBLE) {}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The mpi_type_wrapper struct is a convenient way to convert an arbitrary C++
+type to an equivalent MPI type. All one has to do is declare a local variable of
+type mpi_type_wrapper&lt;T&gt; (with appropriate T) and read the value of its
+mpi_type field. Of course, none of this is specific to MPI in any way. The only
+requirement is that an explicit instantiation of the constructor must be
+provided for any C++ types that are to be converted.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;why-this-solution&quot;&gt;Why This Solution?&lt;&#x2F;h1&gt;
+&lt;p&gt;This solution strikes me as elegant for two reasons. First, it is a solution
+that would be difficult, if not impossible, to express in many other languages.
+Second, and most interesting to me, there is &lt;em&gt;no&lt;&#x2F;em&gt; run-time overhead associated
+with this solution. You can even compile this with RTTI turned off. Any
+reasonable compiler automatically inlines the appropriate constructor, then
+constant propagation replaces any uses of the mpi_type field with the
+appropriate MPI_* enumeration value. There is no memory overhead associated
+with explicitly keeping a map at run-time, nor any time overhead of performing a
+map look-up. The final code just uses the constant value! If you do not believe
+me, check out this example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;**
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    * Some template class that needs to know the MPI_DataType value for its
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    * template parameter type.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;    *&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;template&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;typename&lt;&#x2F;span&gt;&lt;span&gt; T&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;struct &lt;&#x2F;span&gt;&lt;span&gt;some_type {
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;printType&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;       mpi_type_wrapper&amp;lt;T&amp;gt; wrap;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;printf&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;My Type: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;%d&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, wrap.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;mpi_type&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     };
+&lt;&#x2F;span&gt;&lt;span&gt;   };
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;     some_type&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; floatClass;
+&lt;&#x2F;span&gt;&lt;span&gt;     some_type&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;double&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; doubleClass;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;     floatClass.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;printType&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;     doubleClass.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;printType&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;   }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And the generated code?&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;nasm&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-nasm &quot;&gt;&lt;code class=&quot;language-nasm&quot; data-lang=&quot;nasm&quot;&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;   _main:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     pushq %&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rbx
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     leaq L_.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;str&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;(%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rip&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;)&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rbx
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;movq &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rbx&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rdi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     xorl %&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;esi&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;esi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     xorb %&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;al&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;al
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     callq _printf
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     movl &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;esi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;movq &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rbx&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rdi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     xorb %&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;al&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;al
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     callq _printf
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     xorl %&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;eax&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;%&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;eax
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     popq %&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rbx
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;ret
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h1&gt;
+&lt;p&gt;While this example is probably trivial for most experienced C++ programmers out
+there, including myself, I always find myself stopping and appreciating such
+solutions. In this case, C++ templates provide such an elegant and efficient
+solution that I cannot help feeling giddy.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

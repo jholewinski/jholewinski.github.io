@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title> - Unreal</title>
+	<link href="https://jholewinski.github.io/tags/unreal/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://jholewinski.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2012-03-17T00:00:00+00:00</updated>
+	<id>https://jholewinski.github.io/tags/unreal/atom.xml</id>
+	<entry xml:lang="en">
+		<title>UnrealScript: Brace Placement Matters!</title>
+		<published>2012-03-17T00:00:00+00:00</published>
+		<updated>2012-03-17T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/unrealscript-brace-placement-matters/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/unrealscript-brace-placement-matters/</id>
+		<content type="html">&lt;p&gt;I was playing around with the Unreal Development Kit this evening, and
+discovered a rather interesting quirk in the handling of braces within
+UnrealScript. All of the sample code I read use a syntax style that places
+opening braces on the following line:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;    event &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;PostBeginPlay&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;    {
+&lt;&#x2F;span&gt;&lt;span&gt;      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Do something
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;However, my typical style places the opening brace on the current line:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;    event &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;PostBeginPlay&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Do something
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Unfortunately, this does not seem to work for &lt;code&gt;defaultproperties&lt;&#x2F;code&gt; blocks. If you
+place the brace on the same line, the compiler will not give you any warnings or
+errors, but the entire &lt;code&gt;defaultproperties&lt;&#x2F;code&gt; block is just ignored!&lt;&#x2F;p&gt;
+&lt;p&gt;So this code works:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;    defaultproperties
+&lt;&#x2F;span&gt;&lt;span&gt;    {
+&lt;&#x2F;span&gt;&lt;span&gt;      PlayerControllerClass=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;MyPlayerController&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;while the following code compiles but silently just ignores all of the contained
+settings:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;    defaultproperties {
+&lt;&#x2F;span&gt;&lt;span&gt;      PlayerControllerClass=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;MyPlayerController&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I was banging my head on the wall for at least an hour figuring this one out!&lt;&#x2F;p&gt;
+&lt;p&gt;I hope this can help prevent someone else from repeating my mistake.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

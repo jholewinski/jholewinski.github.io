@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Project Grading Notes</title>
+</head>
+
+<body>
+<h3>General notes on project grading</h3>
+<p>
+Each sprint the teams and projects will be evaluated in terms of 
+project management (processes that your team follows - ex: task tracking, code analysis, code reviews),
+code functionality (has your team implemented enough work for its size and how buggy is it), and
+code quality (based on code quality metrics and code smells).
+Each sprint your team will receive comments on any short-comings in each area as well as a rough grade for the sprint as a whole.
+</p>
+
+<h3>Notes on the areas of evaluation</h3>
+
+<p>
+Project management is the most difficult of these for us to observe (and thus has the lowest weight when it comes to determining final scores),
+and will require investigation of texts and tools not covered in class if you want to really impress us.
+Dedication to following a process and documenting the results is more beneficial to learning than attempting to get 100% accuracy (task time estimation is a good example).
+</p>
+
+<p>
+Breadth of features and correctness is expected on your projects. 
+However, we do not expect your implementation to be exactly the same as the game you are based yours off of, some objects may move faster or slower, enemy movement may be altered, etc.
+Adding more features than is expected for your team size is a straight-forward way to earn a higher grade.
+The flipside, if you have a team member regularly not committing code or committing that code very late in the sprint, is that you should not complete their work for them -
+if you are concerned about coming up short as a team, add something new so that your teammate still has the opportunity to fulfill their work obligations.
+</p>
+
+<p>
+Code quality is the most complex portion of the project being evaluated. To grossly oversimplify,
+here are some problems/code smells that we will be looking for when grading code quality.
+Occasionally violating one of these does not mean a design is bad, but this is what you should strive for.
+<ul>
+	<li>Long methods (25+ lines)
+	<li>Excessive Branching (3+ levels deep in one method)
+	<br><br>
+	<li>Long classes (100+ lines)
+	<li>Low cohesion of a class or method
+	<li>High coupling (many dependencies) in a class
+	<li>Tight coupling (too much knowledge/use of another class' fields/data) in a method 
+	<li>Non-descriptive class, field, and method names
+	<li>Public fields, properties, and methods that should be private
+	<li>Dead code and unused fields and methods
+	<br><br>
+	<li>Duplicated code
+	<li>Magic numbers and strings
+</ul>
+
+<p>In case you're wondering - why these values instead of something else? - 
+the short answer is that these tend to result in code that you'll be able to tolerate for the whole semester.
+For deeper insight into this, see <a href="code quality discussion.html">additional opinions on code quality guidelines</a>
+</p>
+
+</body>
+</html>

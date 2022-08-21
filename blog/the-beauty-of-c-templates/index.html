@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://gitlab.com/jholewinski" target="_blank" rel="noopener noreferrer">GitLab</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/blog/the-beauty-of-c-templates/">The Beauty of C++ Templates</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2011-04-01
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://jholewinski.github.io/tags/c/">#C++</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>Every so often, I'll get a random C++ question from a friend or colleague. Most
+of the time the answers are trivial, at least for someone who has a history with
+the language. Other questions make me stop and ponder, searching for the best
+&quot;C++&quot; way to do something. Yesterday, the question was simple and the solution
+turned out to be equally simple, but getting to the solution made me stop and
+appreciate some of the cool things one can do with C++ templates.</p>
+<h1 id="the-problem">The Problem</h1>
+<p>The problem was simple. Suppose you have a C++ template class/struct that is
+parameterized by a single type, e.g.</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">typename</span><span> T&gt;
+</span><span>   </span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">my_data </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">     </span><span style="color:#65737e;">// ...
+</span><span style="color:#eff1f5;">   </span><span style="color:#b48ead;">private</span><span style="color:#eff1f5;">:
+</span><span style="color:#eff1f5;">     T element_;
+</span><span style="color:#eff1f5;">   }</span><span>;
+</span></code></pre>
+<h1 id="the-solution">The Solution</h1>
+<p>Now, the question is, &quot;how do I write a method for this class/struct that maps
+the type of T to an enumeration value?&quot; For context, the real problem involved
+mapping T to an MPI data type, e.g. (float -&gt; MPI_FLOAT), (double -&gt;
+MPI_DOUBLE), etc..</p>
+<p>The first thought for anyone familiar with containers may be to explicitly
+generate a map, e.g. std::map in this case, to hold all possible mappings from
+the C++ type (via typeid()) to the MPI type (really just an integer). Such a
+solution is certainly valid and may be the best way to approach the problem in
+another language such as C# or Java. After pondering the &quot;C++&quot; solution to the
+problem for a few minutes, my colleague and I came up with a fairly elegant
+solution involving templates. Or, at least I found it quite elegant.</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;">    * This struct wrappers the MPI data type value for the given C++ type.
+</span><span style="color:#65737e;">    *
+</span><span style="color:#65737e;">    * Any valid MPI data type value must have a corresponding explicit template
+</span><span style="color:#65737e;">    * instantiation below.
+</span><span style="color:#65737e;">    */
+</span><span>   </span><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">typename</span><span> T&gt;
+</span><span>   </span><span style="color:#b48ead;">struct </span><span>mpi_type_wrapper {
+</span><span>     </span><span style="color:#b48ead;">int</span><span> mpi_type;
+</span><span>     </span><span style="color:#8fa1b3;">mpi_type_wrapper</span><span>();
+</span><span>   };
+</span><span>
+</span><span>   </span><span style="color:#65737e;">// Explicit instantiation for `float&#39;
+</span><span>   </span><span style="color:#b48ead;">template </span><span>&lt;&gt;
+</span><span>   mpi_type_wrapper::</span><span style="color:#8fa1b3;">mpi_type_wrapper</span><span>()
+</span><span>   : </span><span style="color:#bf616a;">mpi_type</span><span>(MPI_FLOAT) {}
+</span><span>
+</span><span>   </span><span style="color:#65737e;">// Explicit instantiation for `double&#39;
+</span><span>   </span><span style="color:#b48ead;">template </span><span>&lt;&gt;
+</span><span>   mpi_type_wrapper::</span><span style="color:#8fa1b3;">mpi_type_wrapper</span><span>()
+</span><span>   : </span><span style="color:#bf616a;">mpi_type</span><span>(MPI_DOUBLE) {}
+</span></code></pre>
+<p>The mpi_type_wrapper struct is a convenient way to convert an arbitrary C++
+type to an equivalent MPI type. All one has to do is declare a local variable of
+type mpi_type_wrapper<T> (with appropriate T) and read the value of its
+mpi_type field. Of course, none of this is specific to MPI in any way. The only
+requirement is that an explicit instantiation of the constructor must be
+provided for any C++ types that are to be converted.</p>
+<h1 id="why-this-solution">Why This Solution?</h1>
+<p>This solution strikes me as elegant for two reasons. First, it is a solution
+that would be difficult, if not impossible, to express in many other languages.
+Second, and most interesting to me, there is <em>no</em> run-time overhead associated
+with this solution. You can even compile this with RTTI turned off. Any
+reasonable compiler automatically inlines the appropriate constructor, then
+constant propagation replaces any uses of the mpi_type field with the
+appropriate MPI_* enumeration value. There is no memory overhead associated
+with explicitly keeping a map at run-time, nor any time overhead of performing a
+map look-up. The final code just uses the constant value! If you do not believe
+me, check out this example:</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#65737e;">/**
+</span><span style="color:#65737e;">    * Some template class that needs to know the MPI_DataType value for its
+</span><span style="color:#65737e;">    * template parameter type.
+</span><span style="color:#65737e;">    */
+</span><span>   </span><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">typename</span><span> T&gt;
+</span><span>   </span><span style="color:#b48ead;">struct </span><span>some_type {
+</span><span>     </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">printType</span><span>() {
+</span><span>       mpi_type_wrapper&lt;T&gt; wrap;
+</span><span>
+</span><span>       </span><span style="color:#96b5b4;">printf</span><span>(&quot;</span><span style="color:#a3be8c;">My Type: </span><span style="color:#d08770;">%d</span><span>&quot;, wrap.</span><span style="color:#bf616a;">mpi_type</span><span>);
+</span><span>     };
+</span><span>   };
+</span><span>
+</span><span>   </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>     some_type&lt;</span><span style="color:#b48ead;">float</span><span>&gt; floatClass;
+</span><span>     some_type&lt;</span><span style="color:#b48ead;">double</span><span>&gt; doubleClass;
+</span><span>
+</span><span>     floatClass.</span><span style="color:#bf616a;">printType</span><span>();
+</span><span>     doubleClass.</span><span style="color:#bf616a;">printType</span><span>();
+</span><span>
+</span><span>     </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>   }
+</span></code></pre>
+<p>And the generated code?</p>
+<pre data-lang="nasm" style="background-color:#2b303b;color:#c0c5ce;" class="language-nasm "><code class="language-nasm" data-lang="nasm"><span style="color:#8fa1b3;">   _main:
+</span><span style="color:#8fa1b3;">     pushq %</span><span style="color:#bf616a;">rbx
+</span><span style="color:#8fa1b3;">     leaq L_.</span><span style="color:#b48ead;">str</span><span style="color:#8fa1b3;">(%</span><span style="color:#bf616a;">rip</span><span style="color:#8fa1b3;">)</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rbx
+</span><span style="color:#8fa1b3;">     </span><span style="color:#b48ead;">movq </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rbx</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rdi
+</span><span style="color:#8fa1b3;">     xorl %</span><span style="color:#bf616a;">esi</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">esi
+</span><span style="color:#8fa1b3;">     xorb %</span><span style="color:#bf616a;">al</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">al
+</span><span style="color:#8fa1b3;">     callq _printf
+</span><span style="color:#8fa1b3;">     movl </span><span style="color:#96b5b4;">$</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">esi
+</span><span style="color:#8fa1b3;">     </span><span style="color:#b48ead;">movq </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rbx</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rdi
+</span><span style="color:#8fa1b3;">     xorb %</span><span style="color:#bf616a;">al</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">al
+</span><span style="color:#8fa1b3;">     callq _printf
+</span><span style="color:#8fa1b3;">     xorl %</span><span style="color:#bf616a;">eax</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">eax
+</span><span style="color:#8fa1b3;">     popq %</span><span style="color:#bf616a;">rbx
+</span><span style="color:#8fa1b3;">     </span><span style="color:#b48ead;">ret
+</span></code></pre>
+<h1 id="conclusion">Conclusion</h1>
+<p>While this example is probably trivial for most experienced C++ programmers out
+there, including myself, I always find myself stopping and appreciating such
+solutions. In this case, C++ templates provide such an elegant and efficient
+solution that I cannot help feeling giddy.</p>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2022
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

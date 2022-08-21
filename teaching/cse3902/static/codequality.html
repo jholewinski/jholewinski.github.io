@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Code Quality</title>
+</head>
+<body>
+<h1>Code Quality</h1>
+
+<i>There are two ways of constructing a software design: one way is to make it so simple that there are obviously no deficiencies and the other way is to make it so complicated that there are no obvious deficiencies. - C.A.R. Hoare</i><br>
+<i>A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away. - Antoine de Saint-Exupery</i><br>
+<br>
+
+<h2>Coupling and Cohesion</h2>
+<ul>
+	<li>Definitions - <a href="http://en.wikipedia.org/wiki/Cohesion_(computer_science)">Cohesion</a> and <a href="http://en.wikipedia.org/wiki/Coupling_(computer_science)">Coupling</a>
+	<li>Discussions on stackoverflow - <a href="http://stackoverflow.com/questions/3085285/cohesion-coupling">1</a> ; <a href="http://stackoverflow.com/questions/39946/coupling-and-cohesion">2</a>
+</ul>	
+	
+<h2>Code Metrics</h2>
+<ul>
+    <li><a href="http://en.wikipedia.org/wiki/Software_metrics">Code Metrics</a> (note: we will stick to metrics that relate to readability and maintenance rather than business or run-time efficiency metrics)
+      <ul>
+        <li>Number of lines of code (per method, per class)
+        <li>Cyclomatic complexity - <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">wikipedia</a>
+      </ul>
+	<li><a href="componentdependenciesdiagram.png">Dependency graph example</a> (originally from http://www.ndepend.com/SampleReports/OnNUnitNew/ComponentDependenciesDiagram.png)
+</ul>
+
+<h2>Code Smells</h2>
+<ul>
+	<li><a href="http://c2.com/cgi/wiki?CodeSmell">Code smell definition and practices for dealing with them</a>
+	<li><a href="http://en.wikipedia.org/wiki/Code_smell">Wikipedia (see list of common code smells)</a>
+	<li><a href="http://www.codinghorror.com/blog/2006/05/code-smells.html">Breakdown of code smells within a class vs. code smells between classes</a>
+	<li><a href="https://mmantyla.github.io/BadCodeSmellsTaxonomy">Taxonomy of Code Smells</a>
+</ul>
+
+<h2>Anti-patterns</h2>
+<ul>
+	<li><a href="http://en.wikipedia.org/wiki/Anti-pattern">Definition</a>
+	<li><a href="http://en.wikibooks.org/wiki/Introduction_to_Software_Engineering/Architecture/Anti-Patterns">Wiki-books Introduction to Software Engineering/Architecture/Anti-Patterns</a> (list with short descriptions)
+	<li><a href="http://sourcemaking.com/antipatterns">SourceMaking</a> (sorted by category, each with a specific example on a subpage)
+	<li><a href="http://c2.com/cgi/wiki?AntiPatternsCatalog">Anti Patterns Catalog</a> (list with examples and discussion pages)
+</ul>
+
+<h2>Refactoring</h2>
+<ul>
+  <li><a href="http://www.irregularwebcomic.net/comic.php?comic=687">What is refactoring?</a> - restructuring existing computer code without changing its external behavior
+  <li>Why Refactor?
+    <ul>
+      <li>Refactoring improves the design of software -without refactoring, a design will "decay" as people make changes to a software system </li>
+      <li>Refactoring makes software easier to understand - because structure is improved, duplicated code is eliminated, etc. </li>
+      <li>Refactoring helps you find bugs - refactoring promotes a deep understanding of the code at hand, and this understanding aids the programmer in finding bugs and anticipating potential bugs </li>
+      <li>Refactoring helps you program faster - because a good design enables progress </li>
+	</ul>
+  <li>When to refactor?
+	<ul>
+		<li>Outcomes from tools that do static code analysis
+		<li>When you know the initial implementation was poorly planned or was rushed
+		<li>When your boss says so
+	</ul>
+  <li><b>Choosing what to refactor and how to do it</b>
+	<ul>
+		<li>Files with poor metrics from code analysis
+		<li>Code smells
+	</ul>
+</ul>
+
+<h2>Technical Debt</h2>
+<ul>
+	<li><a href="http://en.wikipedia.org/wiki/Technical_debt">Wikipedia</a> - eventual consequences of poor software architecture and software development within a codebase</li>
+    <li><a href="http://martinfowler.com/bliki/TechnicalDebt.html">Martin Fowler on technical debt</a></li>
+    <li><a href="http://martinfowler.com/bliki/TechnicalDebtQuadrant.html">Quadrants</a> <img src="techdebtquadrant.png" alt="Technical Debt Quadrants - Martin Fowler" longdesc="http://martinfowler.com/bliki/TechnicalDebtQuadrant.html" height="384" width="512"></li>
+</ul>
+
+<h2>Other thoughts and opinions on code quality, some with code samples</h2>
+<ul>
+	<li><a href="http://www.hanselman.com/blog/EverythingsBrokenAndNobodysUpset.aspx">All Software Sucks</a>, but I care.
+    <li><a href="http://christianheilmann.com/2013/01/27/drive-by-criticism-must-die/">Constructive Criticism</a>
+    <li><a href="http://www.javaworld.com/community/?q=node/8649">Software Craftmanship</a> + first few responses
+	<li>How not to program: <a href="http://www.dreamincode.net/forums/topic/194878-xna-animated-sprite/">http://www.dreamincode.net/forums/topic/194878-xna-animated-sprite/</a> - Note, this code is not bad by current practices. There is much worse code.
+	<li><a href="http://thc.org/root/phun/unmaintain.html">Blog</a> with a counter argument to writing clean code
+	<li><a href="http://www.codeproject.com/Articles/539179/Some-practices-to-write-better-Csharp-Net-code">Best practices</a> for naming conventions in C#
+	<li>Some <a href="http://programmers.blogoverflow.com/2012/08/20-controversial-programming-opinions/">random blog</a> on being a professional programmer and the "discussion" and lack of comprehension in some of the comments.
+</ul>
+
+</body>
+</html>
