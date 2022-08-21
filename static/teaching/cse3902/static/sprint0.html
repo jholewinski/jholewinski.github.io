@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>CSE 3902 Sprint #0</title>
+</head>
+<body>
+<h1>Getting Started with MonoGame</h1>
+<h1>CSE 3902 Sprint #0</h1>
+<p>
+<p><strong>Objective:</strong> This is an individual assignment to get everyone comfortable using Visual Studio, .NET, C#, and MonoGame, as well as designing and implementing objects and interfaces.
+Advanced students may also make use of the Command design pattern.
+The core requirements of this Sprint are content loading, sprite drawing, and input handling, in an event loop.</p>
+
+This assignment has two due dates. 
+You are expected to turn in whatever you have completed by the first deadline, 
+but will be allowed to turn in your work again without a late penalty as long as the resubmission is turned in by the second deadline.
+If you completly finish the assignment by the first deadline you will earn a 5% extra credit bonus, possibly going over 100% for the assignment.<br><br>
+<b>First (early bonus) deadline</b>: Friday 9/2 by 11:59pm<br>
+<b>Second deadline</b>: Saturday 9/10 by 11:59pm. Submissions on Sunday 9/11 will still be accepted, but with a 5% late penalty
+
+<h2>Step 1) Software setup</h2>
+
+<p>It is <b>recommended that you use a device running Windows</b> for this course. 
+There is a native option for Macs, but we can't help with troubleshooting them as much.
+Virtual machines are an option but tend to run much slower than you'd prefer, 
+so using a second partition for Windows is recommended if you don't have a Windows PC already. 
+Machines in CL112 may or may not have the most up to date versions of the software we are using.
+We'll be using Visual Studio 2022 and Monogame version 3.8.1 (or later, whatever the MonoGame VS extension provides)
+</p>
+
+<p>As of around 2018, OSU's liscening no longer includes the Enterprise version of Visual Studio for installing on personal machines, 
+so you can proceed right to <a href="https://docs.monogame.net/articles/getting_started/0_getting_started.html">Monogame's Getting Started page</a> 
+as it now includes steps on installing Visual Studio with the necessary modules/plug-ins.
+[Au'22 note - the icons for the MonoGame project templates in Visual Studio were missing, but still worked for creating a project of the type.
+Note that you have to restart Visual Studio to finish installation of an the MonoGame extension] 
+You might be able to get a 90-day trial of the Pro/Enterprise version of VS, but this is slightly too short for the whole semester. 
+If you want to use the more robust version (<a href="https://visualstudio.microsoft.com/vs/compare/">comparing versions</a>) this semester then you can use the 
+Community version for Sprint0 and wait until the start of Sprint2 to install a temporary trial.
+In any case, <b>start early</b> as installation and setup may take several hours due to file sizes and configuration time.</p>
+<p>Legacy link to OSU's Microsoft academic services (<a href="https://aka.ms/devtoolsforteaching">link</a>) as it has other software you may find useful for other courses</p>
+<p><b>Miscellaneous troubleshooting - read these before you ask for help on the install!</b>
+  <ul>
+    <li>The most common of unexpected problems encountered here stem from Visual Studio behaving poorly when dealing with white space in file names when building MonoGame projects,
+	the first reported error is usually: "...Xna namespace cannot be found..." when this occurs.
+	Make sure your <b>windows username</b> and <b>name of the Visual Studio project you create</b> do not contain whitespace characters to avoid this problem. 
+	[Au'22 install note: I tried this with "faulty" username and was able to build and run a mostly blank instantiation of the temple, so this might no longer be an issue.]
+	In short, when you name you project don't include whitespace, 
+	and if your windows username has whitespace in it, due to how windows handles username changes, 
+	it is easier to make a new windows user than rename your existing profile 
+	(the rename option in settings doesn't automatically remove the whitespace in the file system directories only what the UI displays)
+	
+	<li>To use the MGCB Editor tool for building of content projects, you may need to install some <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">recent C++ redistributables</a>.
+	If your development machine is one you also use for gaming you may already have some of these installed without realizing it. 
+	Based on setup in previous semesters, we recommend downloading and running the 2012, 2013, and 2019 packages. The most common error message that should cue you that you need to do these steps is
+	"Unable to build content - Cannot load FreeImage"; more info on this error can be found <a href="https://github.com/MonoGame/MonoGame/issues/3556"> here </a> and <a href="http://community.monogame.net/t/solved-freeimage-dll-not-found/8221/9">here</a>
+	<li>For students working out of Caldwell labs, the project templates may not be showing up (we had this issue with MonoGame 3.7.1 but might not with 3.8) 
+	If that is the case, contact me and I'll create and post an instance of an empty starter project for you to use to get started.
+	<li>Also for students working out of Caldwell labs, note that Visual Studio is used, not Visual Studio Blend.
+	<li>The MonoGame community isn't incredibly large, but you might find additional install and setup help on their <a href="https://community.monogame.net/">forums</a>.
+	<li>For those running Windows as a virtual machine or for those with older laptops, you may need to change some settings if you get an error "no suitable graphics card found" when trying to run your executable.
+  Instructions on that can be found <a href="http://rbwhitaker.wikidot.com/xna-project-template">here</a> under the heading Handling the HiDef Profile Error (HiDef Profile vs. Reach Profile).
+  </ul>
+  
+<h2>Step 2) Working with Monogame - tutorials</h2>
+  <p>For understanding the basics of working with MonoGame, there are two sets of tutorials you might find useful.
+  <ul>
+	<li>The first are the three official examples listed under the header <b>Building your game</b> off of the <a href="https://docs.monogame.net/articles/getting_started/0_getting_started.html">MonoGame getting started page</a>.
+	These cover what the starter code does, how to load images into the project using the MonoGame Content Builder Tool (MGCB Editor), and writing code that draws images.
+	<li>Since we'll also be drawing text using fonts, 
+	read through the "Fonts" section on <a href="https://docs.monogame.net/articles/content/using_mgcb_editor.html#fontsaddingttffontsmd">Using the MGCB Editor (anchor link directly to fonts section) </a>
+  </ul>
+  <p>Legacy tutorials - these use terms and have screenshots from an older version of MonoGame,
+  but include an example of more reusable code for sprite drawing that we'll look at in class. </p>
+  <ul>
+    <li><a href="http://rbwhitaker.wikidot.com/monogame-introduction-to-2d-graphics">http://rbwhitaker.wikidot.com/monogame-introduction-to-2d-graphics</a>(overlaps with the first set of tutorials)</li>
+	<li><a href="http://rbwhitaker.wikidot.com/monogame-project-template">http://rbwhitaker.wikidot.com/monogame-project-template</a>(overlaps with the first set of tutorials)</li>
+    <li><a href="http://rbwhitaker.wikidot.com/monogame-managing-content">http://rbwhitaker.wikidot.com/monogame-managing-content</a>(overlaps with the first set of tutorials,has the largest difference between its examples and the current version of MonoGame)</li>
+    <li><a href="http://rbwhitaker.wikidot.com/monogame-spritebatch-basics">http://rbwhitaker.wikidot.com/monogame-spritebatch-basics</a>(overlaps with the first set of tutorials)</li>
+    <li><a href="http://rbwhitaker.wikidot.com/monogame-texture-atlases-1">http://rbwhitaker.wikidot.com/monogame-texture-atlases-1</a> ; has more robust code than the previous set of examples. Some details of this one will be covered in lecture.</li>
+	<li><a href="http://rbwhitaker.wikidot.com/monogame-drawing-text-with-spritefonts">http://rbwhitaker.wikidot.com/monogame-drawing-text-with-spritefonts</a> ; the code for drawing text hasn't changed, but the screenshots for including SpriteFonts in content management will look slightly different than what you'll see with the MGCCB editor</li>
+  </ul>
+  
+<h2>Step 3) Programming assignment</h2>
+<img src="sprint0.png"></img>
+  <p>Your task is to implement a very simple interactive program. At run-time, the user should be able to select between display of 
+  a motionless and non-animated sprite (ex: luigi standing still),
+  a motionless and animated sprite (ex: luigi running in place),
+  a moving and non-animated sprite (ex: dead luigi floating up and down),
+  and a moving and animated sprite (ex: luigi running right and left).
+  <b>Note: only one of these sprites should be visible at a time</b>. The user should also be able to quit the program with a key press. Additionally, you should use a text sprite to display your name and the source of your art assets.
+  One significant purpose of this assignment is to gain experience using interfaces (designing them, implementing them, and using them like objects). Carefully read and follow these requirements:</p>
+  <ul>
+  <li>Create some interfaces:
+	<ul>
+		<li>Create an interface for any and all controllers, IController.</li>
+		<li>Create an interface for any and all sprites, ISprite.</li>
+	    <li>Optionally, using the <a href="https://www.dofactory.com/net/command-design-pattern">Command Design Pattern</a>, create a ICommand interface.</li>
+	</ul>
+	<li>Then make some concrete classes that implement the interfaces:
+	<ul>
+		<li>Implement a concrete class for a Keyboard controller.</li>
+		<li>Implement a concrete class for a Mouse controller.</li>
+		<li>Implement a concrete class for the non-moving, non-animated sprite.</li>
+		<li>Implement a concrete class for the non-moving, animated sprite.</li>
+		<li>Implement a concrete class for the moving, non-animated sprite.</li>
+		<li>Implement a concrete class for the moving, animated sprite.</li>
+		<li>Implement a concrete class for a text sprite.</li>
+		<li>If you made an ICommand interface, implement a concrete class for each Command the user can trigger: one for each different sprite that can be set and one to quit the game.</li>
+	</ul>
+  	<li>For keyboard input:
+	<ul>
+    <li>Have a key (0) to quit.</li>
+    <li>Have a key (1) that has the program display a sprite with only one frame of animation and a fixed position. This should be the initial state of the program.</li>
+	<li>Have a key (2) that has the program display an animated sprite, but with a fixed position.</li>
+    <li>Have a key (3) that has the program display a sprite with only one frame of animation, but moves the sprite up and down on screen.</li>
+    <li>Have a key (4) that has the program display an animated sprite, moving to the left and right on screen.</li>
+	<li>Note on sprite motion: Instead of the moving sprites periodically changing direction, you may opt to have the sprite move in only one direction and have its position wrap around to the opposite edge once it reaches the end of the screen.
+	</ul>
+	<li>For mouse input:
+	<ul>
+	    <li>Left mouse click, when the mouse cursor is in the top left quarter of the window, should display a sprite with only one frame of animation and a fixed position (i.e. the same as pressing 1).</li>
+		<li>Left mouse click, when the mouse cursor is in the top right quarter of the window, should display an animated sprite, but with a fixed position (i.e. key 2).</li>
+		<li>Left mouse click, when the mouse cursor is in the bottom left quarter of the window, should display a sprite with only one frame of animation, but moves the sprite up and down on screen (i.e. key 3).</li>
+		<li>Left mouse click, when the mouse cursor is in the bottom right quarter of the window, should display an animated sprite, moving to the left and right on screen (i.e. key 4).
+		<li>A visual example of these four portions, labeled as Quad#, is shown below.</li>
+		<li>Right-mouse click should quit.</li>
+	</ul>
+	<li>Finally, in the main game class, use the interfaces to animate/update the current sprite. If you are not using commands you will also need logic to switch between sprites and quit in the main game class (or in the concrete controllers).</li>
+  </ul>
+  <p><img src="sprint0-quadrants.png"><br>Illustration of what is meant by quad. You don't have to draw the lines or Quad# text in the actual program</p>
+	<p>Design suggestions:</p>
+	<ul>
+	<li>Include a Dictionary in the Keyboard controller class that maps keys (buttons) to concrete instances of ICommands (based on the input keys/buttons listed above).</li>
+	<li>In the Update method of the controllers, for each input key/button that is pressed, create and execute its corresponding Command.</li>
+	<li>Alternatively, for the controller code if you are not using Commands, consider splitting up input logic into multiple classes (in this case QuittingController and SpriteSettingController)
+    <li>In the Game (main) class, only use the interfaces in the Update and Draw methods.</li>
+	</ul>
+
+  <p>Sprite Resources:</p>
+  <ul>
+    <li>You can find spritesheets for Super Mario Bros. and The Legend of Zelda off of links on the <a href="gameresources.html">game resources page</a>.</li>
+	<li>You are free to use other spritesheets, but do not use a spritesheet that is already is the format of a texture atlas - the learning objective here is in figuring out how to work with any spritesheet, not just 'convenient' ones.
+	You may use a spritesheet formatted as a texture atlas if you edit the image to have this format yourself - include a before and after image in your submission if you do this.
+  </ul>
+
+<p><strong>Work to turn in:</strong></p>
+<ul>
+  <li>Do a Build->Clean in Visual Studio, and then without rebuilding, zip/compress the directory containing your solution.
+  <li>It is recommended that you unzip the file elsewhere, then build and run it to see if it is working correctly.
+  <li>Turn in zipped file on Carmen under the assignment page named "Sprint0".
+  <li>The dropbox is set up to accept multiple submissions, only the latest submission before the deadline will be graded.
+  <li><b>Start early and do not wait until the last minute to submit work!</b>
+</ul>
+<p><strong>Grading:</strong></p>
+
+<p>
+If you cannot complete enough functionality to reach 60% on this assignment, 
+you will have a difficult time being able to contribute on the team project. 
+You should be able to evaluate your work using the rubric provided below and reach out for help before the assignment's deadline if it looks like you will come up short.
+If you are not able to complete the assignment by the date of the resubmission option it is recommended that you consider dropping the course.
+</p>
+
+<p>Your grade on this assignment will be based on correctness, but you will also receive feedback on how you could improve upon the quality of your code. 
+<ul>
+  <li>Correctness (does it work)
+  <ul>
+	<li>Support of keyboard input - 20%
+	<li>Support of mouse input - 20%
+	<li>Support of the four sprites types - 10% each ; 40% total
+	<li>Support of text drawing for the application's credits - 20%
+  </ul>
+  <li>Code quality (is the code simple, readable, maintainable, and reusable)
+	<ul>
+		<li><b>Readability:</b> Follow C# capitalization conventions, as shown <a href="http://msdn.microsoft.com/en-us/library/ms229043%28v=vs.100%29.aspx">here</a>
+		<ul>To summarize:
+			<li>Most names will be in PascalCase where the first letter is capitalized along with the start of each word concatenated to it.
+			<li>The exceptions where camelCase (first letter lowercase then capitalize the start of concatenated words) is used for parameterNames and classMembers
+			<li>You do not need to use '_' for private members.
+		</ul>
+        <li><b>Readability:</b> Use meaningful names for interfaces, classes, and variables so that you do not need or have any comments explaining them
+		<li><b>Maintainability:</b> The interfaces should be complete, but as simple as possible
+		<li><b>Maintainability:</b> Using interfaces in the Game class instead of the concrete types
+		<li><b>Simplicity and Reusability:</b> Following the design suggestions in the list of objects and interfaces above (if you want to come up with your own design talk to the instructor first)
+    </ul>
+</ul>
+
+</body>
+</html>
