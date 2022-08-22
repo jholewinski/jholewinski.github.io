@@ -81,29 +81,29 @@
 discovered a rather interesting quirk in the handling of braces within
 UnrealScript. All of the sample code I read use a syntax style that places
 opening braces on the following line:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>    event </span><span style="color:#8fa1b3;">PostBeginPlay</span><span>()
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>    event PostBeginPlay()
 </span><span>    {
-</span><span>      </span><span style="color:#65737e;">// Do something
+</span><span>      </span><span style="color:#608b4e;">// Do something
 </span><span>    }
 </span></code></pre>
 <p>However, my typical style places the opening brace on the current line:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>    event </span><span style="color:#8fa1b3;">PostBeginPlay</span><span>() {
-</span><span>      </span><span style="color:#65737e;">// Do something
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>    event PostBeginPlay() {
+</span><span>      </span><span style="color:#608b4e;">// Do something
 </span><span>    }
 </span></code></pre>
 <p>Unfortunately, this does not seem to work for <code>defaultproperties</code> blocks. If you
 place the brace on the same line, the compiler will not give you any warnings or
 errors, but the entire <code>defaultproperties</code> block is just ignored!</p>
 <p>So this code works:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>    defaultproperties
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>    defaultproperties
 </span><span>    {
-</span><span>      PlayerControllerClass=</span><span style="color:#b48ead;">class</span><span>&#39;</span><span style="color:#a3be8c;">MyPlayerController</span><span>&#39;
+</span><span>      PlayerControllerClass=</span><span style="color:#569cd6;">class</span><span style="color:#d69d85;">&#39;MyPlayerController&#39;
 </span><span>    }
 </span></code></pre>
 <p>while the following code compiles but silently just ignores all of the contained
 settings:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>    defaultproperties {
-</span><span>      PlayerControllerClass=</span><span style="color:#b48ead;">class</span><span>&#39;</span><span style="color:#a3be8c;">MyPlayerController</span><span>&#39;
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>    defaultproperties {
+</span><span>      PlayerControllerClass=</span><span style="color:#569cd6;">class</span><span style="color:#d69d85;">&#39;MyPlayerController&#39;
 </span><span>    }
 </span></code></pre>
 <p>I was banging my head on the wall for at least an hour figuring this one out!</p>

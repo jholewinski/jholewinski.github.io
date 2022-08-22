@@ -86,12 +86,12 @@ appreciate some of the cool things one can do with C++ templates.</p>
 <h1 id="the-problem">The Problem</h1>
 <p>The problem was simple. Suppose you have a C++ template class/struct that is
 parameterized by a single type, e.g.</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">typename</span><span> T&gt;
-</span><span>   </span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">my_data </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">     </span><span style="color:#65737e;">// ...
-</span><span style="color:#eff1f5;">   </span><span style="color:#b48ead;">private</span><span style="color:#eff1f5;">:
-</span><span style="color:#eff1f5;">     T element_;
-</span><span style="color:#eff1f5;">   }</span><span>;
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#569cd6;">template</span><span>&lt;</span><span style="color:#569cd6;">typename</span><span> T&gt;
+</span><span>   </span><span style="color:#569cd6;">class </span><span>my_data {
+</span><span>     </span><span style="color:#608b4e;">// ...
+</span><span>   </span><span style="color:#569cd6;">private</span><span>:
+</span><span>     T element_;
+</span><span>   };
 </span></code></pre>
 <h1 id="the-solution">The Solution</h1>
 <p>Now, the question is, &quot;how do I write a method for this class/struct that maps
@@ -105,27 +105,27 @@ solution is certainly valid and may be the best way to approach the problem in
 another language such as C# or Java. After pondering the &quot;C++&quot; solution to the
 problem for a few minutes, my colleague and I came up with a fairly elegant
 solution involving templates. Or, at least I found it quite elegant.</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#65737e;">/**
-</span><span style="color:#65737e;">    * This struct wrappers the MPI data type value for the given C++ type.
-</span><span style="color:#65737e;">    *
-</span><span style="color:#65737e;">    * Any valid MPI data type value must have a corresponding explicit template
-</span><span style="color:#65737e;">    * instantiation below.
-</span><span style="color:#65737e;">    */
-</span><span>   </span><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">typename</span><span> T&gt;
-</span><span>   </span><span style="color:#b48ead;">struct </span><span>mpi_type_wrapper {
-</span><span>     </span><span style="color:#b48ead;">int</span><span> mpi_type;
-</span><span>     </span><span style="color:#8fa1b3;">mpi_type_wrapper</span><span>();
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#608b4e;">/**
+</span><span style="color:#608b4e;">    * This struct wrappers the MPI data type value for the given C++ type.
+</span><span style="color:#608b4e;">    *
+</span><span style="color:#608b4e;">    * Any valid MPI data type value must have a corresponding explicit template
+</span><span style="color:#608b4e;">    * instantiation below.
+</span><span style="color:#608b4e;">    */
+</span><span>   </span><span style="color:#569cd6;">template</span><span>&lt;</span><span style="color:#569cd6;">typename</span><span> T&gt;
+</span><span>   </span><span style="color:#569cd6;">struct </span><span>mpi_type_wrapper {
+</span><span>     </span><span style="color:#569cd6;">int</span><span> mpi_type;
+</span><span>     mpi_type_wrapper();
 </span><span>   };
 </span><span>
-</span><span>   </span><span style="color:#65737e;">// Explicit instantiation for `float&#39;
-</span><span>   </span><span style="color:#b48ead;">template </span><span>&lt;&gt;
-</span><span>   mpi_type_wrapper::</span><span style="color:#8fa1b3;">mpi_type_wrapper</span><span>()
-</span><span>   : </span><span style="color:#bf616a;">mpi_type</span><span>(MPI_FLOAT) {}
+</span><span>   </span><span style="color:#608b4e;">// Explicit instantiation for `float&#39;
+</span><span>   </span><span style="color:#569cd6;">template </span><span>&lt;&gt;
+</span><span>   mpi_type_wrapper::mpi_type_wrapper()
+</span><span>   </span><span style="color:#569cd6;">: </span><span>mpi_type(MPI_FLOAT) {}
 </span><span>
-</span><span>   </span><span style="color:#65737e;">// Explicit instantiation for `double&#39;
-</span><span>   </span><span style="color:#b48ead;">template </span><span>&lt;&gt;
-</span><span>   mpi_type_wrapper::</span><span style="color:#8fa1b3;">mpi_type_wrapper</span><span>()
-</span><span>   : </span><span style="color:#bf616a;">mpi_type</span><span>(MPI_DOUBLE) {}
+</span><span>   </span><span style="color:#608b4e;">// Explicit instantiation for `double&#39;
+</span><span>   </span><span style="color:#569cd6;">template </span><span>&lt;&gt;
+</span><span>   mpi_type_wrapper::mpi_type_wrapper()
+</span><span>   </span><span style="color:#569cd6;">: </span><span>mpi_type(MPI_DOUBLE) {}
 </span></code></pre>
 <p>The mpi_type_wrapper struct is a convenient way to convert an arbitrary C++
 type to an equivalent MPI type. All one has to do is declare a local variable of
@@ -144,44 +144,44 @@ appropriate MPI_* enumeration value. There is no memory overhead associated
 with explicitly keeping a map at run-time, nor any time overhead of performing a
 map look-up. The final code just uses the constant value! If you do not believe
 me, check out this example:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#65737e;">/**
-</span><span style="color:#65737e;">    * Some template class that needs to know the MPI_DataType value for its
-</span><span style="color:#65737e;">    * template parameter type.
-</span><span style="color:#65737e;">    */
-</span><span>   </span><span style="color:#b48ead;">template</span><span>&lt;</span><span style="color:#b48ead;">typename</span><span> T&gt;
-</span><span>   </span><span style="color:#b48ead;">struct </span><span>some_type {
-</span><span>     </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">printType</span><span>() {
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#608b4e;">/**
+</span><span style="color:#608b4e;">    * Some template class that needs to know the MPI_DataType value for its
+</span><span style="color:#608b4e;">    * template parameter type.
+</span><span style="color:#608b4e;">    */
+</span><span>   </span><span style="color:#569cd6;">template</span><span>&lt;</span><span style="color:#569cd6;">typename</span><span> T&gt;
+</span><span>   </span><span style="color:#569cd6;">struct </span><span>some_type {
+</span><span>     </span><span style="color:#569cd6;">void </span><span>printType() {
 </span><span>       mpi_type_wrapper&lt;T&gt; wrap;
 </span><span>
-</span><span>       </span><span style="color:#96b5b4;">printf</span><span>(&quot;</span><span style="color:#a3be8c;">My Type: </span><span style="color:#d08770;">%d</span><span>&quot;, wrap.</span><span style="color:#bf616a;">mpi_type</span><span>);
+</span><span>       printf(</span><span style="color:#d69d85;">&quot;My Type: </span><span style="color:#b4cea8;">%d</span><span style="color:#d69d85;">&quot;</span><span>, wrap.mpi_type);
 </span><span>     };
 </span><span>   };
 </span><span>
-</span><span>   </span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>() {
-</span><span>     some_type&lt;</span><span style="color:#b48ead;">float</span><span>&gt; floatClass;
-</span><span>     some_type&lt;</span><span style="color:#b48ead;">double</span><span>&gt; doubleClass;
+</span><span>   </span><span style="color:#569cd6;">int </span><span>main() {
+</span><span>     some_type&lt;</span><span style="color:#569cd6;">float</span><span>&gt; floatClass;
+</span><span>     some_type&lt;</span><span style="color:#569cd6;">double</span><span>&gt; doubleClass;
 </span><span>
-</span><span>     floatClass.</span><span style="color:#bf616a;">printType</span><span>();
-</span><span>     doubleClass.</span><span style="color:#bf616a;">printType</span><span>();
+</span><span>     floatClass.printType();
+</span><span>     doubleClass.printType();
 </span><span>
-</span><span>     </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>     </span><span style="color:#569cd6;">return </span><span style="color:#b5cea8;">0</span><span>;
 </span><span>   }
 </span></code></pre>
 <p>And the generated code?</p>
-<pre data-lang="nasm" style="background-color:#2b303b;color:#c0c5ce;" class="language-nasm "><code class="language-nasm" data-lang="nasm"><span style="color:#8fa1b3;">   _main:
-</span><span style="color:#8fa1b3;">     pushq %</span><span style="color:#bf616a;">rbx
-</span><span style="color:#8fa1b3;">     leaq L_.</span><span style="color:#b48ead;">str</span><span style="color:#8fa1b3;">(%</span><span style="color:#bf616a;">rip</span><span style="color:#8fa1b3;">)</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rbx
-</span><span style="color:#8fa1b3;">     </span><span style="color:#b48ead;">movq </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rbx</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rdi
-</span><span style="color:#8fa1b3;">     xorl %</span><span style="color:#bf616a;">esi</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">esi
-</span><span style="color:#8fa1b3;">     xorb %</span><span style="color:#bf616a;">al</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">al
-</span><span style="color:#8fa1b3;">     callq _printf
-</span><span style="color:#8fa1b3;">     movl </span><span style="color:#96b5b4;">$</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">esi
-</span><span style="color:#8fa1b3;">     </span><span style="color:#b48ead;">movq </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rbx</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">rdi
-</span><span style="color:#8fa1b3;">     xorb %</span><span style="color:#bf616a;">al</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">al
-</span><span style="color:#8fa1b3;">     callq _printf
-</span><span style="color:#8fa1b3;">     xorl %</span><span style="color:#bf616a;">eax</span><span>, </span><span style="color:#8fa1b3;">%</span><span style="color:#bf616a;">eax
-</span><span style="color:#8fa1b3;">     popq %</span><span style="color:#bf616a;">rbx
-</span><span style="color:#8fa1b3;">     </span><span style="color:#b48ead;">ret
+<pre data-lang="nasm" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-nasm "><code class="language-nasm" data-lang="nasm"><span>   _main:
+</span><span>     pushq %rbx
+</span><span>     leaq L_.</span><span style="color:#569cd6;">str</span><span>(%rip), %rbx
+</span><span>     </span><span style="color:#569cd6;">movq </span><span>%rbx, %rdi
+</span><span>     xorl %esi, %esi
+</span><span>     xorb %al, %al
+</span><span>     callq _printf
+</span><span>     movl $</span><span style="color:#b4cea8;">1</span><span>, %esi
+</span><span>     </span><span style="color:#569cd6;">movq </span><span>%rbx, %rdi
+</span><span>     xorb %al, %al
+</span><span>     callq _printf
+</span><span>     xorl %eax, %eax
+</span><span>     popq %rbx
+</span><span>     </span><span style="color:#569cd6;">ret
 </span></code></pre>
 <h1 id="conclusion">Conclusion</h1>
 <p>While this example is probably trivial for most experienced C++ programmers out

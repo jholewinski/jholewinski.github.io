@@ -100,29 +100,29 @@ rendering. On the Qt side, the key to eliminating flickering or UI
 artifacts is the <code>paintEngine()</code> method.  We need a way to tell Qt
 that we want complete control over drawing for our widget, so we can
 override <code>paintEngine()</code> in our widget definition:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">D3DRenderWidget </span><span style="color:#eff1f5;">: </span><span style="color:#b48ead;">public </span><span style="color:#a3be8c;">QWidget </span><span style="color:#eff1f5;">{
-</span><span style="color:#eff1f5;">     Q_OBJECT
-</span><span style="color:#eff1f5;">     </span><span style="color:#bf616a;">Q_DISABLE_COPY</span><span style="color:#eff1f5;">(D3DRenderWidget)
-</span><span style="color:#eff1f5;">   </span><span style="color:#b48ead;">public</span><span style="color:#eff1f5;">:
-</span><span style="color:#eff1f5;">     </span><span style="color:#8fa1b3;">D3DRenderWidget</span><span style="color:#eff1f5;">(QWidget</span><span>* </span><span style="color:#bf616a;">parent </span><span>= </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">     </span><span style="color:#b48ead;">virtual </span><span style="color:#8fa1b3;">~D3DRenderWidget</span><span style="color:#eff1f5;">();
-</span><span style="color:#eff1f5;">     </span><span style="color:#b48ead;">virtual</span><span style="color:#eff1f5;"> QPaintEngine</span><span>* </span><span style="color:#8fa1b3;">paintEngine</span><span style="color:#eff1f5;">() </span><span style="color:#b48ead;">const </span><span style="color:#eff1f5;">{ </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">NULL</span><span style="color:#eff1f5;">; }
-</span><span style="color:#eff1f5;">   </span><span style="color:#b48ead;">protected</span><span style="color:#eff1f5;">:
-</span><span style="color:#eff1f5;">     </span><span style="color:#b48ead;">virtual void </span><span style="color:#8fa1b3;">resizeEvent</span><span style="color:#eff1f5;">(QResizeEvent</span><span>* </span><span style="color:#bf616a;">evt</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">     </span><span style="color:#b48ead;">virtual void </span><span style="color:#8fa1b3;">paintEvent</span><span style="color:#eff1f5;">(QPaintEvent</span><span>* </span><span style="color:#bf616a;">evt</span><span style="color:#eff1f5;">);
-</span><span style="color:#eff1f5;">   }</span><span>;
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#569cd6;">class </span><span>D3DRenderWidget : </span><span style="color:#569cd6;">public </span><span style="color:#4ec9b0;">QWidget </span><span>{
+</span><span>     Q_OBJECT
+</span><span>     Q_DISABLE_COPY(D3DRenderWidget)
+</span><span>   </span><span style="color:#569cd6;">public</span><span>:
+</span><span>     D3DRenderWidget(QWidget</span><span style="color:#569cd6;">* </span><span>parent = </span><span style="color:#569cd6;">NULL</span><span>);
+</span><span>     </span><span style="color:#569cd6;">virtual </span><span>~D3DRenderWidget();
+</span><span>     </span><span style="color:#569cd6;">virtual</span><span> QPaintEngine</span><span style="color:#569cd6;">* </span><span>paintEngine() </span><span style="color:#569cd6;">const </span><span>{ </span><span style="color:#569cd6;">return NULL</span><span>; }
+</span><span>   </span><span style="color:#569cd6;">protected</span><span>:
+</span><span>     </span><span style="color:#569cd6;">virtual void </span><span>resizeEvent(QResizeEvent</span><span style="color:#569cd6;">* </span><span>evt);
+</span><span>     </span><span style="color:#569cd6;">virtual void </span><span>paintEvent(QPaintEvent</span><span style="color:#569cd6;">* </span><span>evt);
+</span><span>   };
 </span></code></pre>
 <p>(Note that for ease of viewing, all of the fields have been removed from
 this code snippet)</p>
 <p>We also need to set a few attributes on our widget, as shown in the
 constructor:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   D3DRenderWidget::</span><span style="color:#8fa1b3;">D3DRenderWidget</span><span>(QWidget* </span><span style="color:#bf616a;">parent</span><span>)
-</span><span>     : </span><span style="color:#bf616a;">QWidget</span><span>(parent) {
-</span><span>     </span><span style="color:#bf616a;">setAttribute</span><span>(Qt::WA_PaintOnScreen, </span><span style="color:#d08770;">true</span><span>);
-</span><span>     </span><span style="color:#bf616a;">setAttribute</span><span>(Qt::WA_NativeWindow, </span><span style="color:#d08770;">true</span><span>);
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   D3DRenderWidget::D3DRenderWidget(QWidget</span><span style="color:#569cd6;">* </span><span>parent)
+</span><span>     </span><span style="color:#569cd6;">: </span><span>QWidget(parent) {
+</span><span>     setAttribute(Qt::WA_PaintOnScreen, </span><span style="color:#569cd6;">true</span><span>);
+</span><span>     setAttribute(Qt::WA_NativeWindow, </span><span style="color:#569cd6;">true</span><span>);
 </span><span>
-</span><span>     </span><span style="color:#65737e;">// Create Device
-</span><span>     </span><span style="color:#bf616a;">createDevice</span><span>();
+</span><span>     </span><span style="color:#608b4e;">// Create Device
+</span><span>     createDevice();
 </span><span>   }
 </span></code></pre>
 <p>First, we tell Qt that we do not want it to do any draw buffering for
@@ -136,24 +136,24 @@ can initialize the Direct3D 11 device we want. This procedure is mostly
 identical to setting up Direct3D in a raw window. The only difference is
 that we must use the <code>width()</code>, <code>height()</code>, and <code>winId()</code> methods
 to return the widget size and native window handle, respectively:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   swapChainDesc_.</span><span style="color:#bf616a;">BufferCount </span><span>= </span><span style="color:#d08770;">1</span><span>;
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">BufferDesc</span><span>.</span><span style="color:#bf616a;">Width </span><span>= </span><span style="color:#bf616a;">width</span><span>();
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">BufferDesc</span><span>.</span><span style="color:#bf616a;">Height </span><span>= </span><span style="color:#bf616a;">height</span><span>();
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">BufferDesc</span><span>.</span><span style="color:#bf616a;">Format </span><span>= DXGI_FORMAT_R8G8B8A8_UNORM;
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">BufferUsage </span><span>= DXGI_USAGE_RENDER_TARGET_OUTPUT;
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">SampleDesc</span><span>.</span><span style="color:#bf616a;">Count </span><span>= </span><span style="color:#d08770;">4</span><span>;
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">SampleDesc</span><span>.</span><span style="color:#bf616a;">Quality </span><span>= </span><span style="color:#d08770;">0</span><span>;
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">Windowed </span><span>= </span><span style="color:#d08770;">true</span><span>;
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">OutputWindow </span><span>= </span><span style="color:#bf616a;">winId</span><span>();
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">BufferDesc</span><span>.</span><span style="color:#bf616a;">RefreshRate</span><span>.</span><span style="color:#bf616a;">Numerator </span><span>= </span><span style="color:#d08770;">60</span><span>;
-</span><span>   swapChainDesc_.</span><span style="color:#bf616a;">BufferDesc</span><span>.</span><span style="color:#bf616a;">RefreshRate</span><span>.</span><span style="color:#bf616a;">Denominator </span><span>= </span><span style="color:#d08770;">1</span><span>;
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   swapChainDesc_.BufferCount = </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>   swapChainDesc_.BufferDesc.Width = width();
+</span><span>   swapChainDesc_.BufferDesc.Height = height();
+</span><span>   swapChainDesc_.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+</span><span>   swapChainDesc_.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+</span><span>   swapChainDesc_.SampleDesc.Count = </span><span style="color:#b5cea8;">4</span><span>;
+</span><span>   swapChainDesc_.SampleDesc.Quality = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>   swapChainDesc_.Windowed = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>   swapChainDesc_.OutputWindow = winId();
+</span><span>   swapChainDesc_.BufferDesc.RefreshRate.Numerator = </span><span style="color:#b5cea8;">60</span><span>;
+</span><span>   swapChainDesc_.BufferDesc.RefreshRate.Denominator = </span><span style="color:#b5cea8;">1</span><span>;
 </span></code></pre>
 <p>Everything else remains the same... pretty easy, huh? :)</p>
 <h1 id="handling-paint-events">Handling Paint Events</h1>
 <p>Remember the <code>paintEvent</code> override from the widget class definition?
 We can simply implement it with a call to some rendering function:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#b48ead;">void </span><span>D3DRenderWidget::</span><span style="color:#8fa1b3;">paintEvent</span><span>(QPaintEvent* </span><span style="color:#bf616a;">evt</span><span>) {
-</span><span>     </span><span style="color:#bf616a;">render</span><span>();
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#569cd6;">void </span><span>D3DRenderWidget::paintEvent(QPaintEvent</span><span style="color:#569cd6;">* </span><span>evt) {
+</span><span>     render();
 </span><span>   }
 </span></code></pre>
 <p>Here, <code>render()</code> is just some arbitrary method that uses the Direct3D
@@ -163,13 +163,13 @@ We can simply implement it with a call to some rendering function:</p>
 Direct3D 11 and Qt. To resize our swap chain, we need to release all
 device-allocated resources, and reallocate them. The procedure I follow
 is:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#b48ead;">void </span><span>D3DRenderWidget::</span><span style="color:#8fa1b3;">resizeEvent</span><span>(QResizeEvent* </span><span style="color:#bf616a;">evt</span><span>) {
-</span><span>     </span><span style="color:#bf616a;">releaseBuffers</span><span>();
-</span><span>     swapChain_-&gt;</span><span style="color:#bf616a;">ResizeBuffers</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">width</span><span>(), </span><span style="color:#bf616a;">height</span><span>(), swapChainDesc_.</span><span style="color:#bf616a;">BufferDesc</span><span>.</span><span style="color:#bf616a;">Format</span><span>, </span><span style="color:#d08770;">0</span><span>);
-</span><span>     swapChain_-&gt;</span><span style="color:#bf616a;">GetDesc</span><span>(&amp;swapChainDesc_);
-</span><span>     viewport_.</span><span style="color:#bf616a;">Width </span><span>= </span><span style="color:#bf616a;">width</span><span>();
-</span><span>     viewport_.</span><span style="color:#bf616a;">Height </span><span>= </span><span style="color:#bf616a;">height</span><span>();
-</span><span>     </span><span style="color:#bf616a;">createBuffers</span><span>();
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#569cd6;">void </span><span>D3DRenderWidget::resizeEvent(QResizeEvent</span><span style="color:#569cd6;">* </span><span>evt) {
+</span><span>     releaseBuffers();
+</span><span>     swapChain_-&gt;ResizeBuffers(</span><span style="color:#b5cea8;">1</span><span>, width(), height(), swapChainDesc_.BufferDesc.Format, </span><span style="color:#b5cea8;">0</span><span>);
+</span><span>     swapChain_-&gt;GetDesc(</span><span style="color:#569cd6;">&amp;</span><span>swapChainDesc_);
+</span><span>     viewport_.Width = width();
+</span><span>     viewport_.Height = height();
+</span><span>     createBuffers();
 </span><span>   }
 </span></code></pre>
 <p>We start by releasing all of the buffers we had allocated (vertex

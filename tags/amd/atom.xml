@@ -27,7 +27,7 @@ three values:&lt;&#x2F;p&gt;
 &lt;tr&gt;&lt;td&gt;3&lt;&#x2F;td&gt;&lt;td&gt;Save both the IL and ISA files in local directory.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;&#x2F;table&gt;
 &lt;p&gt;Therefore, if you run your OpenCL program with:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;    $ GPU_DUMP_DEVICE_KERNEL=3 .&#x2F;my-program
+&lt;pre style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot;&gt;&lt;code&gt;&lt;span&gt;    $ GPU_DUMP_DEVICE_KERNEL=3 .&#x2F;my-program
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;You will get two files in your local directory:
 &lt;code&gt;[kernel-name]_[device-name].il&lt;&#x2F;code&gt; and &lt;code&gt;[kernel-name]_[device-name].isa&lt;&#x2F;code&gt;, which

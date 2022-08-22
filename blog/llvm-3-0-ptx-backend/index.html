@@ -90,56 +90,56 @@ any questions to the llvm-dev mailing list.</p>
 compile OpenCL kernels.</p>
 <p>As an example, consider the following matrix multiplication routine written in
 OpenCL:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#b48ead;">#define </span><span>BLOCK_SIZE </span><span style="color:#d08770;">16
+<pre data-lang="c++" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c++ "><code class="language-c++" data-lang="c++"><span>   </span><span style="color:#9b9b9b;">#define BLOCK_SIZE </span><span style="color:#b5cea8;">16
 </span><span>
 </span><span>   __kernel
-</span><span>   </span><span style="color:#b48ead;">void </span><span style="color:#8fa1b3;">matmul</span><span>(__global </span><span style="color:#b48ead;">float</span><span>* </span><span style="color:#bf616a;">A</span><span>, __global </span><span style="color:#b48ead;">float</span><span>* </span><span style="color:#bf616a;">B</span><span>, __global </span><span style="color:#b48ead;">float</span><span>* </span><span style="color:#bf616a;">C</span><span>) {
+</span><span>   </span><span style="color:#569cd6;">void </span><span>matmul(__global </span><span style="color:#569cd6;">float* </span><span>A, __global </span><span style="color:#569cd6;">float* </span><span>B, __global </span><span style="color:#569cd6;">float* </span><span>C) {
 </span><span>
-</span><span>     __local </span><span style="color:#b48ead;">float</span><span> scratchA[BLOCK_SIZE][BLOCK_SIZE];
-</span><span>     __local </span><span style="color:#b48ead;">float</span><span> scratchB[BLOCK_SIZE][BLOCK_SIZE];
+</span><span>     __local </span><span style="color:#569cd6;">float</span><span> scratchA[BLOCK_SIZE][BLOCK_SIZE];
+</span><span>     __local </span><span style="color:#569cd6;">float</span><span> scratchB[BLOCK_SIZE][BLOCK_SIZE];
 </span><span>
-</span><span>     </span><span style="color:#b48ead;">int</span><span> globalX = </span><span style="color:#bf616a;">get_global_id</span><span>(</span><span style="color:#d08770;">0</span><span>);
-</span><span>     </span><span style="color:#b48ead;">int</span><span> globalY = </span><span style="color:#bf616a;">get_global_id</span><span>(</span><span style="color:#d08770;">1</span><span>);
-</span><span>     </span><span style="color:#b48ead;">int</span><span> size = </span><span style="color:#bf616a;">get_global_size</span><span>(</span><span style="color:#d08770;">0</span><span>);
-</span><span>     </span><span style="color:#b48ead;">int</span><span> k;
-</span><span>     </span><span style="color:#b48ead;">float</span><span> sum = </span><span style="color:#d08770;">0.0</span><span style="color:#b48ead;">f</span><span>;
-</span><span>     </span><span style="color:#b48ead;">int</span><span> numBlocks = size / BLOCK_SIZE;
-</span><span>     </span><span style="color:#b48ead;">int</span><span> b;
+</span><span>     </span><span style="color:#569cd6;">int</span><span> globalX = get_global_id(</span><span style="color:#b5cea8;">0</span><span>);
+</span><span>     </span><span style="color:#569cd6;">int</span><span> globalY = get_global_id(</span><span style="color:#b5cea8;">1</span><span>);
+</span><span>     </span><span style="color:#569cd6;">int</span><span> size = get_global_size(</span><span style="color:#b5cea8;">0</span><span>);
+</span><span>     </span><span style="color:#569cd6;">int</span><span> k;
+</span><span>     </span><span style="color:#569cd6;">float</span><span> sum = </span><span style="color:#b5cea8;">0.0</span><span style="color:#569cd6;">f</span><span>;
+</span><span>     </span><span style="color:#569cd6;">int</span><span> numBlocks = size / BLOCK_SIZE;
+</span><span>     </span><span style="color:#569cd6;">int</span><span> b;
 </span><span>
-</span><span>     </span><span style="color:#b48ead;">int</span><span> tidX = </span><span style="color:#bf616a;">get_local_id</span><span>(</span><span style="color:#d08770;">0</span><span>);
-</span><span>     </span><span style="color:#b48ead;">int</span><span> tidY = </span><span style="color:#bf616a;">get_local_id</span><span>(</span><span style="color:#d08770;">1</span><span>);
+</span><span>     </span><span style="color:#569cd6;">int</span><span> tidX = get_local_id(</span><span style="color:#b5cea8;">0</span><span>);
+</span><span>     </span><span style="color:#569cd6;">int</span><span> tidY = get_local_id(</span><span style="color:#b5cea8;">1</span><span>);
 </span><span>
-</span><span>     </span><span style="color:#b48ead;">for</span><span>(b = </span><span style="color:#d08770;">0</span><span>; b &lt; numBlocks; ++b) {
-</span><span>       </span><span style="color:#65737e;">// Populate a cache for A/B
-</span><span>       </span><span style="color:#b48ead;">int</span><span> x;
-</span><span>       </span><span style="color:#b48ead;">int</span><span> y;
+</span><span>     </span><span style="color:#569cd6;">for</span><span>(b = </span><span style="color:#b5cea8;">0</span><span>; b &lt; numBlocks; ++b) {
+</span><span>       </span><span style="color:#608b4e;">// Populate a cache for A/B
+</span><span>       </span><span style="color:#569cd6;">int</span><span> x;
+</span><span>       </span><span style="color:#569cd6;">int</span><span> y;
 </span><span>
-</span><span>       x = b * BLOCK_SIZE + tidX;
+</span><span>       x = b </span><span style="color:#569cd6;">*</span><span> BLOCK_SIZE + tidX;
 </span><span>       y = globalY;
 </span><span>
-</span><span>       scratchA[tidY][tidX] = A[y * size + x];
+</span><span>       scratchA[tidY][tidX] = A[y </span><span style="color:#569cd6;">*</span><span> size + x];
 </span><span>
 </span><span>       x = globalX;
-</span><span>       y = b * BLOCK_SIZE + tidY;
+</span><span>       y = b </span><span style="color:#569cd6;">*</span><span> BLOCK_SIZE + tidY;
 </span><span>
-</span><span>       scratchB[tidY][tidX] = B[y * size + x];
+</span><span>       scratchB[tidY][tidX] = B[y </span><span style="color:#569cd6;">*</span><span> size + x];
 </span><span>
-</span><span>       </span><span style="color:#bf616a;">barrier</span><span>(CLK_LOCAL_MEM_FENCE);
+</span><span>       barrier(CLK_LOCAL_MEM_FENCE);
 </span><span>
-</span><span>       </span><span style="color:#b48ead;">for</span><span>(k = </span><span style="color:#d08770;">0</span><span>; k &lt; BLOCK_SIZE; ++k) {
-</span><span>         </span><span style="color:#b48ead;">float</span><span> myA;
-</span><span>         </span><span style="color:#b48ead;">float</span><span> myB;
+</span><span>       </span><span style="color:#569cd6;">for</span><span>(k = </span><span style="color:#b5cea8;">0</span><span>; k &lt; BLOCK_SIZE; ++k) {
+</span><span>         </span><span style="color:#569cd6;">float</span><span> myA;
+</span><span>         </span><span style="color:#569cd6;">float</span><span> myB;
 </span><span>
 </span><span>         myA = scratchA[tidY][k];
 </span><span>         myB = scratchB[k][tidX];
 </span><span>
-</span><span>         sum += myA * myB;
+</span><span>         sum += myA </span><span style="color:#569cd6;">*</span><span> myB;
 </span><span>       }
 </span><span>
-</span><span>       </span><span style="color:#bf616a;">barrier</span><span>(CLK_LOCAL_MEM_FENCE);
+</span><span>       barrier(CLK_LOCAL_MEM_FENCE);
 </span><span>     }
 </span><span>
-</span><span>     C[globalY * size + globalX] = sum;
+</span><span>     C[globalY </span><span style="color:#569cd6;">*</span><span> size + globalX] = sum;
 </span><span>   }
 </span></code></pre>
 <p>We can use the <code>libclc</code>_ library, written by Peter Collingbourne, to provide the
@@ -147,7 +147,7 @@ OpenCL built-in functions for Clang. This library will map OpenCL built-in
 functions to target-specific functions in the LLVM IR that the PTX back-end
 knows how to handle. If <code>$LIBCLC</code> points to the download of libclc, then you
 can invoke Clang with:</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>   clang -ccc-host-triple ptx32
+<pre style="background-color:#1e1e1e;color:#dcdcdc;"><code><span>   clang -ccc-host-triple ptx32
 </span><span>     -Xclang -target-feature -Xclang +ptx23
 </span><span>     -Xclang -target-feature -Xclang +sm20
 </span><span>     -I$LIBCLC/include/generic -I$LIBCLC/include/ptx

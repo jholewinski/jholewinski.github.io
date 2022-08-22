@@ -23,56 +23,56 @@ any questions to the llvm-dev mailing list.&lt;&#x2F;p&gt;
 compile OpenCL kernels.&lt;&#x2F;p&gt;
 &lt;p&gt;As an example, consider the following matrix multiplication routine written in
 OpenCL:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;#define &lt;&#x2F;span&gt;&lt;span&gt;BLOCK_SIZE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;16
+&lt;pre data-lang=&quot;c++&quot; style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot; class=&quot;language-c++ &quot;&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#9b9b9b;&quot;&gt;#define BLOCK_SIZE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;16
 &lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;   __kernel
-&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;matmul&lt;&#x2F;span&gt;&lt;span&gt;(__global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;A&lt;&#x2F;span&gt;&lt;span&gt;, __global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;B&lt;&#x2F;span&gt;&lt;span&gt;, __global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;C&lt;&#x2F;span&gt;&lt;span&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span&gt;matmul(__global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;float* &lt;&#x2F;span&gt;&lt;span&gt;A, __global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;float* &lt;&#x2F;span&gt;&lt;span&gt;B, __global &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;float* &lt;&#x2F;span&gt;&lt;span&gt;C) {
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;     __local &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; scratchA[BLOCK_SIZE][BLOCK_SIZE];
-&lt;&#x2F;span&gt;&lt;span&gt;     __local &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; scratchB[BLOCK_SIZE][BLOCK_SIZE];
+&lt;&#x2F;span&gt;&lt;span&gt;     __local &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; scratchA[BLOCK_SIZE][BLOCK_SIZE];
+&lt;&#x2F;span&gt;&lt;span&gt;     __local &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; scratchB[BLOCK_SIZE][BLOCK_SIZE];
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; globalX = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_global_id&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; globalY = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_global_id&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;);
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; size = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_global_size&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; k;
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; sum = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;;
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; numBlocks = size &#x2F; BLOCK_SIZE;
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; b;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; globalX = get_global_id(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; globalY = get_global_id(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; size = get_global_size(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; k;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; sum = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;0.0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; numBlocks = size &#x2F; BLOCK_SIZE;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; b;
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; tidX = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_local_id&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; tidY = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;get_local_id&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; tidX = get_local_id(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; tidY = get_local_id(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;);
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for&lt;&#x2F;span&gt;&lt;span&gt;(b = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;; b &amp;lt; numBlocks; ++b) {
-&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F; Populate a cache for A&#x2F;B
-&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; x;
-&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; y;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;for&lt;&#x2F;span&gt;&lt;span&gt;(b = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;; b &amp;lt; numBlocks; ++b) {
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#608b4e;&quot;&gt;&#x2F;&#x2F; Populate a cache for A&#x2F;B
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; x;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; y;
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;       x = b * BLOCK_SIZE + tidX;
+&lt;&#x2F;span&gt;&lt;span&gt;       x = b &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; BLOCK_SIZE + tidX;
 &lt;&#x2F;span&gt;&lt;span&gt;       y = globalY;
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;       scratchA[tidY][tidX] = A[y * size + x];
+&lt;&#x2F;span&gt;&lt;span&gt;       scratchA[tidY][tidX] = A[y &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; size + x];
 &lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;       x = globalX;
-&lt;&#x2F;span&gt;&lt;span&gt;       y = b * BLOCK_SIZE + tidY;
+&lt;&#x2F;span&gt;&lt;span&gt;       y = b &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; BLOCK_SIZE + tidY;
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;       scratchB[tidY][tidX] = B[y * size + x];
+&lt;&#x2F;span&gt;&lt;span&gt;       scratchB[tidY][tidX] = B[y &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; size + x];
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;barrier&lt;&#x2F;span&gt;&lt;span&gt;(CLK_LOCAL_MEM_FENCE);
+&lt;&#x2F;span&gt;&lt;span&gt;       barrier(CLK_LOCAL_MEM_FENCE);
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for&lt;&#x2F;span&gt;&lt;span&gt;(k = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;; k &amp;lt; BLOCK_SIZE; ++k) {
-&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; myA;
-&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; myB;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;for&lt;&#x2F;span&gt;&lt;span&gt;(k = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b5cea8;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;; k &amp;lt; BLOCK_SIZE; ++k) {
+&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; myA;
+&lt;&#x2F;span&gt;&lt;span&gt;         &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;float&lt;&#x2F;span&gt;&lt;span&gt; myB;
 &lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;         myA = scratchA[tidY][k];
 &lt;&#x2F;span&gt;&lt;span&gt;         myB = scratchB[k][tidX];
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;         sum += myA * myB;
+&lt;&#x2F;span&gt;&lt;span&gt;         sum += myA &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; myB;
 &lt;&#x2F;span&gt;&lt;span&gt;       }
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;barrier&lt;&#x2F;span&gt;&lt;span&gt;(CLK_LOCAL_MEM_FENCE);
+&lt;&#x2F;span&gt;&lt;span&gt;       barrier(CLK_LOCAL_MEM_FENCE);
 &lt;&#x2F;span&gt;&lt;span&gt;     }
 &lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;     C[globalY * size + globalX] = sum;
+&lt;&#x2F;span&gt;&lt;span&gt;     C[globalY &lt;&#x2F;span&gt;&lt;span style=&quot;color:#569cd6;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; size + globalX] = sum;
 &lt;&#x2F;span&gt;&lt;span&gt;   }
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;We can use the &lt;code&gt;libclc&lt;&#x2F;code&gt;_ library, written by Peter Collingbourne, to provide the
@@ -80,7 +80,7 @@ OpenCL built-in functions for Clang. This library will map OpenCL built-in
 functions to target-specific functions in the LLVM IR that the PTX back-end
 knows how to handle. If &lt;code&gt;$LIBCLC&lt;&#x2F;code&gt; points to the download of libclc, then you
 can invoke Clang with:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;   clang -ccc-host-triple ptx32
+&lt;pre style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot;&gt;&lt;code&gt;&lt;span&gt;   clang -ccc-host-triple ptx32
 &lt;&#x2F;span&gt;&lt;span&gt;     -Xclang -target-feature -Xclang +ptx23
 &lt;&#x2F;span&gt;&lt;span&gt;     -Xclang -target-feature -Xclang +sm20
 &lt;&#x2F;span&gt;&lt;span&gt;     -I$LIBCLC&#x2F;include&#x2F;generic -I$LIBCLC&#x2F;include&#x2F;ptx
