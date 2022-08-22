@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 	<title> - Desktop</title>
-	<link href="https://blog.jholewinski.org/tags/desktop/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://blog.jholewinski.org"/>
+	<link href="https://jholewinski.github.io/tags/desktop/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://jholewinski.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
 	<updated>2012-11-06T00:00:00+00:00</updated>
-	<id>https://blog.jholewinski.org/tags/desktop/atom.xml</id>
+	<id>https://jholewinski.github.io/tags/desktop/atom.xml</id>
 	<entry xml:lang="en">
 		<title>2012 and still no multi-monitor lovin&#x27;...</title>
 		<published>2012-11-06T00:00:00+00:00</published>
 		<updated>2012-11-06T00:00:00+00:00</updated>
-		<link rel="alternate" href="https://blog.jholewinski.org/blog/2012-and-still-no-multi-monitor-lovin/" type="text/html"/>
-		<id>https://blog.jholewinski.org/blog/2012-and-still-no-multi-monitor-lovin/</id>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/2012-and-still-no-multi-monitor-lovin/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/2012-and-still-no-multi-monitor-lovin/</id>
 		<content type="html">&lt;p&gt;For the past week, I&#x27;ve been giving Windows 8 a serious try. I&#x27;ve dabbled with
 the various preview versions, but now it&#x27;s time to try the released version.
 I&#x27;ve read the reviews, saw the mixed reactions to the new &amp;quot;Modern UI&amp;quot;, and

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://blog.jholewinski.org/sitemap.xml
+Sitemap: https://jholewinski.github.io/sitemap.xml

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 	<title> - Direct3D</title>
-	<link href="https://blog.jholewinski.org/tags/direct3d/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://blog.jholewinski.org"/>
+	<link href="https://jholewinski.github.io/tags/direct3d/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://jholewinski.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
 	<updated>2012-02-16T00:00:00+00:00</updated>
-	<id>https://blog.jholewinski.org/tags/direct3d/atom.xml</id>
+	<id>https://jholewinski.github.io/tags/direct3d/atom.xml</id>
 	<entry xml:lang="en">
 		<title>Direct3d 11 With Qt 4</title>
 		<published>2012-02-16T00:00:00+00:00</published>
 		<updated>2012-02-16T00:00:00+00:00</updated>
-		<link rel="alternate" href="https://blog.jholewinski.org/blog/direct3d-11-with-qt-4/" type="text/html"/>
-		<id>https://blog.jholewinski.org/blog/direct3d-11-with-qt-4/</id>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/direct3d-11-with-qt-4/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/direct3d-11-with-qt-4/</id>
 		<content type="html">&lt;p&gt;(If you&#x27;re in a hurry, the full source can be found on my &lt;a href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;jholewinski&#x2F;qt4-d3d11&quot;&gt;Bitbucket&lt;&#x2F;a&gt; account)&lt;&#x2F;p&gt;
 &lt;p&gt;When it comes to GUI frameworks for C++, it&#x27;s very hard to beat Qt.
 It&#x27;s modular, easy to use, and available on practically any desktop

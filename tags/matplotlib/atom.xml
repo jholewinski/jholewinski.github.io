@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 	<title> - Matplotlib</title>
-	<link href="https://blog.jholewinski.org/tags/matplotlib/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://blog.jholewinski.org"/>
+	<link href="https://jholewinski.github.io/tags/matplotlib/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://jholewinski.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
 	<updated>2011-07-21T00:00:00+00:00</updated>
-	<id>https://blog.jholewinski.org/tags/matplotlib/atom.xml</id>
+	<id>https://jholewinski.github.io/tags/matplotlib/atom.xml</id>
 	<entry xml:lang="en">
 		<title>Installing Matplotlib on OS X 10.7 with Homebrew</title>
 		<published>2011-07-21T00:00:00+00:00</published>
 		<updated>2011-07-21T00:00:00+00:00</updated>
-		<link rel="alternate" href="https://blog.jholewinski.org/blog/installing-matplotlib-on-os-x-10-7-with-homebrew/" type="text/html"/>
-		<id>https://blog.jholewinski.org/blog/installing-matplotlib-on-os-x-10-7-with-homebrew/</id>
+		<link rel="alternate" href="https://jholewinski.github.io/blog/installing-matplotlib-on-os-x-10-7-with-homebrew/" type="text/html"/>
+		<id>https://jholewinski.github.io/blog/installing-matplotlib-on-os-x-10-7-with-homebrew/</id>
 		<content type="html">&lt;p&gt;[edit: It looks like things have changed a bit since the release of 10.7, so
 your mileage may vary with this method. This was written when 10.7 was brand new
 and most software was not yet updated for it.]&lt;&#x2F;p&gt;
