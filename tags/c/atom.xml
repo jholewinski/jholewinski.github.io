@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title> - C++</title>
+	<title>Justin Holewinski - C++</title>
 	<link href="https://jholewinski.github.io/tags/c/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://jholewinski.github.io"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
