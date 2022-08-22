@@ -1,5 +1,6 @@
 +++
-paginate_by = 2
-sort_by = "date"
+template = "home-page.html"
 +++
+
+Please see above for site navigation.
 

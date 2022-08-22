@@ -1,6 +1,8 @@
 # The URL the site will be built for
 base_url = "https://jholewinski.github.io"
 
+title = "Justin Holewinski"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 
@@ -31,6 +33,5 @@ menu_items = [
     {name = "Blog", url = "$BASE_URL/blog"},
     {name = "Publications", url = "$BASE_URL/publications"},
     {name = "Teaching", url = "$BASE_URL/teaching"},
-    {name = "GitLab", url = "https://gitlab.com/jholewinski", newtab = true},
     {name = "GitHub", url = "https://github.com/jholewinski", newtab = true},
 ]
