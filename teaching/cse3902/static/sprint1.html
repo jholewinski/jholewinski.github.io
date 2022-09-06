@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>3902 Project Preparation</title>
+
+</head>
+<body>
+<h1>"Sprint 1" Project preparation - task tracking, source code/version control, and team building</h1>
+<p><strong>Complete before your team starts Sprint 2</strong></p>
+<p><strong>Objectives:</strong></p>
+<ul>
+  <li>Familiarize yourself with Github or AzureDevOps for project management and source code/version control.</li>
+  <li>Familiarize yourself with Requirements/Use Cases for your 2D game project.</li>
+  <li>Organize and coordinate with your team.</li>
+</ul>
+
+<p>For the project in this course, you will be required to use task tracking software to coordinate with your teammates and document your progress on the project.
+Ideally, you will summarize your work at the end of each sprint by creating a burndown chart. 
+Examples: <a href="BD GitHub from zenhub.jpg">using ZenHub</a> and <a href="BD AzureDevOps from agileo365.png">in AzureDevOps</a>.
+You will also be required to use source/version control for your code.
+Your team may use either GitHub or AzureDevOps. 
+There are a few factors that may influence your teams' decision.
+First and foremost, AzureDevOps supports two different flavors of version control, one like subversion (which was taught in Software II) and one like Git whereas GitHub only supports Git. 
+At some point in your undergrad education you should learn Git, but it takes longer to learn and we've limited time to spend on it in class.
+Second, AzureDevOps is limited to 5 free accounts on a project.
+Lastly, there's a slight difference in how much documentation I have for each toolset, but I hope you're confident enough in your own research skills that this doesn't sway your decision.
+</p>
+
+<h2>Learning the tools (AzureDevOps version)</h2>
+<ul>
+  <li>Account and project setup (if using Azure DevOps)
+  <ul>
+	<li>All team members should create an account for AzureDevOps (<a href="https://azure.microsoft.com/en-us/services/devops/">https://azure.microsoft.com/en-us/services/devops/</a>) and add a profile image.
+	If you are going to use your osu name.# address for your account name, you are encouraged to write your username as ending in "@osu.edu" instead of "@buckeyemail.osu.edu".
+	Using the second format will cause the project to be associated with Azure directory, which will make adding non-Azure connected accounts more difficult.</li>
+	<li>Create a New Organization, you might name it after the course number and current semester.
+	<li>As a team, decide if you want to use the subversion-like source control (Team Foundation Version Control) or the GIT version.
+	<li>In the organization create a new private project, naming it after your team or the game you are implementing. 
+	Under the advanced options choose the type of version control you want to use and Scrum for the Work item process.
+	<li>Once your team is fully assembled, you'll only use one of the project, so one person is the De Facto "project owner". The project owner should add the rest of the team to their organization and project. 
+	You will need to know the account names of your teammates to do this. 
+	General information on how to add accounts can be found <a href="https://www.visualstudio.com/en-us/docs/setup-admin/team-services/add-account-users-assign-access-levels-team-services">here</a>.
+	<li>The project owner will need to manage the date ranges for each Sprint in order for burndown charts to be made automatically.</li>
+	<li>The project owner should also investigate and customize other settings to the team's preferences. 
+	For example, by default the burndown chart "skips" weekends whereas you'll likely want details on those days included.
+  </ul>
+  <li>Task tracking using a web browser
+  <ul>
+	<li>Each team member should add a product backlog item and assign it to Sprint 1.</li>
+	<li>Each team member should add a task under a product backlog item, making sure to include an effort amount and assign it to themselves. Note: you do not have to actually implement the task as part of Sprint 1.
+	This is just to get you familiar with how the project tracking software works.</li>
+	<li>The day after each task was added, each team member should update their task once to indicate progress has been done on it (lower the effort amount but not to 0).</li>
+	<li>The day after each task was updated, each team member should update their task to completed.</li>
+  </ul>
+  <li>Individual tasks using source code control within Visual Studio
+  <ul>
+    <li>Have one person commit a template Monogame project (or if you can confirm all of your team members have successfully finished Sprint 0, you may commit your Sprint 0 implementation).
+	Instructions for working with TFVC are <a href="https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/share-your-code-in-tfvc-vs?view=azure-devops">here</a> and instructions for GIT are <a href="https://docs.microsoft.com/en-us/azure/devops/repos/git/gitquickstart?view=azure-devops&tabs=visual-studio">here</a>.
+	Note: while only one person does the initial commit, everyone should read these.
+	<li>Each team member should check out the code, change a line of code or add a comment, and commit the new code.
+  </ul>
+</ul>
+
+<h2>Learning the tools (GitHub version)</h2>  
+    Github resources:
+	<ul>
+		<li>Account creation: <a href="https://education.github.com/pack">GitHub student developer pack</a>
+		<li>Creating a repository, making commits, making pull requests <a href="https://guides.github.com/activities/hello-world/">GitHub Hello World guide</a>
+		<li><a href="https://docs.github.com/en/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards">Github project boards</a>
+		<li>Similar to the above steps for AzureDevOps, everyone should create at least one task on the taskboard, connect to the team's repo, and commit one change to the code
+		<li><a href="https://help.github.com/en/github">GitHub Help Documentation</a>
+		<li><a href="https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf">Github quick reference / cheat sheet</a>
+		<li><a href="https://try.github.io/">Misc. learning materials from try.github.io/</a>
+	</ul>
+</ul>
+
+<h2>Team building</h2>
+Depending on whether or not you have preselected a full team you will likely need to do most of the following during the first few days of Sprint2.
+  <ul>
+	<li>Arrange an event (a meal, gaming, a sporting event, a movie, watching meme videos, any sort of activity that you have a shared interest in) and get to know each other better.</li>
+	<li>Create a team name and inform your instructor so that your placeholder team name can be replaced.</li>
+	<li>Work on learning your teammates' names. I expect you to know your teammates names before the end of the semester.</li>
+	<li>As a group, discuss your goals for the project and policies for how your team will operate. Write down what everyone is willing to agree to and have everyone sign it.</li>
+		<ul>Some ideas to consider:
+			<li>What is everyone's preferred method of contact? Will the team make use of a communication or teamwork application such as MSTeams, Slack, Discord, Trello, etc.?</li>
+			<li>How often and long will your team meetings outside of class be? In-person or online? Entirely asynchronous?</li>
+			<li>Everyone should strive to make an excellent project that you are proud to include in your work portfolio.
+			When you have to make decisions on where to focus the team's efforts, what are your priorities? 
+			Some options to weigh in no particular order: code cleanliness, project management documentation, communication and team morale, robustness of runtime behavior, team member specialization allowing different but equally appreciated contributions, and breadth of features. </li>
+		</ul>
+	<li>As a group, discuss how you will resolve any conflicts or disagreements that might occur over the course of the project; write and sign what you agree on.</li>
+		<ul>
+			<li>The situation most prone to spiraling out of control here centers on cases where one person's responsibilities are taken over by another.
+			In some cases this may be reasonable, ex: a feature with little to no code 1-2 (or whatever your team agrees on, perhaps even up to 7) days before the end of a Sprint. 
+			This can lead to one person having nothing to work on, making them feel undervalued and less interested in contributing in the future, leading to more cases of late or missing work.
+			I recommend you leave late or missing features for the team member they were assigned to and to implement a new feature that was not orignally planned to be included if you want to compensate.</li>
+		</ul>
+  </ul>
+
+<p><strong>Big Picture Project Notes:</strong></p>
+<p>
+Starting with Sprint2 your team will begin a semester long project developing a 2D game engine. 
+Currently, the standard project is an implementation of a 2D top-down adventure game, styled as the first dungeon of The Legend of Zelda (1986) with your own custom features added at near end of the semester.
+Teams may petition the instructor to implement a different 2D game, including ones from other genres such as a 2D platformer, 
+but this will take more effort on planning, documentation, and communication of your project's functional requirements.
+If you do not have experience playing The Legend of Zelda or other 2D top down adventure games, please look into the resources <a href="game_resources.html">here</a>.
+Aside from playing the game itself, the most useful resources for requirements gathering are the game's user manual and videos of gameplay footage
+(useful search terms being: NES legend of zelda longplay speedrun).
+</p>
+<p>
+You will be expected to read your teammates' code, and by the end of the project you should be able to reimplement the entire project given enough time.
+However, since you'll only be implementing a subset of the game you should start to think about which parts you would prefer to work on and discuss that with your teammates.
+Near the end of the project you'll be adding new custom features of your choice, so if there are particular options you want to try (<a href="http://web.cse.ohio-state.edu/~boggus.2/3902/sprint5.html">Sprint5 page lists some</a>),
+you should be make sure to be involved in the most closely related part of the project to ensure time and effort is spent on using abstractions and designing for ease of maintenance of it.
+This discussion on interests can also help in making sure critical features are assigned to someone with more experience or more time available to work on the project during the busier times of the semeseter.
+</p>
+
+<p><strong>Assessment:</strong></p>
+<p>Once your team has finished creating and tracking tasks as well as making code commits, contact your instructor during in-class team meeting time or during office hours to have your work checked. 
+You may still ask to have your work for this activity checked during Sprint2.
+While this assignment is not graded with a numeric score, it is a sanity check on your usage of these project tools - be sure to ask for help if you're unsure on whether or not you're using the tools correctly.
+</p>
+
+</body></html>
