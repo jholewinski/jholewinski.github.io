@@ -1,0 +1,275 @@
+
+[[weeks]]
+num = 1
+
+[[weeks.days]]
+date = "Jan 9"
+topic = "Class Introduction; High-Quality Software"
+assignment = "Sprint 0 Start"
+
+[[weeks.days]]
+date = "Jan 11"
+topic = "High-Quality Software; C# and Object-Oriented Programming"
+assignment = "Sprint 0"
+
+[[weeks.days]]
+date = "Jan 13"
+topic = "Visual Studio; MonoGame; User Input Handling"
+assignment = "Sprint 0"
+
+[[weeks]]
+num = 2
+
+[[weeks.days]]
+date = "Jan 16"
+topic = "No Class"
+assignment = "Sprint 0"
+
+[[weeks.days]]
+date = "Jan 18"
+topic = "2D Coordinate Systems; Textures and Sprites"
+assignment = "Sprint 0"
+
+[[weeks.days]]
+date = "Jan 20"
+topic = "Sprint 0 Design Comparisons"
+assignment = "Sprint 0 Early Deadline"
+
+[[weeks]]
+num = 3
+
+[[weeks.days]]
+date = "Jan 23"
+topic = "Command Pattern; Agile Development"
+assignment = "Sprints 0 And 1"
+
+[[weeks.days]]
+date = "Jan 25"
+topic = "Version Control; Git and GitHub"
+assignment = "Sprints 0 And 1"
+
+[[weeks.days]]
+date = "Jan 27"
+topic = "Group Project Aspirations; Requirements Gathering; Texture2D Encapsulation"
+assignment = "Sprint 0 Due; Sprint 1 Wrap-Up; Sprint 2 Start"
+
+[[weeks]]
+num = 4
+
+[[weeks.days]]
+date = "Jan 30"
+topic = "State Machine; State Design Pattern; Separation of Sprites from Game Objects"
+assignment = "Sprint 2"
+
+[[weeks.days]]
+date = "Feb 1"
+topic = "Decorator Pattern; Interaction Between Decorators and States; Link Decorator for Zelda"
+assignment = "Sprint 2"
+
+[[weeks.days]]
+date = "Feb 3"
+topic = "Code Quality/Metrics; Cohesion; Coupling; Sprint Evaluation; Peer Review"
+assignment = "Sprint 2"
+
+[[weeks]]
+num = 5
+
+[[weeks.days]]
+date = "Feb 6"
+topic = "Amdahl's Law; Code Smells; Sprint 2 Object Diagrams"
+assignment = "Sprint 2"
+
+[[weeks.days]]
+date = "Feb 8"
+topic = "Strategy Pattern; Null Pattern; Anti-Patterns; Refactoring; Technical Debt"
+assignment = "Sprint 2"
+
+[[weeks.days]]
+date = "Feb 10"
+topic = "Sprint Deliverables; In-Class Code Review Meetings; Levels; File I/O"
+assignment = "Sprint 2"
+
+[[weeks]]
+num = 6
+
+[[weeks.days]]
+date = "Feb 13"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 2 Functionality Check-In"
+
+[[weeks.days]]
+date = "Feb 15"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 2"
+
+[[weeks.days]]
+date = "Feb 17"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 2"
+
+[[weeks]]
+num = 7
+
+[[weeks.days]]
+date = "Feb 20"
+topic = "CATME Peer Reviews; Sprint 3 Q&A; Collision Detection; Movement"
+assignment = "Sprint 2 Due; Sprint 3 Start; CATME Peer Reviews for Sprint 2"
+
+[[weeks.days]]
+date = "Feb 22"
+topic = "Collision Detection; Movement; Collision Response; Software Organization for Game Physics"
+assignment = "Sprint 3"
+
+[[weeks.days]]
+date = "Feb 24"
+topic = "Cameras; Camera Controls; Quality Assurance (QA); Unit Testing"
+assignment = "Sprint 3"
+
+[[weeks]]
+num = 8
+
+[[weeks.days]]
+date = "Feb 27"
+topic = "OSU Graphics Courses; Mid-Semester Feedback"
+assignment = "Sprint 3"
+
+[[weeks.days]]
+date = "Mar 1"
+topic = "Playtesting; Planning For End Product"
+assignment = "Sprint 3"
+
+[[weeks.days]]
+date = "Mar 3"
+topic = "Code Reviews and Group Meeting Time"
+assignment = "Sprint 3"
+
+[[weeks]]
+num = 9
+
+[[weeks.days]]
+date = "Mar 6"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 3 Functionality Check-In"
+
+[[weeks.days]]
+date = "Mar 8"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 3"
+
+[[weeks.days]]
+date = "Mar 10"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 3"
+
+[[weeks]]
+num = 10
+
+[[weeks.days]]
+date = "Mar 13"
+topic = "No Class"
+
+[[weeks.days]]
+date = "Mar 15"
+topic = "No Class"
+
+[[weeks.days]]
+date = "Mar 17"
+topic = "No Class"
+
+[[weeks]]
+num = 11
+
+[[weeks.days]]
+date = "Mar 20"
+topic = "Sprint 4 Q&A; Audio; Heads-Up Display"
+assignment = "Sprint 3 Due; Sprint 4 Start; CATME Peer Reviews for Sprint 3"
+
+[[weeks.days]]
+date = "Mar 22"
+topic = "Entity Component Systems"
+assignment = "Sprint 4"
+
+[[weeks.days]]
+date = "Mar 24"
+topic = "Flyweight Pattern; Object Pools; Build Pattern; Memento Pattern"
+assignment = "Sprint 4"
+
+[[weeks]]
+num = 12
+
+[[weeks.days]]
+date = "Mar 27"
+topic = "Under The Hood of SpriteBatch"
+assignment = "Sprint 4"
+
+[[weeks.days]]
+date = "Mar 29"
+topic = "Primer on Real-Time 3D Graphics"
+assignment = "Sprint 4"
+
+[[weeks.days]]
+date = "Mar 31"
+topic = "Looking Towards Sprint 5"
+assignment = "Sprint 4"
+
+[[weeks]]
+num = 13
+
+[[weeks.days]]
+date = "Apr 3"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 4 Functionality Check-In"
+
+[[weeks.days]]
+date = "Apr 5"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 4"
+
+[[weeks.days]]
+date = "Apr 7"
+topic = "Code Reviews (Group Schedule TBD)"
+assignment = "Sprint 4"
+
+[[weeks]]
+num = 14
+
+[[weeks.days]]
+date = "Apr 10"
+topic = "Sprint 5 Q&A; Code Reviews and Group Meeting Time"
+assignment = "Sprint 4 Due; Sprint 5 Start; CATME Peer Reviews for Sprint 4"
+
+[[weeks.days]]
+date = "Apr 12"
+topic = "TBD; Code Reviews and Group Meeting Time"
+assignment = "Sprint 5"
+
+[[weeks.days]]
+date = "Apr 14"
+topic = "TBD; Code Reviews and Group Meeting Time"
+assignment = "Sprint 5"
+
+[[weeks]]
+num = 15
+
+[[weeks.days]]
+date = "Apr 17"
+topic = "Code Reviews and Group Meeting Time"
+assignment = "Sprint 5"
+
+[[weeks.days]]
+date = "Apr 19"
+topic = "Code Reviews and Group Meeting Time"
+assignment = "Sprint 5"
+
+[[weeks.days]]
+date = "Apr 21"
+topic = "Code Reviews and Group Meeting Time"
+assignment = "Sprint 5"
+
+[[weeks]]
+num = 16
+
+[[weeks.days]]
+date = "Apr 24"
+topic = "Early Project Presentations; Course Wrap-Up"
+assignment = "Sprint 5 Due; CATME Peer Reviews for Sprint 5"

@@ -1,0 +1,21 @@
+{% set data = load_data(path=path) %}
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Lecture Topic</th>
+    <th>Assignment</th>
+  </tr>
+{%- for week in data.weeks %}
+  <tr><td colspan="3"><b>Week {{ week.num | safe }}</b></td></tr>
+  {%- if week.days %}
+  {%- for day in week.days %}
+  <tr>
+    <td>{{ day.date | safe}}</td>
+    <td>{%- if day.topic %} {{ day.topic | safe }} {% else %} TBD {% endif -%}</td>
+    <td>{%- if day.assignment %} {{ day.assignment | safe }} {% endif -%}</td>
+  </tr>
+  {% endfor -%}
+  {% endif -%}
+{% endfor -%}
+</table>
