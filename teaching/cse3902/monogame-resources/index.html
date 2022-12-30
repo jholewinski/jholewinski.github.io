@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/monogame-resources/">MonoGame Resources</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+
+        
+            <ul>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/monogame-resources/#getting-started">Getting Started</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/monogame-resources/#tutorials">Tutorials</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/monogame-resources/#tips-and-tricks">Tips and Tricks</a>
+                    
+                        <ul>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/monogame-resources/#monogame-on-apple-silicon">MonoGame on Apple Silicon</a>
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        
+    
+
+        
+        <div class="post-content">
+            <h1 id="getting-started">Getting Started</h1>
+<p>The following are links to official MonoGame documentation explaining how to get
+set up and basic API usage.</p>
+<ul>
+<li><a href="http://www.monogame.net/documentation/?page=main">MonoGame Documentation</a></li>
+<li><a href="https://docs.monogame.net/articles/getting_started/0_getting_started.html">MonoGame Getting Started</a></li>
+<li><a href="https://docs.monogame.net/api/Microsoft.Xna.Framework.html">MonoGame API Reference</a>
+<ul>
+<li><a href="https://docs.monogame.net/api/Microsoft.Xna.Framework.Game.html">Game Class</a></li>
+<li><a href="https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.SpriteBatch.html">SpriteBatch Class</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="tutorials">Tutorials</h1>
+<p>Legacy Tutorials - these use terms and have screenshots from an older version of
+MonoGame, but include an example of more reusable code for sprite drawing that
+we'll look at in class.</p>
+<ul>
+<li><a href="http://rbwhitaker.wikidot.com/monogame-introduction-to-2d-graphics">http://rbwhitaker.wikidot.com/monogame-introduction-to-2d-graphics</a></li>
+<li><a href="http://rbwhitaker.wikidot.com/monogame-project-template">http://rbwhitaker.wikidot.com/monogame-project-template</a></li>
+<li><a href="http://rbwhitaker.wikidot.com/monogame-managing-content">http://rbwhitaker.wikidot.com/monogame-managing-content</a></li>
+<li><a href="http://rbwhitaker.wikidot.com/monogame-spritebatch-basics">http://rbwhitaker.wikidot.com/monogame-spritebatch-basics</a></li>
+<li><a href="http://rbwhitaker.wikidot.com/monogame-texture-atlases-1">http://rbwhitaker.wikidot.com/monogame-texture-atlases-1</a></li>
+<li><a href="http://rbwhitaker.wikidot.com/monogame-drawing-text-with-spritefonts">http://rbwhitaker.wikidot.com/monogame-drawing-text-with-spritefonts</a></li>
+</ul>
+<h1 id="tips-and-tricks">Tips and Tricks</h1>
+<h2 id="monogame-on-apple-silicon">MonoGame on Apple Silicon</h2>
+<p>Using MonoGame on an Apple Mac using an Apple processor requires a few
+additional steps to follow during setup and while developing your project.
+Fortunately, it is fairly straight-forward.</p>
+<h3 id="how-do-you-know-if-your-apple-mac-uses-an-apple-processor">How do you know if your Apple Mac uses an Apple processor?</h3>
+<p>There are a couple of ways. First, you can check the &quot;About This Mac&quot; dialog by
+going to Apple logo on the top-left corner of the screen, then selecting &quot;About
+This Mac&quot;. Under &quot;Chip&quot;, if the value starts with &quot;Apple&quot; then you're Mac is
+using an Apple processor. If it starts with &quot;Intel&quot; then you're Mac is using an
+Intel processor. See below for an example:</p>
+
+  <img src="mac-m1-chip.png" class="center" style="width:40%" />
+
+<p>You can also look at the architecture of the running OS kernel with <code>uname</code>:</p>
+<pre data-lang="shell" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-shell "><code class="language-shell" data-lang="shell"><span>&gt; uname -m
+</span><span>arm64
+</span></code></pre>
+<p>If the value written to stdout is <code>arm64</code>, then you're Mac is using an Apple
+processor.</p>
+<h3 id="what-is-the-issue">What is the issue?</h3>
+<p>The root issue is that MonoGame does not ship with <code>arm64</code> versions of the
+native binaries used for <em>building</em> game content (e.g. the MGCB tool). It does
+support <em>running</em> games natively on <code>arm64</code>, just not <em>building</em> their content.
+The incompatibility is most often seen as content build errors when building
+your MonoGame project, such as:</p>
+<pre style="background-color:#1e1e1e;color:#dcdcdc;"><code><span>.../Content/fonts/basic.spritefont : error : Processor &#39;FontDescriptionProcessor&#39; had unexpected failure! [.../MonoGameTest1.csproj]
+</span><span>  System.DllNotFoundException: Unable to load shared library &#39;freetype6&#39; or one of its dependencies. In order to help diagnose loading problems, consider setting the DYLD_PRINT_LIBRARIES environment variable: dlopen(libfreetype6, 0x0001): tried: &#39;libfreetype6&#39; (no such file), &#39;/System/Volumes/Preboot/Cryptexes/OSlibfreetype6&#39; (no such file), &#39;/usr/lib/libfreetype6&#39; (no such file, not in dyld cache), &#39;libfreetype6&#39; (no such file), &#39;/usr/local/lib/libfreetype6&#39; (no such file), &#39;/usr/lib/libfreetype6&#39; (no such file, not in dyld cache)
+</span><span>     at SharpFont.FT.FT_Init_FreeType(IntPtr&amp; alibrary)
+</span><span>     at SharpFont.Library..ctor()
+</span><span>     at Microsoft.Xna.Framework.Content.Pipeline.Graphics.SharpFontImporter.Import(FontDescription options, String fontName) in /home/runner/work/MonoGame/MonoGame/MonoGame.Framework.Content.Pipeline/Graphics/Font/SharpFontImporter.cs:line 29
+</span><span>     at Microsoft.Xna.Framework.Content.Pipeline.Processors.FontDescriptionProcessor.ImportFont(FontDescription options, Single&amp; lineSpacing, Int32&amp; yOffsetMin, ContentProcessorContext context, String fontName) in /home/runner/work/MonoGame/MonoGame/MonoGame.Framework.Content.Pipeline/Processors/FontDescriptionProcessor.cs:line 194
+</span><span>     at Microsoft.Xna.Framework.Content.Pipeline.Processors.FontDescriptionProcessor.Process(FontDescription input, ContentProcessorContext context) in /home/runner/work/MonoGame/MonoGame/MonoGame.Framework.Content.Pipeline/Processors/FontDescriptionProcessor.cs:line 80
+</span><span>     at Microsoft.Xna.Framework.Content.Pipeline.ContentProcessor`2.Microsoft.Xna.Framework.Content.Pipeline.IContentProcessor.Process(Object input, ContentProcessorContext context) in /home/runner/work/MonoGame/MonoGame/MonoGame.Framework.Content.Pipeline/ContentProcessor.cs:line 60
+</span><span>     at MonoGame.Framework.Content.Pipeline.Builder.PipelineManager.ProcessContent(PipelineBuildEvent pipelineEvent) in /home/runner/work/MonoGame/MonoGame/MonoGame.Framework.Content.Pipeline/Builder/PipelineManager.cs:line 717
+</span></code></pre>
+<h3 id="what-do-i-need-to-do">What do I need to do?</h3>
+<p>Fortunately, Macs with Apple processors ship with an <code>x64</code> to <code>arm64</code>
+translation layer that allows running <code>x64</code> binaries on an <code>arm64</code> system.
+Therefore, we need to download, install, and use an <code>x64</code> version of .NET to use
+while building game content, to go along with the <code>x64</code> native binaries shipped
+by MonoGame for the MGCB tool.</p>
+<p>Start by navigating to <a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0">https://dotnet.microsoft.com/en-us/download/dotnet/6.0</a>
+and downloading the latest SDK installer for &quot;macOS&quot; and &quot;x64&quot;. This will
+install along-side the <code>arm64</code> version you installed when going through the
+&quot;MonoGame Getting Started&quot; guide. Then, add the following scripts to your
+project directory:</p>
+<p><code>build-content.sh</code>:</p>
+<pre data-lang="bash" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#608b4e;">#!/bin/sh
+</span><span>
+</span><span style="color:#569cd6;">export </span><span>PATH=</span><span style="background-color:#282828;color:#d69d85;">/usr/local/share/dotnet/x64:$</span><span style="background-color:#282828;color:#dcdcdc;">PATH</span><span>
+</span><span>dotnet build
+</span></code></pre>
+<p><code>edit-content.sh</code>:</p>
+<pre data-lang="bash" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#608b4e;">#!/bin/sh
+</span><span>
+</span><span style="color:#569cd6;">export </span><span>PATH=</span><span style="background-color:#282828;color:#d69d85;">/usr/local/share/dotnet/x64:$</span><span style="background-color:#282828;color:#dcdcdc;">PATH</span><span>
+</span><span>dotnet mgcb-editor
+</span></code></pre>
+<p>Whenever you need to modify the MGCB content project, just run
+<code>edit-content.sh</code>. And when you need to rebuild your game content, just run
+<code>build-content.sh</code>. Note, do not forget to make the scripts executable by
+running <code>chmod +x build-content.sh edit-content.sh</code> before trying to run them.
+These are only needed when modifying game content. When coding or debugging, you
+can use the native <code>arm64</code> .NET and MonoGame binaries. In other words, these
+scripts should only be needed when you encounter a content build error like
+shown above. When you see the error, run <code>build-content.sh</code>, then continue as
+normal. Other team members using Windows or Macs with Intel processors can
+ignore these scripts and just build the game project as normal.</p>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2022
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
