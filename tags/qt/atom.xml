@@ -12,7 +12,7 @@
 		<updated>2012-02-16T00:00:00+00:00</updated>
 		<link rel="alternate" href="https://jholewinski.github.io/blog/direct3d-11-with-qt-4/" type="text/html"/>
 		<id>https://jholewinski.github.io/blog/direct3d-11-with-qt-4/</id>
-		<content type="html">&lt;p&gt;(If you&#x27;re in a hurry, the full source can be found on my &lt;a href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;jholewinski&#x2F;qt4-d3d11&quot;&gt;Bitbucket&lt;&#x2F;a&gt; account)&lt;&#x2F;p&gt;
+		<content type="html">&lt;p&gt;(If you&#x27;re in a hurry, the full source can be found on my &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;jholewinski&#x2F;qt4-d3d11&quot;&gt;Bitbucket&lt;&#x2F;a&gt; account)&lt;&#x2F;p&gt;
 &lt;p&gt;When it comes to GUI frameworks for C++, it&#x27;s very hard to beat Qt.
 It&#x27;s modular, easy to use, and available on practically any desktop
 system (and even a few mobile systems).  The MOC&#x27;ing can get a bit
@@ -119,7 +119,7 @@ context for a Qt widget. For brevity, I have omitted most of the
 Direct3D initialization code (this can be found in many places on the
 web).&lt;&#x2F;p&gt;
 &lt;p&gt;If you want to check out the complete sample program, it is located on
-my &lt;a href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;jholewinski&#x2F;qt4-d3d11&quot;&gt;BitBucket&lt;&#x2F;a&gt; account.
+my &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;jholewinski&#x2F;qt4-d3d11&quot;&gt;BitBucket&lt;&#x2F;a&gt; account.
 To build it, you need a relatively recent Qt
 release, the DirectX SDK, and the Qt Visual Studio Add-in.&lt;&#x2F;p&gt;
 </content>
