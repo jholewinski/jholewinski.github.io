@@ -17,9 +17,9 @@ without a late penalty as long as the resubmission is turned in by the second
 deadline. If you completly finish the assignment by the first deadline you will
 earn a 5% extra credit bonus, possibly going over 100% for the assignment.
 
-**First (Early Bonus) Deadline**:
+**First (Early Bonus) Deadline**: Jan 22 at 11:59pm
 
-**Second Deadline**:
+**Second Deadline**: Jan 29 at 11:59pm
 
 
 ## Step 1: Software Setup

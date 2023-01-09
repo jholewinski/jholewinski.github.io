@@ -33,7 +33,7 @@ assignment = "Sprint 0"
 [[weeks.days]]
 date = "Jan 20"
 topic = "Sprint 0 Design Comparisons"
-assignment = "Sprint 0 Early Deadline"
+assignment = "Sprint 0 Early Deadline on Sun Jan 22 at 11:59pm"
 
 [[weeks]]
 num = 3
@@ -51,7 +51,7 @@ assignment = "Sprints 0 And 1"
 [[weeks.days]]
 date = "Jan 27"
 topic = "Group Project Aspirations; Requirements Gathering; Texture2D Encapsulation"
-assignment = "Sprint 0 Due; Sprint 1 Wrap-Up; Sprint 2 Start"
+assignment = "Sprint 0 Due on Sun Jan 29 at 11:59pm; Sprint 1 Wrap-Up; Sprint 2 Start"
 
 [[weeks]]
 num = 4
@@ -87,7 +87,7 @@ assignment = "Sprint 2"
 [[weeks.days]]
 date = "Feb 10"
 topic = "Sprint Deliverables; In-Class Code Review Meetings; Levels; File I/O"
-assignment = "Sprint 2"
+assignment = "Sprint 2 Functionality Check-In due on Feb 12 at 11:59pm"
 
 [[weeks]]
 num = 6
@@ -95,7 +95,7 @@ num = 6
 [[weeks.days]]
 date = "Feb 13"
 topic = "Code Reviews (Group Schedule TBD)"
-assignment = "Sprint 2 Functionality Check-In"
+assignment = "Sprint 2"
 
 [[weeks.days]]
 date = "Feb 15"
@@ -105,7 +105,7 @@ assignment = "Sprint 2"
 [[weeks.days]]
 date = "Feb 17"
 topic = "Code Reviews (Group Schedule TBD)"
-assignment = "Sprint 2"
+assignment = "Sprint 2 Due on Feb 19 at 11:59pm"
 
 [[weeks]]
 num = 7
@@ -113,7 +113,7 @@ num = 7
 [[weeks.days]]
 date = "Feb 20"
 topic = "CATME Peer Reviews; Sprint 3 Q&A; Collision Detection; Movement"
-assignment = "Sprint 2 Due; Sprint 3 Start; CATME Peer Reviews for Sprint 2"
+assignment = "Sprint 3 Start; CATME Peer Reviews for Sprint 2"
 
 [[weeks.days]]
 date = "Feb 22"
@@ -141,7 +141,7 @@ assignment = "Sprint 3"
 [[weeks.days]]
 date = "Mar 3"
 topic = "Code Reviews and Group Meeting Time"
-assignment = "Sprint 3"
+assignment = "Sprint 3 Functionality Check-In due on Mar 5 at 11:59pm"
 
 [[weeks]]
 num = 9
@@ -149,7 +149,7 @@ num = 9
 [[weeks.days]]
 date = "Mar 6"
 topic = "Code Reviews (Group Schedule TBD)"
-assignment = "Sprint 3 Functionality Check-In"
+assignment = "Sprint 3"
 
 [[weeks.days]]
 date = "Mar 8"
@@ -159,7 +159,7 @@ assignment = "Sprint 3"
 [[weeks.days]]
 date = "Mar 10"
 topic = "Code Reviews (Group Schedule TBD)"
-assignment = "Sprint 3"
+assignment = "Sprint 3 due on Mar 19 at 11:59pm"
 
 [[weeks]]
 num = 10
@@ -182,7 +182,7 @@ num = 11
 [[weeks.days]]
 date = "Mar 20"
 topic = "Sprint 4 Q&A; Audio; Heads-Up Display"
-assignment = "Sprint 3 Due; Sprint 4 Start; CATME Peer Reviews for Sprint 3"
+assignment = "Sprint 4 Start; CATME Peer Reviews for Sprint 3"
 
 [[weeks.days]]
 date = "Mar 22"
@@ -210,7 +210,7 @@ assignment = "Sprint 4"
 [[weeks.days]]
 date = "Mar 31"
 topic = "Looking Towards Sprint 5"
-assignment = "Sprint 4"
+assignment = "Sprint 4 Functionality Check-In due on Apr 2 at 11:59pm"
 
 [[weeks]]
 num = 13
@@ -218,7 +218,7 @@ num = 13
 [[weeks.days]]
 date = "Apr 3"
 topic = "Code Reviews (Group Schedule TBD)"
-assignment = "Sprint 4 Functionality Check-In"
+assignment = "Sprint 4"
 
 [[weeks.days]]
 date = "Apr 5"
@@ -228,7 +228,7 @@ assignment = "Sprint 4"
 [[weeks.days]]
 date = "Apr 7"
 topic = "Code Reviews (Group Schedule TBD)"
-assignment = "Sprint 4"
+assignment = "Sprint 4 due on Apr 9 at 11:59pm"
 
 [[weeks]]
 num = 14
@@ -236,7 +236,7 @@ num = 14
 [[weeks.days]]
 date = "Apr 10"
 topic = "Sprint 5 Q&A; Code Reviews and Group Meeting Time"
-assignment = "Sprint 4 Due; Sprint 5 Start; CATME Peer Reviews for Sprint 4"
+assignment = "Sprint 5 Start; CATME Peer Reviews for Sprint 4"
 
 [[weeks.days]]
 date = "Apr 12"
@@ -272,4 +272,4 @@ num = 16
 [[weeks.days]]
 date = "Apr 24"
 topic = "Early Project Presentations; Course Wrap-Up"
-assignment = "Sprint 5 Due; CATME Peer Reviews for Sprint 5"
+assignment = "Sprint 5 Due at 11:59pm; CATME Peer Reviews for Sprint 5"

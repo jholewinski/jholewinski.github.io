@@ -33,22 +33,28 @@ The following sprints comprise the project work for this course:
 
 - [Sprint 0](@/teaching/cse3902/sp23/sprint0/index.md): Introduction to MonoGame; Sprite Drawing; User Input
   - Assigned: Jan 11
-  - Due: Jan ??
+  - Functionality Check-In: Jan 22 at 11:59pm
+  - Due: Jan 29 at 11:59pm
 - [Sprint 1](sprint1/): Group Introduction and Project Setup
-  - Assigned:
-  - Due:
+  - Assigned: Jan 23
+  - Functionality Check-In: N/A
+  - Due: Jan 27
 - [Sprint 2](sprint2/): Game Objects and Sprites
-  - Assigned:
-  - Due:
+  - Assigned: Jan 27
+  - Functionality Check-In: Feb 12 at 11:59pm
+  - Due: Feb 19 at 11:59pm
 - [Sprint 3](sprint3/): Level as Segmented Screens and Collision Handling
-  - Assigned:
-  - Due:
+  - Assigned: Feb 20
+  - Functionality Check-In: Mar 5 at 11:59pm
+  - Due: Mar 19 at 11:59pm
 - [Sprint 4](sprint4/): Finished Framework and First Level
-  - Assigned:
-  - Due:
+  - Assigned: Mar 20
+  - Functionality Check-In: Apr 2 at 11:59pm
+  - Due: Apr 9 at 11:59pm
 - [Sprint 5](sprint5/): Extra Features
-  - Assigned:
-  - Due:
+  - Assigned: Apr 10
+  - Functionality Check-In: N/A
+  - Due: Apr 24 at 11:59pm
 
 
 # Class Schedule
