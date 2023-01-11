@@ -57,6 +57,16 @@ The following sprints comprise the project work for this course:
   - Due: Apr 24 at 11:59pm
 
 
+# Reference Material
+
+The following are the required textbooks for this course and should be used
+through-out for reference. All are available online through the campus library.
+
+- [Head-First Design Patterns](https://library.ohio-state.edu/record=b9503242~S7)
+- [Design Patterns: Elements of Reusable Object-Oriented Software (a.k.a. Gang of Four) by Gamma et al](https://library.ohio-state.edu/record=b4589834~S7)
+- [C# in a Nutshell](https://library.ohio-state.edu/record=b9467593~S7)
+
+
 # Class Schedule
 
 {{ schedtable(path='content/teaching/cse3902/sp23/schedule.toml') }}

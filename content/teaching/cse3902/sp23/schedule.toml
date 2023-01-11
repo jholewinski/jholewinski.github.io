@@ -5,16 +5,19 @@ num = 1
 [[weeks.days]]
 date = "Jan 9"
 topic = "Class Introduction; High-Quality Software"
+reading = ""
 assignment = "Sprint 0 Start"
 
 [[weeks.days]]
 date = "Jan 11"
 topic = "High-Quality Software; C# and Object-Oriented Programming"
+reading = "(Reference) C# in a Nutshell"
 assignment = "Sprint 0"
 
 [[weeks.days]]
 date = "Jan 13"
 topic = "Visual Studio; MonoGame; User Input Handling"
+reading = "(Reference) C# in a Nutshell; (Required) Head-First Design Patterns Ch. 1"
 assignment = "Sprint 0"
 
 [[weeks]]
@@ -28,6 +31,7 @@ assignment = "Sprint 0"
 [[weeks.days]]
 date = "Jan 18"
 topic = "2D Coordinate Systems; Textures and Sprites"
+reading = "MonoGame Tutorials (start <a target=\"_blank\" href=\"http://rbwhitaker.wikidot.com/monogame-2d-tutorials\">here</a>)"
 assignment = "Sprint 0"
 
 [[weeks.days]]
