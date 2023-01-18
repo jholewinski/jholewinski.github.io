@@ -76,3 +76,5 @@ through-out for reference. All are available online through the campus library.
 [Game Resources](@/teaching/cse3902/game-resources.md)
 
 [MonoGame Resources](@/teaching/cse3902/monogame-resources/index.md)
+
+[Examples](@/teaching/cse3902/examples/index.md)
