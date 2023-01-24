@@ -37,6 +37,7 @@ assignment = "Sprint 0"
 [[weeks.days]]
 date = "Jan 20"
 topic = "Sprint 0 Design Comparisons"
+reading = "Head-First Design Patterns; Gang of Four"
 assignment = "Sprint 0 Early Deadline on Sun Jan 22 at 11:59pm"
 
 [[weeks]]
