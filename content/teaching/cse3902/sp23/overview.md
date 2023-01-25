@@ -35,7 +35,7 @@ The following sprints comprise the project work for this course:
   - Assigned: Jan 11
   - Functionality Check-In: Jan 22 at 11:59pm
   - Due: Jan 29 at 11:59pm
-- [Sprint 1](sprint1/): Group Introduction and Project Setup
+- [Sprint 1](@/teaching/cse3902/sp23/sprint1/index.md): Group Introduction and Project Setup
   - Assigned: Jan 23
   - Functionality Check-In: N/A
   - Due: Jan 27
