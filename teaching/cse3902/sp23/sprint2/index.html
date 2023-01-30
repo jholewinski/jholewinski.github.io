@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/">CSE 3902: Sprint 2</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+
+        
+            <ul>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#objectives">Objectives</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#strongly-advised-design-suggestions">Strongly Advised Design Suggestions</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#key-mappings">Key Mappings</a>
+                    
+                        <ul>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#player-controls">Player controls</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#block-obstacle-controls">Block&#x2F;obstacle controls</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#item-controls">Item controls</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#enemy-npc-other-character-controls">Enemy&#x2F;NPC (other character) controls</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#other-controls">Other controls</a>
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#sprint-2-work-expectations">Sprint 2 Work Expectations</a>
+                    
+                        <ul>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#planning">Planning</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#software-development-and-task-tracking">Software development and task tracking</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#other-processes-and-tasks">Other processes and tasks</a>
+                                </li>
+                            
+                                <li>
+                                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#on-code-reviews">On code reviews</a>
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#functionality-check-in">Functionality check-in</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#project-submission">Project Submission</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#peer-reviews">Peer reviews</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="https://jholewinski.github.io/teaching/cse3902/sp23/sprint2/#grading">Grading</a>
+                    
+                </li>
+            
+            </ul>
+        
+    
+
+        
+        <div class="post-content">
+            <p>Functionality Check-In: Feb 12 at 11:59pm</p>
+<p>Due: Feb 19 at 11:59pm</p>
+<h1 id="objectives">Objectives</h1>
+<ul>
+<li>Continue to familiarize yourself with the software tools for project progress
+tracking and version control as described in Sprint 1.</li>
+<li>Create interfaces for different parts of the your game framework, options
+might include:
+<ul>
+<li>Noun-like categories such as players, enemies, items, projectiles, blocks,
+etc.</li>
+<li>Verb-like categories such as drawables, updateables, collideables, etc.</li>
+<li>An entity-component design with entities, components, and system managers</li>
+</ul>
+</li>
+<li>Create a class for each object that will be included in the first (and
+possibly only) dungeon of your game
+<ul>
+<li>Implement drawing of each object</li>
+<li>Implement movement of each object so that the object moves similar to how it
+will in the actual game</li>
+<li>Implement sprite animation</li>
+<li>Implement state changes of each object. For example, many objects have four
+different facing directions and can take damage</li>
+<li>Keep the details of sprite drawing separate from the object's gameplay
+behavior</li>
+</ul>
+</li>
+<li>Implement user input for changing the states of the player. For other objects
+that change state, cause changes based on timers, counters, and/or randomly
+generated numbers</li>
+</ul>
+<h1 id="strongly-advised-design-suggestions">Strongly Advised Design Suggestions</h1>
+<ul>
+<li>Make use of the Command design pattern to separate concerns of user input
+handling classes from the objects they act on.</li>
+<li>Make use of the Factory Method design pattern to separate the concern of
+creating/selecting sprites from the object that uses the sprite for its visual
+representation.</li>
+<li>Make use of the State design pattern to separate the concern of object
+state/behavior from complex objects such as the player character.
+Alternatively, encapsulate this logic in a state machine class.</li>
+</ul>
+
+  <img src="sprint2.png" class="center" />
+
+<p><a href="SampleHighFunctionalitySprint2.mp4">Video example of a Sprint2 implementation with most of the intended
+functionality for object movement and animation for a team of size
+5</a></p>
+<p><em>Note</em>: The Sprint requirements are structured to limit the scope of your
+project and gradually add new features in each Sprint (as is the practice in
+Agile Software Development). However, you should have a rough idea for what will
+be needed to complete the first level of the game you are basing yours off of,
+to help in designing a system that can easily be modified to add gameplay
+functionality as the project progresses. You may find it useful to read through
+the manual for the game you plan to implement; an archive of NES game manuals
+can be found here.</p>
+<h1 id="key-mappings">Key Mappings</h1>
+<p>Use keyboard input for control over the player character and to cause state
+changes in other objects. Allow upper and lower case letters for the key input.</p>
+<h2 id="player-controls">Player controls</h2>
+<ul>
+<li>Arrow and &quot;wasd&quot; keys should move Link and change his facing direction.</li>
+<li>The 'z' and 'n' key should cause Link to attack using his sword.</li>
+<li>Number keys (1, 2, 3, etc.) should be used to have Link use a different item
+(later this will be replaced with a menu system and 'x' and 'm' for the
+secondary item.</li>
+<li>Use 'e' to cause Link to become damaged.</li>
+</ul>
+<h2 id="block-obstacle-controls">Block/obstacle controls</h2>
+<ul>
+<li>Use keys &quot;t&quot; and &quot;y&quot; to cycle between which block is currently being shown
+(i.e. think of the obstacles as being in a list where the game's current
+obstacle is being drawn, &quot;t&quot; switches to the previous item and &quot;y&quot; switches to
+the next)</li>
+<li>All blocks should be stationary and should not interact with any other objects</li>
+</ul>
+<h2 id="item-controls">Item controls</h2>
+<ul>
+<li>Use keys &quot;u&quot; and &quot;i&quot; to cycle between which item is currently being shown
+(i.e. think of the items as being in a list where the game's current item is
+being drawn, &quot;u&quot; switches to the previous item and &quot;i&quot; switches to the next)</li>
+<li>Items should move and animate as they do in the final game, but should not
+interact with any other objects</li>
+</ul>
+<h2 id="enemy-npc-other-character-controls">Enemy/NPC (other character) controls</h2>
+<ul>
+<li>Use keys &quot;o&quot; and &quot;p&quot; to cycle between which enemy or npc is currently being
+shown (i.e. think of these characters as being in a list where the game's
+current character is being drawn, &quot;o&quot; switches to the previous item and &quot;p&quot;
+switches to the next)</li>
+<li>characters should move, animate, fire projectiles, etc. as they do in the
+final game, but should not interact with any other objects</li>
+</ul>
+<h2 id="other-controls">Other controls</h2>
+<ul>
+<li>Use 'q' to quit and 'r' to reset the program back to its initial state.</li>
+</ul>
+<h1 id="sprint-2-work-expectations">Sprint 2 Work Expectations</h1>
+<h2 id="planning">Planning</h2>
+<ul>
+<li>Make sure all team members have been added to the project.</li>
+<li>Enter start and end dates for Sprint 2.</li>
+<li>Add several product backlog items (rows on the board) for the requirements for
+this sprint (controllers, commands, objects, sprites, etc.) and assign them to
+Sprint 2.</li>
+<li>Add tasks with effort amounts and assign each to someone.</li>
+<li>Examples could include:
+<ul>
+<li>Add a task for creating interfaces (or you can let the person responsible
+for each part of the implementation choose when to provide interfaces).</li>
+<li>Add a task for creating a Link class.</li>
+<li>Add a task for handling Link's state transitions.</li>
+<li>Add a task for creating enemy classes.</li>
+<li>Add a task for creating item classes.</li>
+<li>Add a task for creating block class(es).</li>
+<li>Add tasks for implementing commands and controllers.</li>
+<li>Add a task to implement keyboard input.</li>
+</ul>
+</li>
+<li>Some advice: for Sprint 2 the player character logic is disproportionately
+larger than most of the other features, so it is recommended to split this
+work between at least two members.</li>
+</ul>
+<h2 id="software-development-and-task-tracking">Software development and task tracking</h2>
+<ul>
+<li>Implement the features described in the sprint description.</li>
+<li>Each team member should implement the tasks assigned to them.</li>
+<li>When you start work on a task, drag the task to In-Progress on the board.</li>
+<li>If you did not finish the task that day, reduce the remaining work time</li>
+<li>If you finished the task, drag it to Done and make sure its remaining work
+time is zero. estimate for the task.</li>
+<li>You should place a high priority on the readability and simplicity of your
+code during the first half of the sprint.</li>
+<li>Try to finish early, given a three week period for a sprint, here are some recommended deadlines:</li>
+<li>When refactoring, place a higher priority on the maintainability of the code.
+<ul>
+<li>End of second week - finish all of the functionality for the sprint ; complete one set of code reviews</li>
+<li>First day of sprint - finish putting tasks up on the board</li>
+<li>Middle of third week - finish all code refactoring for the sprint ; complete
+second set of code reviews</li>
+<li>End of the third week - complete remaining documentation and adminstrative
+tasks</li>
+</ul>
+</li>
+</ul>
+<h2 id="other-processes-and-tasks">Other processes and tasks</h2>
+<ul>
+<li>README document
+<ul>
+<li>Write up a document with useful information on your project. This might
+include: program controls, descriptions of known bugs that program has, and
+details of any tools or processes your team used that aren't explicitly
+required (for example, calculating and using Code Metrics as part of your
+design process)</li>
+</ul>
+</li>
+<li>Use tools to improve your code and/or create documentation about your
+codebase. Do at least one of the following:
+<ul>
+<li>Calculate your code metrics within Visual Studio under the Analyze menu.
+Generate and record this values at least once a week, consider putting them
+in a spreadsheet and making graphs using the data.</li>
+<li>Use the .NET code analyzers (Roslyn) with rules for code quality analysis.
+Document any errors or warnings that you get, then on-by-one fix them or set
+them as supressed with an explanation in your documentation on why you
+supressed that particular warning/error.</li>
+</ul>
+</li>
+<li>Code Reviews
+<ul>
+<li>Each member of the team should review at least one class and have at least
+one of their classes reviewed, with a focus on code readability</li>
+<li>Each member of the team should review at least one class and have at least
+one of their classes reviewed, with a focus on code maintainability</li>
+<li>More detailed guidelines on a code review process can be found below</li>
+</ul>
+</li>
+<li>Sprint reflection
+<ul>
+<li>Near the end of the sprint, write up a brief report on how your team
+performed this sprint, using the burndown chart from the board as the basis
+for discussion.</li>
+<li>Feel free to also discuss your processes as a whole. Were any changes your
+made this sprint constructive or detrimental? Do you have any plans for
+doing things differently next sprint?</li>
+</ul>
+</li>
+</ul>
+<h2 id="on-code-reviews">On code reviews</h2>
+<p>The best way to fulill the requirement of documenting reviewing of code within
+your team is by doing pull requests. Alternatively, you can write up code
+reviews in plaintext documents to be submitted with the project. In the root
+folder of the project, add a folder to store code reviews. You can add plaintext
+files to the project in this folder by going to the Project menu, add new item,
+and select text file under the general option.</p>
+<p>In the plaintext file for a readability review, include the following
+information:</p>
+<ul>
+<li>Author of the code review</li>
+<li>Date of the code review</li>
+<li>Sprint number</li>
+<li>Name of the .cs file being reviewed</li>
+<li>Author of the .cs file being reviewed</li>
+<li>Number of minutes taken to complete the review</li>
+<li>Specific comments on what is readable and what is not</li>
+</ul>
+<p>In the plaintext file for a code quality review, include the following
+information:</p>
+<ul>
+<li>Author of the code review</li>
+<li>Date of the code review</li>
+<li>Sprint number</li>
+<li>Name of the .cs file being reviewed</li>
+<li>Author of the .cs file being reviewed</li>
+<li>Specific comments on code quality</li>
+<li>A hypothetical change to make to the game related to file being reviewed and
+how the current implementation could or could not easily support that change</li>
+</ul>
+<h1 id="functionality-check-in">Functionality check-in</h1>
+<p>One member of your team should follow the build-&gt;clean and project folder
+zipping process from Sprint0 and turn in your project on Carmen on the
+appropriate assignment page. The purpose of this submission is similar to the
+&quot;early bonus&quot; from Sprint0 - incentive for students to not delay in getting
+their portion of the project done before the last few days of the sprint. These
+submissions will be briefly tested (5-10 minutes), and if a submission appears
+to have at least 75% of the functional requirements for the sprint the team will
+be deemed to have passed the functional check-in. Passing the functional
+check-in will be worth about 5%, or half a letter grade, on the grading of the
+sprint as a whole. Feedback on these submissions will be limited.</p>
+<h1 id="project-submission">Project Submission</h1>
+<p>One member of your team should follow the build-&gt;clean and project folder
+zipping process from Sprint0 and turn in your project on Carmen on the
+appropriate assignment page. If they aren't included in the zip file, also add
+your README and sprint reflection documents (and any other project management
+documents you made). After the sprint is over, everyone should fill out a peer
+review form rating the work of everyone on your team, yourself included, for
+that sprint and turn in the file on Carmen on the assignment page for the peer
+review. Additionally, at least one member of your team will need to arrange a
+meeting with your grader to review your work (at minimum the contents of your
+board, but you may review more). Exceptions granted if you provide this
+documentation in another form, ex: screenshots of tasks board or direct log-in
+access to your taskboard</p>
+<p><strong>Lateness</strong>: your grader is permitted to evaluate submissions turned in 1-2
+days late, but expect it to come with a 5%, or half a letter grade, penalty.</p>
+<h1 id="peer-reviews">Peer reviews</h1>
+<p>The peer reviews are one of the main ways we get information about how your team
+is doing, so take your time to fill them out thoroughly and honestly. In cases
+where peer reviews provide conflicting information, either in inconsistent
+scores for a team member or inconsistency in scores and the overall
+functionality of the project, your team might be asked to meet with the
+instructor to review your code commit logs to obtain more detailed information
+on each team member's contribution.</p>
+<h1 id="grading">Grading</h1>
+<p>Each sprint you'll receive feedback on how your team is progressing. Your grader
+will review your work and provide comments on</p>
+<ul>
+<li>your documentation (task tracking, code reviews, code metrics/analysis)</li>
+<li>code functionality (has your team implemented enough work for its size and how
+buggy is it)</li>
+<li>(workload permitting also comments on code quality)</li>
+</ul>
+<p>The team will get a rough letter grade for each sprint (within feedback, not as
+a score within the Carmen gradebook),</p>
+<ul>
+<li>A - exceptional work, goes beyond stated expectations</li>
+<li>B - good to average work</li>
+<li>C - needs improvement</li>
+<li>D - needs significant improvement</li>
+</ul>
+<p>Your instructor will review your work (frequency TBD, likely to be every other
+sprint) and provide comments on</p>
+<ul>
+<li>code quality</li>
+</ul>
+<p>Code quality will also play a role in determining numeric project scores at the
+end of the semester. Assume around 30-40% of the project scores are based on
+meeting high quality code standards. You should refactor your code to eliminate
+any major code quality problems cited by your instructor and grader. Minor
+issues may be excused but only after discussing the details with your
+instructor.</p>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
