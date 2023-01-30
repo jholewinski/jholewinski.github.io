@@ -39,7 +39,7 @@ The following sprints comprise the project work for this course:
   - Assigned: Jan 23
   - Functionality Check-In: N/A
   - Due: Jan 27
-- [Sprint 2](sprint2/): Game Objects and Sprites
+- [Sprint 2](@/teaching/cse3902/sp23/sprint2/index.md): Game Objects and Sprites
   - Assigned: Jan 27
   - Functionality Check-In: Feb 12 at 11:59pm
   - Due: Feb 19 at 11:59pm
