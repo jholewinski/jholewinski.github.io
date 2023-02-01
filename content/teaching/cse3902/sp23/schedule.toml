@@ -64,11 +64,13 @@ num = 4
 [[weeks.days]]
 date = "Jan 30"
 topic = "State Machine; State Design Pattern; Separation of Sprites from Game Objects"
+reading = "Head-First Design Patterns; Gang of Four"
 assignment = "Sprint 2"
 
 [[weeks.days]]
 date = "Feb 1"
 topic = "Decorator Pattern; Interaction Between Decorators and States; Link Decorator for Zelda"
+reading = "Head-First Design Patterns; Gang of Four"
 assignment = "Sprint 2"
 
 [[weeks.days]]
@@ -87,6 +89,7 @@ assignment = "Sprint 2"
 [[weeks.days]]
 date = "Feb 8"
 topic = "Strategy Pattern; Null Pattern; Anti-Patterns; Refactoring; Technical Debt"
+reading = "Head-First Design Patterns; Gang of Four"
 assignment = "Sprint 2"
 
 [[weeks.days]]
@@ -197,6 +200,7 @@ assignment = "Sprint 4"
 [[weeks.days]]
 date = "Mar 24"
 topic = "Flyweight Pattern; Object Pools; Build Pattern; Memento Pattern"
+reading = "Head-First Design Patterns; Gang of Four"
 assignment = "Sprint 4"
 
 [[weeks]]
