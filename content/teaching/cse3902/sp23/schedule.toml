@@ -37,7 +37,7 @@ assignment = "Sprint 0"
 [[weeks.days]]
 date = "Jan 20"
 topic = "Sprint 0 Design Comparisons"
-reading = "Head-First Design Patterns; Gang of Four"
+reading = "Head-First Design Patterns (Ch 1); or Gang of Four (Ch 1)"
 assignment = "Sprint 0 Early Deadline on Sun Jan 22 at 11:59pm"
 
 [[weeks]]
@@ -46,6 +46,7 @@ num = 3
 [[weeks.days]]
 date = "Jan 23"
 topic = "Command Pattern; Agile Development"
+reading = "Head First Design Patterns (Ch 6); or Gang of Four (Ch 19)"
 assignment = "Sprints 0 And 1"
 
 [[weeks.days]]
@@ -64,18 +65,19 @@ num = 4
 [[weeks.days]]
 date = "Jan 30"
 topic = "State Machine; State Design Pattern; Separation of Sprites from Game Objects"
-reading = "Head-First Design Patterns; Gang of Four"
+reading = "Head-First Design Patterns (Ch 10); or  Gang of Four (Ch 20)"
 assignment = "Sprint 2"
 
 [[weeks.days]]
 date = "Feb 1"
 topic = "Decorator Pattern; Interaction Between Decorators and States; Link Decorator for Zelda"
-reading = "Head-First Design Patterns; Gang of Four"
+reading = "Head-First Design Patterns (Ch 3); or Gang of Four (Ch 13)"
 assignment = "Sprint 2"
 
 [[weeks.days]]
 date = "Feb 3"
-topic = "Code Quality/Metrics; Cohesion; Coupling; Sprint Evaluation; Peer Review"
+topic = "Sprint Evaluation; Peer Review / Team Topics; Factory; Singleton"
+reading = "Head-First Design Patterns (Ch 4/5); or Gang of Four (Ch 2/3)"
 assignment = "Sprint 2"
 
 [[weeks]]
