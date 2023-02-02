@@ -63,8 +63,19 @@ The following are the required textbooks for this course and should be used
 through-out for reference. All are available online through the campus library.
 
 - [Head-First Design Patterns](https://library.ohio-state.edu/record=b9503242~S7)
+  - Required Reading:
+    - Chapter 3: Decorator
+    - Chapter 4: Factory
+    - Chapter 5: Singleton
+    - Chapter 6: Command
+    - Chapter 10: State
 - [Design Patterns: Elements of Reusable Object-Oriented Software (a.k.a. Gang of Four) by Gamma et al](https://library.ohio-state.edu/record=b4589834~S7)
 - [C# in a Nutshell](https://library.ohio-state.edu/record=b9467593~S7)
+  - Recommended Reading:
+    - Chapter 1: Introducing C#
+    - Chapter 2: C# Basics
+    - Chapter 3: Creating Types
+    - Chapter 7: Collections
 
 
 # Class Schedule
