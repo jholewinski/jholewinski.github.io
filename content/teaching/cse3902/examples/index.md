@@ -3,6 +3,9 @@ title = "Class Examples"
 template = "class-page.html"
 +++
 
+Most examples taken from Matt Boggus'
+[CSE 3902](https://web.cse.ohio-state.edu/~boggus.2/3902/) web page.
+
 C# Examples
 - [Person Class Without Properties](@/teaching/cse3902/examples/person-without-properties.md)
 - [Person Class With Properties](@/teaching/cse3902/examples/person-with-properties.md)
