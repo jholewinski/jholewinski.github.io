@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/block-example1/">Super Mario Bros Block Class (1)</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <pre data-lang="c#" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c# "><code class="language-c#" data-lang="c#"><span style="color:#9b9b9b;">using </span><span>System;
+</span><span style="color:#9b9b9b;">using </span><span>System.Collections.Generic;
+</span><span style="color:#9b9b9b;">using </span><span>System.Linq;
+</span><span style="color:#9b9b9b;">using </span><span>System.Text;
+</span><span style="color:#9b9b9b;">using </span><span>Microsoft.Xna.Framework.Graphics;
+</span><span style="color:#9b9b9b;">using </span><span>Microsoft.Xna.Framework;
+</span><span style="color:#9b9b9b;">using </span><span>Microsoft.Xna.Framework.Content;
+</span><span style="color:#9b9b9b;">using </span><span>Super_Mario_Brothers.Animations;
+</span><span style="color:#9b9b9b;">using </span><span>Super_Mario_Brothers.Collisions;
+</span><span style="color:#9b9b9b;">using </span><span>Super_Mario_Brothers.Rooms;
+</span><span style="color:#9b9b9b;">using </span><span>Super_Mario_Brothers.LevelDataStore.Importers;
+</span><span style="color:#9b9b9b;">using </span><span>Super_Mario_Brothers.LevelDataStore;
+</span><span style="color:#9b9b9b;">using </span><span>Super_Mario_Brothers.Behaviors;
+</span><span style="color:#9b9b9b;">using </span><span>Microsoft.Xna.Framework.Audio;
+</span><span>
+</span><span style="color:#569cd6;">namespace </span><span>Super_Mario_Brothers.Entities
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">public class </span><span>Block : </span><span style="color:#4ec9b0;">GameEntity
+</span><span>    {
+</span><span>        </span><span style="color:#569cd6;">static </span><span>Texture2D spriteSheet;
+</span><span>        </span><span style="color:#569cd6;">static </span><span>SoundEffect BrickSound;
+</span><span>        </span><span style="color:#569cd6;">static </span><span>SoundEffect SpawnSound;
+</span><span>        </span><span style="color:#569cd6;">struct </span><span>SpriteSet
+</span><span>        {
+</span><span>            </span><span style="color:#569cd6;">public </span><span>Sprite Dirt;
+</span><span>            </span><span style="color:#569cd6;">public </span><span>Sprite Used;
+</span><span>            </span><span style="color:#569cd6;">public </span><span>Sprite Bevel;
+</span><span>            </span><span style="color:#569cd6;">public </span><span>Sprite Question;
+</span><span>            </span><span style="color:#569cd6;">public </span><span>Sprite BrickTop;
+</span><span>            </span><span style="color:#569cd6;">public </span><span>Sprite Brick;
+</span><span>
+</span><span>            </span><span style="color:#569cd6;">internal </span><span>Sprite BySpriteKind(ImportBlock.SpriteKind spriteKind)
+</span><span>            {
+</span><span>                </span><span style="color:#569cd6;">switch </span><span>(spriteKind) {
+</span><span>                    </span><span style="color:#569cd6;">case </span><span>ImportBlock.SpriteKind.</span><span style="color:#b4cea8;">DIRT</span><span>:     </span><span style="color:#569cd6;">return </span><span>Dirt;
+</span><span>                    </span><span style="color:#569cd6;">case </span><span>ImportBlock.SpriteKind.</span><span style="color:#b4cea8;">BEVEL</span><span>:    </span><span style="color:#569cd6;">return </span><span>Bevel;
+</span><span>                    </span><span style="color:#569cd6;">case </span><span>ImportBlock.SpriteKind.</span><span style="color:#b4cea8;">BLOCK</span><span>:    </span><span style="color:#569cd6;">return </span><span>Used;
+</span><span>                    </span><span style="color:#569cd6;">case </span><span>ImportBlock.SpriteKind.</span><span style="color:#b4cea8;">QBLOCK</span><span>:   </span><span style="color:#569cd6;">return </span><span>Question;
+</span><span>                    </span><span style="color:#569cd6;">case </span><span>ImportBlock.SpriteKind.</span><span style="color:#b4cea8;">BRICK</span><span>:    </span><span style="color:#569cd6;">return </span><span>Brick;
+</span><span>                    </span><span style="color:#569cd6;">case </span><span>ImportBlock.SpriteKind.</span><span style="color:#b4cea8;">BRICKTOP</span><span>: </span><span style="color:#569cd6;">return </span><span>BrickTop;
+</span><span>                }
+</span><span>                </span><span style="color:#569cd6;">return null</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>        </span><span style="color:#569cd6;">private static </span><span>SpriteSet[] sprites;
+</span><span>        </span><span style="color:#569cd6;">int</span><span>[] sprImages = </span><span style="color:#569cd6;">new int</span><span>[] { </span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#b5cea8;">1</span><span>, </span><span style="color:#b5cea8;">2</span><span>, </span><span style="color:#b5cea8;">1 </span><span>};
+</span><span>
+</span><span>        GameEntityInstantiator contentInstantiator = </span><span style="color:#569cd6;">null</span><span>;
+</span><span>        </span><span style="color:#569cd6;">int </span><span>contentCount = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        </span><span style="color:#569cd6;">bool </span><span>destructable = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>        </span><span style="color:#569cd6;">bool </span><span>contentUseSpawner = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>        
+</span><span>        Vector2 bumpOffset;
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">protected override int </span><span>initialDepth { </span><span style="color:#569cd6;">get </span><span>{ </span><span style="color:#569cd6;">return </span><span style="color:#b5cea8;">0</span><span>; } }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public </span><span>Block(Room room): base(room) {
+</span><span>            CurrentSprite = sprites[(</span><span style="color:#569cd6;">int</span><span>)room.TerrainTheme].Dirt;
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">override public void </span><span>Update(GameTime time)
+</span><span>        {
+</span><span>            ImageIndex = sprImages[(</span><span style="color:#569cd6;">int</span><span>)(time.TotalGameTime.TotalMilliseconds </span><span style="color:#569cd6;">/ </span><span style="color:#b5cea8;">125</span><span>) </span><span style="color:#569cd6;">% </span><span>sprImages.Length];
+</span><span>            </span><span style="color:#569cd6;">if </span><span>(CurrentAnimation </span><span style="color:#569cd6;">!= null</span><span>)
+</span><span>                CurrentAnimation.Update(this, time);
+</span><span>            bumpOffset </span><span style="color:#569cd6;">/= </span><span style="color:#b5cea8;">1.5</span><span style="color:#569cd6;">f</span><span>;
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">static </span><span>Random rand = </span><span style="color:#569cd6;">new </span><span>Random();
+</span><span>        </span><span style="color:#569cd6;">override public void </span><span>Bump(GameEntity bumper, CollisionTesting.CollisionSides sides, GameTime time)
+</span><span>        {
+</span><span>            </span><span style="color:#569cd6;">if </span><span>((sides </span><span style="color:#569cd6;">&amp; </span><span>CollisionTesting.CollisionSides.OR_ALLSIDES) </span><span style="color:#569cd6;">== </span><span>CollisionTesting.CollisionSides.BOTTOM)
+</span><span>            {
+</span><span>                </span><span style="color:#569cd6;">if </span><span>(bumper </span><span style="color:#569cd6;">is </span><span>Mario)
+</span><span>                {
+</span><span>                    </span><span style="color:#569cd6;">if </span><span>(contentInstantiator </span><span style="color:#569cd6;">!= null</span><span>) {
+</span><span>                        </span><span style="color:#569cd6;">var </span><span>e = MyRoom.Instantiate(contentInstantiator, time);
+</span><span>                        </span><span style="color:#569cd6;">if </span><span>(e.CurrentSprite </span><span style="color:#569cd6;">!= null</span><span>)
+</span><span>                            e.Position = Position </span><span style="color:#569cd6;">- </span><span>CurrentSprite.Origin </span><span style="color:#569cd6;">+ new </span><span>Vector2(CurrentSprite.Size.X </span><span style="color:#569cd6;">/ </span><span style="color:#b5cea8;">2</span><span>, CurrentSprite.Size.Y) </span><span style="color:#569cd6;">+
+</span><span>                                </span><span style="color:#569cd6;">new </span><span>Vector2(e.CurrentSprite.Origin.X </span><span style="color:#569cd6;">- </span><span>e.CurrentSprite.Size.X </span><span style="color:#569cd6;">/ </span><span style="color:#b5cea8;">2</span><span>, e.CurrentSprite.Origin.Y </span><span style="color:#569cd6;">- </span><span>e.CurrentSprite.Size.Y);
+</span><span>                        </span><span style="color:#569cd6;">else
+</span><span>                            e.Position = Position </span><span style="color:#569cd6;">- </span><span>CurrentSprite.Origin </span><span style="color:#569cd6;">+ </span><span>CurrentSprite.Size </span><span style="color:#569cd6;">/ </span><span style="color:#b5cea8;">2</span><span>;
+</span><span>                        </span><span style="color:#569cd6;">if </span><span>(contentUseSpawner)
+</span><span>                        {
+</span><span>                            SpawnSound.Play();
+</span><span>                            e.CurrentAnimation = </span><span style="color:#569cd6;">new </span><span>Spawner(e, time, </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#569cd6;">-</span><span>CurrentSprite.Size.Y), </span><span style="color:#b5cea8;">750</span><span>);
+</span><span>                        }
+</span><span>                        bumpOffset = </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#569cd6;">-</span><span style="color:#b5cea8;">4</span><span>);
+</span><span>                        </span><span style="color:#569cd6;">if </span><span>(</span><span style="color:#569cd6;">--</span><span>contentCount </span><span style="color:#569cd6;">== </span><span style="color:#b5cea8;">0</span><span>) {
+</span><span>                            contentInstantiator = </span><span style="color:#569cd6;">null</span><span>;
+</span><span>                            CurrentSprite = sprites[(</span><span style="color:#569cd6;">int</span><span>)MyRoom.TerrainTheme].Used;
+</span><span>                            </span><span style="color:#569cd6;">if </span><span>(</span><span style="color:#569cd6;">!</span><span>Visible)
+</span><span>                            {
+</span><span>                                Visible = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>                                SolidSides = CollisionTesting.CollisionSides.EVERYTHING;
+</span><span>                            }
+</span><span>                        }
+</span><span>                    }
+</span><span>                    </span><span style="color:#569cd6;">if </span><span>(destructable)
+</span><span>                    {
+</span><span>                        </span><span style="color:#569cd6;">if </span><span>(</span><span style="color:#569cd6;">!</span><span>((Hero)bumper).IsPoweredUp())
+</span><span>                            bumpOffset = </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#569cd6;">-</span><span style="color:#b5cea8;">4</span><span>);
+</span><span>                        </span><span style="color:#569cd6;">else
+</span><span>                        {
+</span><span>                            MyRoom.Destroy(this);
+</span><span>                            Vector2 g = </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#b5cea8;">0</span><span>, .</span><span style="color:#b5cea8;">375</span><span style="color:#569cd6;">f</span><span>);
+</span><span>                            BrickSound.Play();
+</span><span>                            MyRoom.Add(</span><span style="color:#569cd6;">new </span><span>Particle(MyRoom, CurrentSprite, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#b5cea8;">8</span><span>, </span><span style="color:#b5cea8;">8</span><span>), Position </span><span style="color:#569cd6;">+ new </span><span>Vector2( </span><span style="color:#b5cea8;">4</span><span>,  </span><span style="color:#b5cea8;">4</span><span>), </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#569cd6;">-</span><span>rand.Next(</span><span style="color:#b5cea8;">3</span><span>,</span><span style="color:#b5cea8;">5</span><span>), </span><span style="color:#569cd6;">-</span><span>rand.Next(</span><span style="color:#b5cea8;">3</span><span>,</span><span style="color:#b5cea8;">6</span><span>)), g, (</span><span style="color:#569cd6;">float</span><span>)(</span><span style="color:#569cd6;">-</span><span>.</span><span style="color:#b5cea8;">1 </span><span style="color:#569cd6;">- </span><span>.</span><span style="color:#b5cea8;">25 </span><span style="color:#569cd6;">* </span><span>rand.NextDouble())), time);
+</span><span>                            MyRoom.Add(</span><span style="color:#569cd6;">new </span><span>Particle(MyRoom, CurrentSprite, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">8</span><span>, </span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#b5cea8;">8</span><span>, </span><span style="color:#b5cea8;">8</span><span>), Position </span><span style="color:#569cd6;">+ new </span><span>Vector2(</span><span style="color:#b5cea8;">12</span><span>,  </span><span style="color:#b5cea8;">4</span><span>), </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#569cd6;">+</span><span>rand.Next(</span><span style="color:#b5cea8;">3</span><span>,</span><span style="color:#b5cea8;">5</span><span>), </span><span style="color:#569cd6;">-</span><span>rand.Next(</span><span style="color:#b5cea8;">3</span><span>,</span><span style="color:#b5cea8;">6</span><span>)), g, (</span><span style="color:#569cd6;">float</span><span>)(</span><span style="color:#569cd6;">-</span><span>.</span><span style="color:#b5cea8;">1 </span><span style="color:#569cd6;">- </span><span>.</span><span style="color:#b5cea8;">25 </span><span style="color:#569cd6;">* </span><span>rand.NextDouble())), time);
+</span><span>                            MyRoom.Add(</span><span style="color:#569cd6;">new </span><span>Particle(MyRoom, CurrentSprite, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#b5cea8;">8</span><span>, </span><span style="color:#b5cea8;">8</span><span>, </span><span style="color:#b5cea8;">8</span><span>), Position </span><span style="color:#569cd6;">+ new </span><span>Vector2( </span><span style="color:#b5cea8;">4</span><span>, </span><span style="color:#b5cea8;">12</span><span>), </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#569cd6;">-</span><span>rand.Next(</span><span style="color:#b5cea8;">3</span><span>,</span><span style="color:#b5cea8;">5</span><span>), </span><span style="color:#569cd6;">-</span><span>rand.Next(</span><span style="color:#b5cea8;">2</span><span>,</span><span style="color:#b5cea8;">5</span><span>)), g, (</span><span style="color:#569cd6;">float</span><span>)(</span><span style="color:#569cd6;">-</span><span>.</span><span style="color:#b5cea8;">1 </span><span style="color:#569cd6;">- </span><span>.</span><span style="color:#b5cea8;">25 </span><span style="color:#569cd6;">* </span><span>rand.NextDouble())), time);
+</span><span>                            MyRoom.Add(</span><span style="color:#569cd6;">new </span><span>Particle(MyRoom, CurrentSprite, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">8</span><span>, </span><span style="color:#b5cea8;">8</span><span>, </span><span style="color:#b5cea8;">8</span><span>, </span><span style="color:#b5cea8;">8</span><span>), Position </span><span style="color:#569cd6;">+ new </span><span>Vector2(</span><span style="color:#b5cea8;">12</span><span>, </span><span style="color:#b5cea8;">12</span><span>), </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#569cd6;">+</span><span>rand.Next(</span><span style="color:#b5cea8;">3</span><span>,</span><span style="color:#b5cea8;">5</span><span>), </span><span style="color:#569cd6;">-</span><span>rand.Next(</span><span style="color:#b5cea8;">2</span><span>,</span><span style="color:#b5cea8;">5</span><span>)), g, (</span><span style="color:#569cd6;">float</span><span>)(</span><span style="color:#569cd6;">-</span><span>.</span><span style="color:#b5cea8;">1 </span><span style="color:#569cd6;">- </span><span>.</span><span style="color:#b5cea8;">25 </span><span style="color:#569cd6;">* </span><span>rand.NextDouble())), time);
+</span><span>                        }
+</span><span>                    }
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public override void </span><span>Draw(GraphicsDevice graphics, SpriteBatch spriteBatch, GameTime time)
+</span><span>        {
+</span><span>            </span><span style="color:#569cd6;">if </span><span>(Visible)
+</span><span>                CurrentSprite.Draw(spriteBatch, (</span><span style="color:#569cd6;">int</span><span>)ImageIndex, Position </span><span style="color:#569cd6;">+ </span><span>bumpOffset);
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public class </span><span>Instantiator : </span><span style="color:#4ec9b0;">GameEntityInstantiator
+</span><span>        {
+</span><span>            </span><span style="color:#569cd6;">override public </span><span>GameEntity Instantiate(Room room) {
+</span><span>                </span><span style="color:#569cd6;">return new </span><span>Block(room);
+</span><span>            }
+</span><span>
+</span><span>            </span><span style="color:#569cd6;">protected override </span><span>GameEntity ReadIn(Room room, EntityPlacementData e)
+</span><span>            {
+</span><span>                </span><span style="color:#569cd6;">var </span><span>res = </span><span style="color:#569cd6;">new </span><span>Block(room);
+</span><span>                ImportBlock ib = (ImportBlock)e.EntityImporter;
+</span><span>                res.CurrentSprite = sprites[(</span><span style="color:#569cd6;">int</span><span>)room.TerrainTheme].BySpriteKind(ib.Sprite);
+</span><span>                </span><span style="color:#569cd6;">if </span><span>(ib.Contains </span><span style="color:#569cd6;">!= null</span><span>)
+</span><span>                {
+</span><span>                    res.contentInstantiator = Room.InstantiableEntities.LookUp(ib.Contains);
+</span><span>                    res.contentCount = ib.ContainsQuantity;
+</span><span>                    res.contentUseSpawner = ib.ContainsUseSpawner;
+</span><span>                }
+</span><span>                res.destructable = ib.Destructable;
+</span><span>                </span><span style="color:#569cd6;">if </span><span>(</span><span style="color:#569cd6;">!</span><span>(res.Visible = ib.Visible))
+</span><span>                    res.SolidSides = CollisionTesting.CollisionSides.BOTTOM;
+</span><span>                </span><span style="color:#569cd6;">return </span><span>res;
+</span><span>            }
+</span><span>
+</span><span>            </span><span style="color:#569cd6;">override public void </span><span>LoadContent(ContentManager contentManager)
+</span><span>            {
+</span><span>                spriteSheet = contentManager.Load&lt;Texture2D&gt;(</span><span style="color:#d69d85;">&quot;tileset&quot;</span><span>);
+</span><span>                sprites = </span><span style="color:#569cd6;">new </span><span>SpriteSet[</span><span style="color:#b5cea8;">3</span><span>];
+</span><span>                Point offset = </span><span style="color:#569cd6;">new </span><span>Point(</span><span style="color:#b5cea8;">0</span><span>, </span><span style="color:#b5cea8;">0</span><span>);
+</span><span>                BrickSound = contentManager.Load&lt;SoundEffect&gt;(</span><span style="color:#d69d85;">&quot;smb_breakblock&quot;</span><span>);
+</span><span>                SpawnSound = contentManager.Load&lt;SoundEffect&gt;(</span><span style="color:#d69d85;">&quot;smb_powerup_appears&quot;</span><span>);
+</span><span>                </span><span style="color:#569cd6;">for </span><span>(</span><span style="color:#569cd6;">int </span><span>i = </span><span style="color:#b5cea8;">0</span><span>; i </span><span style="color:#569cd6;">&lt; </span><span>sprites.Length; </span><span style="color:#569cd6;">++</span><span>i) {
+</span><span>                    sprites[i].Dirt     = </span><span style="color:#569cd6;">new </span><span>Sprite(spriteSheet, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">0   </span><span style="color:#569cd6;">+ </span><span>offset.X,  </span><span style="color:#b5cea8;">0 </span><span style="color:#569cd6;">+ </span><span>offset.Y, </span><span style="color:#b5cea8;">16</span><span>, </span><span style="color:#b5cea8;">16</span><span>), Vector2.Zero);
+</span><span>                    sprites[i].Used     = </span><span style="color:#569cd6;">new </span><span>Sprite(spriteSheet, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">48  </span><span style="color:#569cd6;">+ </span><span>offset.X,  </span><span style="color:#b5cea8;">0 </span><span style="color:#569cd6;">+ </span><span>offset.Y, </span><span style="color:#b5cea8;">16</span><span>, </span><span style="color:#b5cea8;">16</span><span>), Vector2.Zero);
+</span><span>                    sprites[i].Bevel    = </span><span style="color:#569cd6;">new </span><span>Sprite(spriteSheet, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">0   </span><span style="color:#569cd6;">+ </span><span>offset.X, </span><span style="color:#b5cea8;">16 </span><span style="color:#569cd6;">+ </span><span>offset.Y, </span><span style="color:#b5cea8;">16</span><span>, </span><span style="color:#b5cea8;">16</span><span>), Vector2.Zero);
+</span><span>                    sprites[i].Question = </span><span style="color:#569cd6;">new </span><span>Sprite(spriteSheet, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">384 </span><span style="color:#569cd6;">+ </span><span>offset.X,  </span><span style="color:#b5cea8;">0 </span><span style="color:#569cd6;">+ </span><span>offset.Y, </span><span style="color:#b5cea8;">16</span><span>, </span><span style="color:#b5cea8;">16</span><span>), Vector2.Zero, </span><span style="color:#b5cea8;">3</span><span>, </span><span style="color:#569cd6;">new </span><span>Vector2(</span><span style="color:#b5cea8;">16</span><span>, </span><span style="color:#b5cea8;">0</span><span>));
+</span><span>                    sprites[i].BrickTop = </span><span style="color:#569cd6;">new </span><span>Sprite(spriteSheet, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">16  </span><span style="color:#569cd6;">+ </span><span>offset.X,  </span><span style="color:#b5cea8;">0 </span><span style="color:#569cd6;">+ </span><span>offset.Y, </span><span style="color:#b5cea8;">16</span><span>, </span><span style="color:#b5cea8;">16</span><span>), Vector2.Zero);
+</span><span>                    sprites[i].Brick    = </span><span style="color:#569cd6;">new </span><span>Sprite(spriteSheet, </span><span style="color:#569cd6;">new </span><span>Rectangle(</span><span style="color:#b5cea8;">32  </span><span style="color:#569cd6;">+ </span><span>offset.X,  </span><span style="color:#b5cea8;">0 </span><span style="color:#569cd6;">+ </span><span>offset.Y, </span><span style="color:#b5cea8;">16</span><span>, </span><span style="color:#b5cea8;">16</span><span>), Vector2.Zero);
+</span><span>                    offset.Y </span><span style="color:#569cd6;">+= </span><span style="color:#b5cea8;">32</span><span>;
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

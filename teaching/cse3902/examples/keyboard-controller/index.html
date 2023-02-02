@@ -58,7 +58,7 @@
         
     <div class="post">
         
-    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/">Class Examples</a></h1>
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/keyboard-controller/">Keyboard Controller</a></h1>
     <div class="post-meta-inline">
         
     <span class="post-date"></span>
@@ -67,41 +67,33 @@
 
     
 
-
-        
-    
-
         
         <div class="post-content">
-            <p>C# Examples</p>
-<ul>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/person-without-properties/">Person Class Without Properties</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/person-with-properties/">Person Class With Properties</a></li>
-</ul>
-<p>Game Classes</p>
-<ul>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/block-example1/">Super Mario Bros Block Class (1)</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/block-example2/">Super Mario Bros Block Class (2)</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/manual-animated-sprite/">Crude Sprite Animation Example</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/keyboard-controller/">Keyboard Controller</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/texture2d-storage-static-class/">Texture2D Storage Static Class</a></li>
-</ul>
-<p>Game Organization Examples</p>
-<ul>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/mini-game-without-interfaces/">Mini-Game Without Interfaces (bad)</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/mini-game-with-objects/">Mini-Game With Objects (better)</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/mini-game-with-interfaces/">Mini-Game With Interfaces (good)</a></li>
-</ul>
-<p>Design Pattern Examples</p>
-<ul>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/decorator-link/">Link With Decorator</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/decorator-mario/">Mario With Decorator</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/enemy-sprite-factory-singleton/">Enemy Sprite Factory Singleton</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/goomba-state/">Goomba State Example</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/goomba-state-machine/">Goomba State Machine Example</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/goomba-state-machine-full/">Goomba State Machine Example (Full)</a></li>
-<li><a href="https://jholewinski.github.io/teaching/cse3902/examples/set-dead-player-sprite-command/">SetDeadPlayerSpriteCommand</a></li>
-</ul>
+            <pre data-lang="c#" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c# "><code class="language-c#" data-lang="c#"><span style="color:#569cd6;">public class </span><span>KeyboardController : </span><span style="color:#4ec9b0;">IController
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">private </span><span>Dictionary&lt;Keys, ICommand&gt; controllerMappings;
+</span><span>
+</span><span>    </span><span style="color:#569cd6;">public </span><span>KeyboardController()
+</span><span>    {
+</span><span>        controllerMappings = </span><span style="color:#569cd6;">new </span><span>Dictionary&lt;Keys, ICommand&gt;();
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>RegisterCommand(Keys key, ICommand command)
+</span><span>    {
+</span><span>        controllerMappings.Add(key, command);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>Update()
+</span><span>    {
+</span><span>        Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+</span><span>        
+</span><span>        </span><span style="color:#569cd6;">foreach </span><span>(Keys key </span><span style="color:#569cd6;">in </span><span>pressedKeys)
+</span><span>        {
+</span><span>            controllerMappings[key].Execute();
+</span><span>        }     
+</span><span>    }
+</span><span>}
+</span></code></pre>
 
         </div>
 

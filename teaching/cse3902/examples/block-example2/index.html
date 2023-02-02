@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/block-example2/">Super Mario Bros Block Class (2)</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <pre data-lang="c#" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c# "><code class="language-c#" data-lang="c#"><span style="color:#9b9b9b;">using </span><span>System;
+</span><span style="color:#9b9b9b;">using </span><span>System.Collections.Generic;
+</span><span style="color:#9b9b9b;">using </span><span>System.Linq;
+</span><span style="color:#9b9b9b;">using </span><span>System.Text;
+</span><span style="color:#9b9b9b;">using </span><span>Microsoft.Xna.Framework;
+</span><span>
+</span><span style="color:#569cd6;">namespace </span><span>Sprint6
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">public class </span><span>Block: </span><span style="color:#4ec9b0;">IBlock
+</span><span>    {
+</span><span>        </span><span style="color:#569cd6;">public </span><span>IState TheState { </span><span style="color:#569cd6;">get</span><span>; </span><span style="color:#569cd6;">set</span><span>; }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public </span><span>Vector2 Location { </span><span style="color:#569cd6;">get</span><span>; </span><span style="color:#569cd6;">set</span><span>; }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public </span><span>IAnimatedSprite TheSprite { </span><span style="color:#569cd6;">get</span><span>; </span><span style="color:#569cd6;">set</span><span>; }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public </span><span>IPhysics ThePhysics { </span><span style="color:#569cd6;">get</span><span>; </span><span style="color:#569cd6;">set</span><span>; }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public </span><span>Boolean Flag { </span><span style="color:#569cd6;">get</span><span>; </span><span style="color:#569cd6;">set</span><span>; }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public </span><span>Game1 theGame;
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public </span><span>Block(Game1 theGame)
+</span><span>        {
+</span><span>            this.theGame = theGame;
+</span><span>            this.TheState = </span><span style="color:#569cd6;">new </span><span>BrickBlockState(this);
+</span><span>            this.SetSpriteBasedOnState();
+</span><span>            ThePhysics = </span><span style="color:#569cd6;">new </span><span>Physics();
+</span><span>        }
+</span><span>        </span><span style="color:#569cd6;">public void </span><span>Update()
+</span><span>        {
+</span><span>            TheSprite.Update();
+</span><span>        }
+</span><span>        </span><span style="color:#569cd6;">public void </span><span>Draw()
+</span><span>        {
+</span><span>            TheSprite.Draw(theGame.spriteBatch, Location);
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public void </span><span>SetSpriteBasedOnState()
+</span><span>        {
+</span><span>            this.TheSprite = TheState.GetAnimatedSprite();
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/texture2d-storage-static-class/">Texture2D Storage Static Class</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <pre data-lang="c#" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c# "><code class="language-c#" data-lang="c#"><span style="color:#569cd6;">namespace </span><span>ObjectManagementExamples
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">public static class </span><span>Texture2DStorage
+</span><span>    {
+</span><span>        </span><span style="color:#608b4e;">// Note that we are not using Game1&#39;s ContentLoader here (outside the scope of class methods) since it has not been instantiated yet
+</span><span>        </span><span style="color:#569cd6;">private static </span><span>Texture2D enemySpriteSheet;
+</span><span>        </span><span style="color:#569cd6;">private static </span><span>Texture2D enemyBossSpriteSheet;
+</span><span>        </span><span style="color:#608b4e;">// More private static Texture2D fields follow
+</span><span>        </span><span style="color:#608b4e;">// ...
+</span><span>
+</span><span>        </span><span style="color:#608b4e;">// static classes have no constructor, but we need a method to initialize the Texture2D fields
+</span><span>        </span><span style="color:#569cd6;">public static </span><span>LoadAllTextures(ContentManager content)
+</span><span>        {
+</span><span>            enemySpriteSheet = content.Load&lt;Texture2D&gt;(</span><span style="color:#d69d85;">&quot;enemy&quot;</span><span>);
+</span><span>            </span><span style="color:#608b4e;">// More Content.Load calls follow
+</span><span>            </span><span style="color:#608b4e;">//...
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public static </span><span>UnloadAllTextures()
+</span><span>        { 
+</span><span>            </span><span style="color:#608b4e;">// unload all the Texture2Ds - not needed for the scope of this project
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">public static </span><span>Texture2D GetEnemySpriteSheet()
+</span><span>        {
+</span><span>            </span><span style="color:#569cd6;">return </span><span>enemySpriteSheet;
+</span><span>        }
+</span><span>        
+</span><span>        </span><span style="color:#569cd6;">public static </span><span>Texture2D GetBossSpriteSheet()
+</span><span>        {
+</span><span>            </span><span style="color:#569cd6;">return </span><span>enemyBossSpriteSheet;
+</span><span>        }
+</span><span>        
+</span><span>        </span><span style="color:#608b4e;">// More public static Texture2D returning methods follow
+</span><span>        </span><span style="color:#608b4e;">// ...
+</span><span>        
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#608b4e;">// Client code in main game class&#39; LoadContent method:
+</span><span>Texture2DStorage.LoadAllTextures(Content);
+</span><span>
+</span><span style="color:#608b4e;">// Client code in GoombaSprite class&#39; constructor:
+</span><span>Texture2D spriteSheet = Texture2DStorage.GetEnemySpriteSheet();
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

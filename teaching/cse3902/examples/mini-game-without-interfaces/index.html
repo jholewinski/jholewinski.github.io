@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/mini-game-without-interfaces/">Mini-Game Without Interfaces</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <pre data-lang="c#" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c# "><code class="language-c#" data-lang="c#"><span style="color:#569cd6;">enum </span><span>PlayerSpriteState {</span><span style="color:#b4cea8;">StandingInPlacePlayer</span><span>, </span><span style="color:#b4cea8;">RunningInPlacePlayer</span><span>, </span><span style="color:#b4cea8;">DeadPlayerMovingUpAndDown</span><span>, </span><span style="color:#b4cea8;">RunningLeftAndRightPlayer </span><span>};
+</span><span>PlayerSpriteState mySpriteState = PlayerSpriteState.StandingInPlacePlayer;
+</span><span style="color:#569cd6;">int </span><span>currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span style="color:#569cd6;">int </span><span>totalFrames = </span><span style="color:#b5cea8;">1</span><span>;
+</span><span style="color:#569cd6;">int </span><span>yPos = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span style="color:#569cd6;">int </span><span>xPos = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span style="color:#569cd6;">bool </span><span>movingUp = </span><span style="color:#569cd6;">false</span><span>;
+</span><span style="color:#569cd6;">bool </span><span>movingLeft = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>
+</span><span style="color:#569cd6;">protected </span><span>override void Update(GameTime gameTime</span><span style="color:#ff3333;">)
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">if </span><span>(GamePad.GetState(PlayerIndex.One).Buttons.Start </span><span style="color:#569cd6;">== </span><span>ButtonState.Pressed)
+</span><span>    {
+</span><span>        this.Exit();
+</span><span>    }
+</span><span>    </span><span style="color:#569cd6;">else if </span><span>(GamePad.GetState(PlayerIndex.One).Buttons.A </span><span style="color:#569cd6;">== </span><span>ButtonState.Pressed)
+</span><span>    {
+</span><span>        mySpriteState = PlayerSpriteState.StandingInPlacePlayer;
+</span><span>        currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        totalFrames = </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>        movingUp = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>        movingLeft = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#569cd6;">else if </span><span>(GamePad.GetState(PlayerIndex.One).Buttons.B </span><span style="color:#569cd6;">== </span><span>ButtonState.Pressed)
+</span><span>    {
+</span><span>        mySpriteState = PlayerSpriteState.RunningInPlacePlayer;
+</span><span>        currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        totalFrames = </span><span style="color:#b5cea8;">3</span><span>;
+</span><span>        movingUp = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>        movingLeft = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#569cd6;">else if </span><span>(GamePad.GetState(PlayerIndex.One).Buttons.X </span><span style="color:#569cd6;">== </span><span>ButtonState.Pressed)
+</span><span>    {
+</span><span>        mySpriteState = PlayerSpriteState.DeadPlayerMovingUpAndDown;
+</span><span>        currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        totalFrames = </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>        movingUp = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>        movingLeft = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>    }	
+</span><span>    </span><span style="color:#569cd6;">else if </span><span>(GamePad.GetState(PlayerIndex.One).Buttons.Y </span><span style="color:#569cd6;">== </span><span>ButtonState.Pressed)
+</span><span>    {
+</span><span>        mySpriteState = PlayerSpriteState.RunningLeftAndRightPlayer;
+</span><span>        currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        totalFrames = </span><span style="color:#b5cea8;">3</span><span>;
+</span><span>        movingUp = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>        movingLeft = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">if </span><span>(Keyboard.GetState().IsKeyDown(Keys.Q))
+</span><span>    {
+</span><span>        this.Exit();
+</span><span>    }
+</span><span>    </span><span style="color:#569cd6;">else if </span><span>(Keyboard.GetState().IsKeyDown(Keys.W))
+</span><span>    {
+</span><span>        mySpriteState = PlayerSpriteState.StandingInPlacePlayer;
+</span><span>        currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        totalFrames = </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>        movingUp = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>        movingLeft = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#569cd6;">else if </span><span>(Keyboard.GetState().IsKeyDown(Keys.E))
+</span><span>    {
+</span><span>        mySpriteState = PlayerSpriteState.RunningInPlacePlayer;
+</span><span>        currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        totalFrames = </span><span style="color:#b5cea8;">3</span><span>;
+</span><span>        movingUp = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>        movingLeft = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>    }
+</span><span>    </span><span style="color:#569cd6;">else if </span><span>(Keyboard.GetState().IsKeyDown(Keys.R))
+</span><span>    {
+</span><span>        mySpriteState = PlayerSpriteState.DeadPlayerMovingUpAndDown;
+</span><span>        currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        totalFrames = </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>        movingUp = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>        movingLeft = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>    }	
+</span><span>    </span><span style="color:#569cd6;">else if </span><span>(Keyboard.GetState().IsKeyDown(Keys.T))
+</span><span>    {
+</span><span>        mySpriteState = PlayerSpriteState.RunningLeftAndRightPlayer;
+</span><span>        currentFrame = </span><span style="color:#b5cea8;">0</span><span>;
+</span><span>        totalFrames = </span><span style="color:#b5cea8;">3</span><span>;
+</span><span>        movingUp = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>        movingLeft = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">switch </span><span>(mySpriteState)
+</span><span>    {
+</span><span>        </span><span style="color:#569cd6;">case </span><span>PlayerSpriteState.</span><span style="color:#b4cea8;">StandingInPlacePlayer</span><span>:
+</span><span>            </span><span style="color:#569cd6;">break</span><span>;
+</span><span>        </span><span style="color:#569cd6;">case </span><span>PlayerSpriteState.</span><span style="color:#b4cea8;">RunningInPlacePlayer</span><span>:
+</span><span>            currentFrame = (currentFrame </span><span style="color:#569cd6;">+ </span><span style="color:#b5cea8;">1</span><span>) </span><span style="color:#569cd6;">% </span><span>totalFrames;
+</span><span>            </span><span style="color:#569cd6;">break</span><span>;
+</span><span>        </span><span style="color:#569cd6;">case </span><span>PlayerSpriteState.</span><span style="color:#b4cea8;">DeadPlayerMovingUpAndDown</span><span>:
+</span><span>            </span><span style="color:#569cd6;">if </span><span>(movingUp)
+</span><span>            {
+</span><span>                yPos </span><span style="color:#569cd6;">-= </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>                </span><span style="color:#569cd6;">if</span><span>(yPos </span><span style="color:#569cd6;">== </span><span style="color:#b5cea8;">0</span><span>)
+</span><span>                    movingUp = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#569cd6;">else
+</span><span>            {
+</span><span>                yPos </span><span style="color:#569cd6;">+= </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>                </span><span style="color:#569cd6;">if </span><span>(yPos </span><span style="color:#569cd6;">== </span><span style="color:#b5cea8;">10</span><span>)
+</span><span>                    movingUp = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#569cd6;">break</span><span>;
+</span><span>        </span><span style="color:#569cd6;">case </span><span>PlayerSpriteState.</span><span style="color:#b4cea8;">RunningLeftAndRightPlayer</span><span>:
+</span><span>            currentFrame = (currentFrame </span><span style="color:#569cd6;">+ </span><span style="color:#b5cea8;">1</span><span>) </span><span style="color:#569cd6;">% </span><span>totalFrames;
+</span><span>            </span><span style="color:#569cd6;">if</span><span>(movingLeft)
+</span><span>            {
+</span><span>                xPos </span><span style="color:#569cd6;">-= </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>                </span><span style="color:#569cd6;">if</span><span>(xPos </span><span style="color:#569cd6;">== </span><span style="color:#b5cea8;">0</span><span>)
+</span><span>                    movingLeft = </span><span style="color:#569cd6;">false</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#569cd6;">else
+</span><span>            {
+</span><span>                xPos </span><span style="color:#569cd6;">+= </span><span style="color:#b5cea8;">1</span><span>;
+</span><span>                </span><span style="color:#569cd6;">if </span><span>(xPos </span><span style="color:#569cd6;">== </span><span style="color:#b5cea8;">10</span><span>)
+</span><span>                    movingLeft = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>            }
+</span><span>            </span><span style="color:#569cd6;">break</span><span>;
+</span><span>    }
+</span><span>}
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

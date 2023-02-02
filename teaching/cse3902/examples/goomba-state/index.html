@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/goomba-state/">Goomba State Example</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <pre data-lang="c#" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c# "><code class="language-c#" data-lang="c#"><span style="color:#569cd6;">public interface </span><span>IGoombaState
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">void </span><span>ChangeDirection();
+</span><span>    </span><span style="color:#569cd6;">void </span><span>BeStomped();
+</span><span>    </span><span style="color:#569cd6;">void </span><span>BeFlipped();
+</span><span>    </span><span style="color:#569cd6;">void </span><span>Update();
+</span><span>    </span><span style="color:#608b4e;">// Draw() might also be included here
+</span><span>}
+</span><span>
+</span><span style="color:#569cd6;">public class </span><span>Goomba
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">public </span><span>IGoombaState state;
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public </span><span>Goomba()
+</span><span>    {
+</span><span>        state = </span><span style="color:#569cd6;">new </span><span>LeftMovingGoombaState(this);
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>ChangeDirection()
+</span><span>    {
+</span><span>        state.ChangeDirection();
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeStomped()
+</span><span>    {
+</span><span>        state.BeStomped();
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeFlipped()
+</span><span>    {
+</span><span>        state.BeFlipped();
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#608b4e;">// Draw and other methods omitted
+</span><span>}
+</span><span>
+</span><span style="color:#569cd6;">public class </span><span>LeftMovingGoombaState : </span><span style="color:#4ec9b0;">IGoombaState
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">private </span><span>Goomba goomba;
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public </span><span>LeftMovingGoombaState(Goomba goomba)
+</span><span>    {
+</span><span>        this.goomba = goomba;
+</span><span>        </span><span style="color:#608b4e;">// construct goomba&#39;s sprite here too
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>ChangeDirection()
+</span><span>    {
+</span><span>        goomba.state = </span><span style="color:#569cd6;">new </span><span>RightMovingGoombaState(goomba);
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeStomped()
+</span><span>    {
+</span><span>        goomba.state = </span><span style="color:#569cd6;">new </span><span>LeftMovingStompedGoombaState(goomba);	
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeFlipped()
+</span><span>    {
+</span><span>        goomba.state = </span><span style="color:#569cd6;">new </span><span>FlippedGoombaState(goomba);
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>Update()
+</span><span>    {
+</span><span>        </span><span style="color:#608b4e;">// call something like goomba.MoveLeft() or goomba.Move(-x,0);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#569cd6;">public class </span><span>LeftMovingStompedGoombaState : </span><span style="color:#4ec9b0;">IGoombaState
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">private </span><span>Goomba goomba;
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public </span><span>LeftMovingStompedGoombaState(Goomba goomba)
+</span><span>    {
+</span><span>        this.goomba = goomba;
+</span><span>        </span><span style="color:#608b4e;">// construct goomba&#39;s sprite here too
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>ChangeDirection()
+</span><span>    {
+</span><span>        goomba.state = </span><span style="color:#569cd6;">new </span><span>RightMovingStompedGoombaState(goomba);
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeStomped()
+</span><span>    {
+</span><span>        </span><span style="color:#608b4e;">// NO-OP
+</span><span>        </span><span style="color:#608b4e;">// already stomped, do nothing
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeFlipped()
+</span><span>    {
+</span><span>        </span><span style="color:#608b4e;">// NO-OP
+</span><span>        </span><span style="color:#608b4e;">// if stomped, do not respond to being attacked by star mario (assumed but not tested behavior)
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>Update()
+</span><span>    {
+</span><span>        </span><span style="color:#608b4e;">// call something like goomba.MoveLeft() or goomba.Move(-x,0);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

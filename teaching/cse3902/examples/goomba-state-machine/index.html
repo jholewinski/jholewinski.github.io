@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/goomba-state-machine/">Goomba State Machine</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <pre data-lang="c#" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c# "><code class="language-c#" data-lang="c#"><span style="color:#569cd6;">public class </span><span>Goomba
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">private </span><span>GoombaStateMachine stateMachine;
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public </span><span>Goomba()
+</span><span>    {
+</span><span>        stateMachine = </span><span style="color:#569cd6;">new </span><span>GoombaStateMachine();
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>ChangeDirection()
+</span><span>    {
+</span><span>        stateMachine.ChangeDirection();
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeStomped()
+</span><span>    {
+</span><span>        stateMachine.BeStomped();
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeFlipped()
+</span><span>    {
+</span><span>        stateMachine.BeFlipped();
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#608b4e;">// Draw and other methods omitted
+</span><span>}
+</span><span>
+</span><span style="color:#569cd6;">public class </span><span>GoombaStateMachine
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">private bool </span><span>facingLeft = </span><span style="color:#569cd6;">true</span><span>;
+</span><span>    </span><span style="color:#569cd6;">private enum </span><span>GoombaHealth {</span><span style="color:#b4cea8;">Normal</span><span>, </span><span style="color:#b4cea8;">Stomped</span><span>, </span><span style="color:#b4cea8;">Flipped </span><span>};
+</span><span>    </span><span style="color:#569cd6;">private </span><span>GoombaHealth health = GoombaHealth.Normal;
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>ChangeDirection()
+</span><span>    {
+</span><span>        facingLeft = </span><span style="color:#569cd6;">!</span><span>facingLeft;
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeStomped()
+</span><span>    {
+</span><span>        </span><span style="color:#569cd6;">if</span><span>(health </span><span style="color:#569cd6;">!= </span><span>GoombaHealth.Stomped)	</span><span style="color:#608b4e;">// Note: the if is needed so we only do the transition once
+</span><span>        {
+</span><span>            health = GoombaHealth.Stomped;
+</span><span>            </span><span style="color:#608b4e;">// Compute and construct goomba sprite - requires if-else logic with value of health
+</span><span>        }
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>BeFlipped()
+</span><span>    {
+</span><span>        </span><span style="color:#569cd6;">if</span><span>(health </span><span style="color:#569cd6;">!= </span><span>GoombaHealth.Flipped)	</span><span style="color:#608b4e;">// Note: the if is needed so we only do the transition once
+</span><span>        {
+</span><span>            health = GoombaHealth.Flipped;
+</span><span>            </span><span style="color:#608b4e;">// Compute and construct goomba sprite - requires if-else logic with value of health
+</span><span>        }
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#569cd6;">public void </span><span>Update()
+</span><span>    {
+</span><span>        </span><span style="color:#608b4e;">// if-else logic based on the current values of facingLeft and health to determine how to move
+</span><span>    }
+</span><span>}
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

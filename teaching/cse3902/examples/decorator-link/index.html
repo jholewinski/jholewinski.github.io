@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Justin Holewinski</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/style.css">
+    <link rel="stylesheet" href="https://jholewinski.github.io/color/blue.css">
+
+    <link rel="stylesheet" href="https://jholewinski.github.io/font-hack-subset.css">
+
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://jholewinski.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Justin Holewinski
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://jholewinski.github.io">Home</a></li>
+            
+                <li><a href="https://jholewinski.github.io/about-me">About Me</a></li>
+            
+                <li><a href="https://jholewinski.github.io/blog">Blog</a></li>
+            
+                <li><a href="https://jholewinski.github.io/publications">Publications</a></li>
+            
+                <li class="active"><a href="https://jholewinski.github.io/teaching">Teaching</a></li>
+            
+                <li><a href="https://github.com/jholewinski" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://jholewinski.github.io/teaching/cse3902/examples/decorator-link/">Decorator Example for Link</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date"></span>
+
+    </div>
+
+    
+
+        
+        <div class="post-content">
+            <pre data-lang="c#" style="background-color:#1e1e1e;color:#dcdcdc;" class="language-c# "><code class="language-c#" data-lang="c#"><span style="color:#569cd6;">namespace </span><span>DecoratorExample
+</span><span>{
+</span><span>    </span><span style="color:#569cd6;">interface </span><span>ILink
+</span><span>    {
+</span><span>        </span><span style="color:#569cd6;">void </span><span>TakeDamage();
+</span><span>        </span><span style="color:#569cd6;">void </span><span>Update();
+</span><span>        
+</span><span>        </span><span style="color:#608b4e;">// other methods...
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#569cd6;">class </span><span>Link : </span><span style="color:#4ec9b0;">ILink
+</span><span>    {
+</span><span>        ILinkState state;
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">void </span><span>TakeDamage()
+</span><span>        {
+</span><span>            state.TakeDamage();
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">void </span><span>Update()
+</span><span>        {
+</span><span>            state.Update();
+</span><span>        }
+</span><span>
+</span><span>	    </span><span style="color:#608b4e;">// other methods...
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#569cd6;">class </span><span>DamagedLink : </span><span style="color:#4ec9b0;">ILink
+</span><span>    {
+</span><span>        Game1 game;
+</span><span>        ILink decoratedLink;
+</span><span>        </span><span style="color:#569cd6;">int </span><span>timer = </span><span style="color:#b5cea8;">1000</span><span>;
+</span><span>
+</span><span>	</span><span style="color:#569cd6;">public </span><span>DamagedLink (ILink decoratedLink, Game1 game)
+</span><span>	{
+</span><span>	     this.decoratedLink = decoratedLink;
+</span><span>		 this.game = game;
+</span><span>	}
+</span><span>		
+</span><span>        </span><span style="color:#569cd6;">void </span><span>TakeDamage()
+</span><span>        {
+</span><span>            </span><span style="color:#608b4e;">// does not take damage
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">void </span><span>Update()
+</span><span>        {
+</span><span>            timer</span><span style="color:#569cd6;">--</span><span>;
+</span><span>            
+</span><span>            </span><span style="color:#569cd6;">if</span><span>(timer </span><span style="color:#569cd6;">== </span><span style="color:#b5cea8;">0</span><span>)
+</span><span>            {
+</span><span>                RemoveDecorator();
+</span><span>            }
+</span><span>			
+</span><span>	        decoratedLink.Update();
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#569cd6;">void </span><span>RemoveDecorator()
+</span><span>        {
+</span><span>            game.Link = decoratedLink;
+</span><span>        }
+</span><span>		
+</span><span>	</span><span style="color:#608b4e;">// other methods... (most make method calls on decoratedLink)
+</span><span>    }
+</span><span>
+</span><span>}
+</span></code></pre>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2023
+ Justin Holewinski</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a> by pawroman
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
