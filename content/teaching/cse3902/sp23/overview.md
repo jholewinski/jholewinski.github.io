@@ -43,15 +43,15 @@ The following sprints comprise the project work for this course:
   - Assigned: Jan 27
   - Functionality Check-In: Feb 12 at 11:59pm
   - Due: Feb 19 at 11:59pm
-- [Sprint 3](sprint3/): Level as Segmented Screens and Collision Handling
+- [Sprint 3](@/teaching/cse3902/sp23/sprint3/index.md): Level as Segmented Screens and Collision Handling
   - Assigned: Feb 20
   - Functionality Check-In: Mar 5 at 11:59pm
   - Due: Mar 19 at 11:59pm
-- [Sprint 4](sprint4/): Finished Framework and First Level
+- [Sprint 4](@/teaching/cse3902/sp23/sprint4/index.md): Finished Framework and First Level
   - Assigned: Mar 20
   - Functionality Check-In: Apr 2 at 11:59pm
   - Due: Apr 9 at 11:59pm
-- [Sprint 5](sprint5/): Extra Features
+- [Sprint 5](@/teaching/cse3902/sp23/sprint5/index.md): Extra Features
   - Assigned: Apr 10
   - Functionality Check-In: N/A
   - Due: Apr 24 at 11:59pm
