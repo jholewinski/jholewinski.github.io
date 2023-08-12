@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Justin Holewinski - Unreal</title>
-	<link href="https://jholewinski.github.io/tags/unreal/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://jholewinski.github.io"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2012-03-17T00:00:00+00:00</updated>
-	<id>https://jholewinski.github.io/tags/unreal/atom.xml</id>
-	<entry xml:lang="en">
-		<title>UnrealScript: Brace Placement Matters!</title>
-		<published>2012-03-17T00:00:00+00:00</published>
-		<updated>2012-03-17T00:00:00+00:00</updated>
-		<link rel="alternate" href="https://jholewinski.github.io/blog/unrealscript-brace-placement-matters/" type="text/html"/>
-		<id>https://jholewinski.github.io/blog/unrealscript-brace-placement-matters/</id>
-		<content type="html">&lt;p&gt;I was playing around with the Unreal Development Kit this evening, and
+    <title>Justin Holewinski - Unreal</title>
+    <link href="https://jholewinski.github.io/tags/unreal/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://jholewinski.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2012-03-17T00:00:00+00:00</updated>
+    <id>https://jholewinski.github.io/tags/unreal/atom.xml</id>
+    <entry xml:lang="en">
+        <title>UnrealScript: Brace Placement Matters!</title>
+        <published>2012-03-17T00:00:00+00:00</published>
+        <updated>2012-03-17T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://jholewinski.github.io/blog/unrealscript-brace-placement-matters/" type="text/html"/>
+        <id>https://jholewinski.github.io/blog/unrealscript-brace-placement-matters/</id>
+        
+        <content type="html">&lt;p&gt;I was playing around with the Unreal Development Kit this evening, and
 discovered a rather interesting quirk in the handling of braces within
 UnrealScript. All of the sample code I read use a syntax style that places
 opening braces on the following line:&lt;&#x2F;p&gt;
@@ -44,5 +48,6 @@ settings:&lt;&#x2F;p&gt;
 &lt;p&gt;I was banging my head on the wall for at least an hour figuring this one out!&lt;&#x2F;p&gt;
 &lt;p&gt;I hope this can help prevent someone else from repeating my mistake.&lt;&#x2F;p&gt;
 </content>
-	</entry>
+        
+    </entry>
 </feed>

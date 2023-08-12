@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Justin Holewinski - Linux</title>
-	<link href="https://jholewinski.github.io/tags/linux/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://jholewinski.github.io"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2013-07-11T00:00:00+00:00</updated>
-	<id>https://jholewinski.github.io/tags/linux/atom.xml</id>
-	<entry xml:lang="en">
-		<title>i3 WM: Default Workspace Settings</title>
-		<published>2013-07-11T00:00:00+00:00</published>
-		<updated>2013-07-11T00:00:00+00:00</updated>
-		<link rel="alternate" href="https://jholewinski.github.io/blog/i3-wm-default-settings/" type="text/html"/>
-		<id>https://jholewinski.github.io/blog/i3-wm-default-settings/</id>
-		<content type="html">&lt;p&gt;I&#x27;ve been playing around with the i3 window manager a lot lately, and I have to
+    <title>Justin Holewinski - Linux</title>
+    <link href="https://jholewinski.github.io/tags/linux/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://jholewinski.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2013-07-11T00:00:00+00:00</updated>
+    <id>https://jholewinski.github.io/tags/linux/atom.xml</id>
+    <entry xml:lang="en">
+        <title>i3 WM: Default Workspace Settings</title>
+        <published>2013-07-11T00:00:00+00:00</published>
+        <updated>2013-07-11T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://jholewinski.github.io/blog/i3-wm-default-settings/" type="text/html"/>
+        <id>https://jholewinski.github.io/blog/i3-wm-default-settings/</id>
+        
+        <content type="html">&lt;p&gt;I&#x27;ve been playing around with the i3 window manager a lot lately, and I have to
 say I enjoy it very much! But one default setting that tripped me up (as set by
 &lt;code&gt;i3-config-wizard&lt;&#x2F;code&gt;) was the key bindings for workspace switching:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#1e1e1e;color:#dcdcdc;&quot;&gt;&lt;code&gt;&lt;span&gt;  bindsym $mod+1 workspace 1
@@ -32,5 +36,6 @@ config file:&lt;&#x2F;p&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;  # ...
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 </content>
-	</entry>
+        
+    </entry>
 </feed>

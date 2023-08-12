@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Justin Holewinski - AMD</title>
-	<link href="https://jholewinski.github.io/tags/amd/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://jholewinski.github.io"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2012-02-09T00:00:00+00:00</updated>
-	<id>https://jholewinski.github.io/tags/amd/atom.xml</id>
-	<entry xml:lang="en">
-		<title>AMD APP: Getting Device Assembly</title>
-		<published>2012-02-09T00:00:00+00:00</published>
-		<updated>2012-02-09T00:00:00+00:00</updated>
-		<link rel="alternate" href="https://jholewinski.github.io/blog/amd-app-getting-device-assembly/" type="text/html"/>
-		<id>https://jholewinski.github.io/blog/amd-app-getting-device-assembly/</id>
-		<content type="html">&lt;p&gt;Sometimes it is useful to look at the intermediate and assembly code for GPU
+    <title>Justin Holewinski - AMD</title>
+    <link href="https://jholewinski.github.io/tags/amd/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://jholewinski.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2012-02-09T00:00:00+00:00</updated>
+    <id>https://jholewinski.github.io/tags/amd/atom.xml</id>
+    <entry xml:lang="en">
+        <title>AMD APP: Getting Device Assembly</title>
+        <published>2012-02-09T00:00:00+00:00</published>
+        <updated>2012-02-09T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://jholewinski.github.io/blog/amd-app-getting-device-assembly/" type="text/html"/>
+        <id>https://jholewinski.github.io/blog/amd-app-getting-device-assembly/</id>
+        
+        <content type="html">&lt;p&gt;Sometimes it is useful to look at the intermediate and assembly code for GPU
 programs. This can lead to some interesting performance insights, especially for
 compiler writers. Unfortunately, the AMD APP SDK is a bit limited on Linux, and
 the AMD APP KernelAnalyzer, which conveniently dumps the AMDIL and Device ISA
@@ -33,5 +37,6 @@ three values:&lt;&#x2F;p&gt;
 &lt;code&gt;[kernel-name]_[device-name].il&lt;&#x2F;code&gt; and &lt;code&gt;[kernel-name]_[device-name].isa&lt;&#x2F;code&gt;, which
 contain AMDIL and Device ISA disassembly, respectively.&lt;&#x2F;p&gt;
 </content>
-	</entry>
+        
+    </entry>
 </feed>

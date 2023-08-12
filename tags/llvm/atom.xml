@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Justin Holewinski - LLVM</title>
-	<link href="https://jholewinski.github.io/tags/llvm/atom.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://jholewinski.github.io"/>
-	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2011-12-02T00:00:00+00:00</updated>
-	<id>https://jholewinski.github.io/tags/llvm/atom.xml</id>
-	<entry xml:lang="en">
-		<title>LLVM 3.0: PTX Backend</title>
-		<published>2011-12-02T00:00:00+00:00</published>
-		<updated>2011-12-02T00:00:00+00:00</updated>
-		<link rel="alternate" href="https://jholewinski.github.io/blog/llvm-3-0-ptx-backend/" type="text/html"/>
-		<id>https://jholewinski.github.io/blog/llvm-3-0-ptx-backend/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2F;strong&gt;: The information is this article only applies to LLVM 3.0 and 3.1. As
+    <title>Justin Holewinski - LLVM</title>
+    <link href="https://jholewinski.github.io/tags/llvm/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://jholewinski.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2011-12-02T00:00:00+00:00</updated>
+    <id>https://jholewinski.github.io/tags/llvm/atom.xml</id>
+    <entry xml:lang="en">
+        <title>LLVM 3.0: PTX Backend</title>
+        <published>2011-12-02T00:00:00+00:00</published>
+        <updated>2011-12-02T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://jholewinski.github.io/blog/llvm-3-0-ptx-backend/" type="text/html"/>
+        <id>https://jholewinski.github.io/blog/llvm-3-0-ptx-backend/</id>
+        
+        <content type="html">&lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2F;strong&gt;: The information is this article only applies to LLVM 3.0 and 3.1. As
 of LLVM 3.2, the PTX back-end has been replaced with the NVPTX back-end.&lt;&#x2F;p&gt;
 &lt;p&gt;With the release of LLVM 3.0, the PTX back-end is now in a fairly usable state.
 It even integrates with the Clang OpenCL front-end to produce correct PTX code
@@ -94,5 +98,6 @@ OpenCL binary kernel using the nVidia OpenCL SDK, using the
 &lt;code&gt;clCreateProgramWithBinary&lt;&#x2F;code&gt; function. As an added bonus, the performance is
 about the same as if the kernel was compiled using the nVidia OpenCL compiler!&lt;&#x2F;p&gt;
 </content>
-	</entry>
+        
+    </entry>
 </feed>
